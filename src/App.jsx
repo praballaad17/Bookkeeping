@@ -1,45 +1,32 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import * as ROUTES from './constants/routes';
 
-function App() {
-  const [count, setCount] = useState(0)
+import MainLoader from './loader/mainLoader';
+
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/Signup'));
+// const Dashboard = lazy(() => import('./pages/dashboard'));
+// const NotFound = lazy(() => import('./pages/not-found'));
+
+export default function App() {
+  // const { user, jwt } = useAuthListener()
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
-}
 
-export default App
+    <Router>
+      <Suspense fallback={<MainLoader />}>
+        <Switch>
+          <Route path={ROUTES.LOGIN} component={() => <Login />} />
+          <Route path={ROUTES.SIGN_UP} component={() => <SignUp />} />
+          {/* <Route path={ROUTES.DASHBOARD} component={() => <Dashboard />} /> */}
+          {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
+                  <Dashboard />
+                </ProtectedRoute> */}
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
+    </Router>
+
+  );
+}
