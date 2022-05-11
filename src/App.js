@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import * as ROUTES from './constants/routes';
+// import Login from './pages/Login';
+// import SignUp from './pages/Signup';
+// import Dashboard from './Components/Dashboard'
+import MainLoader from './loader/mainLoader';
 
-function App() {
+
+const Login = lazy(() => import('./pages/Login'));
+const SignUp = lazy(() => import('./pages/Signup'));
+const Dashboard = lazy(() => import('./Components/Dashboard'));
+// const NotFound = lazy(() => import('./pages/not-found')); 
+
+export default function App() {
+  // const { user, jwt } = useAuthListener() 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Suspense fallback={<MainLoader />}>
+
+          <Routes>
+            <Route path={ROUTES.LOGIN} element={<Login />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+            {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
+                  <Dashboard />
+                </ProtectedRoute> */}
+
+            {/* <Dashboard /> */}
+          </Routes>
+        </Suspense>
+      </Router>
+    </>
+
   );
 }
-
-export default App;
