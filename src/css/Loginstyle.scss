@@ -1,0 +1,81 @@
+.login{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    &__hero{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // @include respond(tab-port) {
+        //     width: 0;
+        // }
+
+        & > img {
+            height: 100%;
+        }
+    }
+
+    &__box{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        overflow: hidden;
+        
+        // @include respond(tab-port) {
+        //     width: 90%;
+        // }
+
+
+        &--sub{
+         display: flex;
+         flex-direction: column;
+         padding: 5rem 3rem;
+        //  border: 1px solid $color-grey-light-1;
+         border-radius: 1rem;
+        //  background-color: $color-white;
+        width: 50rem;
+        // box-shadow: 0 0 10px 10px $color-grey-light-1;
+        //  @include respond(tab-port) {
+        //     max-width: 50rem;
+        //     width: unset;
+        // }
+     }
+
+     &--head {
+         display: flex;
+         justify-content: center;
+         padding: 2rem 3rem;
+     }
+
+     &--foot{
+         margin-top: 5rem;
+         display: flex;
+         align-items: center;
+         font-size: 5rem;
+
+         &--content{
+             font-size: 2.3rem;
+         }
+     }   
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+
+        &--input{
+        width: 100%;
+        // border: 2px solid $color-grey-light-1;
+        border-radius: .5rem;
+        margin: 1rem;
+        padding: 2rem;
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
+}

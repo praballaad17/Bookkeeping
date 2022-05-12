@@ -6,7 +6,9 @@ import MainLoader from './loader/mainLoader';
 
 const Login = lazy(() => import('./pages/Login'));
 const SignUp = lazy(() => import('./pages/Signup'));
-const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Sidebar = lazy(() => import('./Components/Sidebar'));
+const Uppernavbar = lazy(() => import('./Components/Uppernavbar'));
+const Centerpart = lazy(() => import('./Components/Centerpart'));
 // const NotFound = lazy(() => import('./pages/not-found')); 
 
 export default function App() {
@@ -20,9 +22,9 @@ export default function App() {
         <Suspense fallback={<MainLoader />}>
 
           <Routes>
-            <Route path={ROUTES.LOGIN} element={<Login user={user} />} />
-            <Route path={ROUTES.SIGN_UP} element={<SignUp user={user} />} />
-            <Route path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
+            <Route path={ROUTES.LOGIN} element={<Login />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={ROUTES.DASHBOARD} element={<><Uppernavbar/><Sidebar/><Centerpart/></>} />
             {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}
