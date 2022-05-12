@@ -32,7 +32,7 @@ export default function Login({ user: loggedInUser }) {
     }, []);
 
 
-    if (loggedInUser) return <Navigate to={ROUTES.TIMELINE} />
+    if (loggedInUser) return <Navigate to={ROUTES.DASHBOARD} />
 
     return (
         <div className="login">

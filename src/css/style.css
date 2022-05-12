@@ -1273,10 +1273,6 @@ body {
         .mennoti__con__head > a:hover {
           text-decoration: underline; }
 
-body {
-  margin: 0;
-  font-family: "Lato", sans-serif; }
-
 .container {
   display: flex;
   flex-direction: row; }
@@ -1284,26 +1280,23 @@ body {
 .sidebar {
   margin: 0;
   padding: 0;
-  width: 290px;
+  width: 270px;
   background-color: #000000;
   position: fixed;
   height: 100%;
   overflow: auto; }
-
-.sidebar a {
-  display: block;
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-  font-size: 20px; }
-
-.sidebar a.active {
-  background-color: #04aa6d;
-  color: white; }
-
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white; }
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1.6rem; }
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white; }
+  .sidebar a.active {
+    background-color: #04aa6d;
+    color: white; }
 
 div.content {
   margin-left: 200px;

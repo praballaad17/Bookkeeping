@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
-// import { registerUser } from '../services/authenticationServices';
+import { registerUser } from '../services/authenticationServices';
 
 export default function SignUp({ user: loggedInUser }) {
 
@@ -16,8 +16,8 @@ export default function SignUp({ user: loggedInUser }) {
     const handleSignUp = async (event) => {
         event.preventDefault();
         try {
-            // await registerUser(username, fullName, emailAddress, password);
-            window.location = "/"
+            await registerUser(username, fullName, emailAddress, password);
+            // window.location = "/"
         } catch (error) {
             console.log(error.response);
             setFullName('');

@@ -1,3 +1,4 @@
 {
-  "apiUrl": "https://touch-app-server.herokuapp.com/api"
+  "apiUrl": "https://thebookkeeping.herokuapp.com/api",
+  "localUrl": "http://localhost:3003/api"
 }
