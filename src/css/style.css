@@ -902,7 +902,7 @@ body {
   z-index: 1000;
   border-radius: 1rem;
   overflow: hidden; }
-  .modal-box__heading {
+  .modal-box__head {
     margin: 2rem;
     display: flex;
     align-self: center;

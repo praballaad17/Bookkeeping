@@ -1,51 +1,56 @@
-.modal{
+.modal {
 
-    &-layout{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba($color-black, 0.2);
-    z-index: 1000;
-   
+    &-layout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($color-black, 0.2);
+        z-index: 1000;
+
     }
 
-    &-box{
+    &-box {
         position: fixed;
-        top: 50vh;  
+        top: 50vh;
         left: 50vw;
         background-color: $color-white;
         transform: translate(-50%, -50%);
         z-index: 1000;
         border-radius: 1rem;
         overflow: hidden;
-        &__heading{
+
+        &__head {
             margin: 2rem;
             display: flex;
             align-self: center;
             justify-content: center;
+
         }
-        &__list{
+
+        &__list {
             text-align: center;
             list-style: none;
         }
-        &__item{
-            border-top:1px solid rgba($color-grey, 0.4) ;
+
+        &__item {
+            border-top: 1px solid rgba($color-grey, 0.4);
             padding: 1rem 4rem;
             cursor: pointer;
-        & > label {
-            cursor: pointer;
-        }
+
+            &>label {
+                cursor: pointer;
+            }
         }
     }
 
-    &-newconv{
+    &-newconv {
         width: 60rem;
         min-height: 48.8rem;
         max-height: 90vh;
         position: fixed;
-        top: 50vh;  
+        top: 50vh;
         left: 50vw;
         background-color: $color-white;
         transform: translate(-50%, -50%);
@@ -53,7 +58,7 @@
         border-radius: 1rem;
 
         @include respond(phone) {
-            top: 0;  
+            top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
@@ -62,7 +67,7 @@
             border-radius: 0px;
         }
 
-        &__heading{
+        &__heading {
             margin: 1rem 2rem;
             display: flex;
             align-items: center;
@@ -75,7 +80,7 @@
                 align-items: center;
             }
         }
-        
+
         &__search {
             display: flex;
             flex-direction: column;
@@ -92,6 +97,7 @@
                 flex-grow: 1;
                 border-bottom: none;
                 margin-left: 2rem;
+
                 &:focus-visible {
                     outline: none;
                 }
@@ -100,6 +106,7 @@
             &-selected {
                 display: flex;
                 flex-wrap: wrap;
+
                 &-user {
                     display: flex;
                     border: 1px solid $color-grey;
@@ -113,14 +120,16 @@
                         background-color: $color-tertiary-light;
                     }
                 }
+
                 &-img {
                     width: 2rem;
                     height: 2rem;
                     border-radius: 50%;
                     display: inline-block;
                 }
+
                 &-icon {
-                    margin-left:1rem ;
+                    margin-left: 1rem;
                 }
             }
         }
@@ -130,20 +139,22 @@
             flex-direction: column;
             overflow-y: scroll;
 
-            &-user { 
+            &-user {
                 display: flex;
                 padding: 1rem 2rem;
+
                 &:hover {
                     background-color: $color-grey-light-2;
                 }
-                &-img{
+
+                &-img {
                     width: 5rem;
                     height: 5rem;
                     border-radius: 50%;
                     display: inline-block;
                 }
 
-                &-info{
+                &-info {
                     display: flex;
                     flex-direction: column;
                     padding: 0 2rem;
@@ -154,7 +165,7 @@
                     }
                 }
             }
-        } 
+        }
     }
 }
 
@@ -165,14 +176,14 @@
         position: relative;
     }
 
-    &-bar{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    width: 50%;
-    background-color: $color-tertiary-light;
-    border-radius: 0.2rem;
-    animation: wave2 2s linear infinite;
-  }
+    &-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        width: 50%;
+        background-color: $color-tertiary-light;
+        border-radius: 0.2rem;
+        animation: wave2 2s linear infinite;
+    }
 }

@@ -1,4 +1,5 @@
 .btn {
+
   &,
   &:link,
   &:visited {
@@ -16,6 +17,7 @@
     border: none;
     cursor: pointer;
   }
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 1rem 2rem rgba($color-primary, 0.2);
@@ -25,6 +27,7 @@
       opacity: 0;
     }
   }
+
   &:active,
   &:focus {
     outline: none;
@@ -76,15 +79,16 @@
     animation-fill-mode: backwards;
   }
 
-  &-login{
+  &-login {
     background-color: blue;
     color: $color-white;
     width: -webkit-fill-available;
-    
+
   }
 }
 
 .btn-text {
+
   &:link,
   &:visited {
     font-size: $default-font-size;
@@ -95,19 +99,22 @@
     padding: 3px;
     transition: all 0.2s;
   }
+
   &:hover {
     background-color: $color-primary-dark;
     color: $color-white;
     box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
     transform: translateY(-5px);
   }
+
   &:active {
     box-shadow: 0 0.5rem 2rem rgba($color-black, 0.15);
     transform: translateY(0px);
   }
 
-  
+
 }
+
 .btn-follow {
   background-color: $color-tertiary-dark;
   color: $color-white;
@@ -116,11 +123,11 @@
   padding: 1rem;
   margin-left: 1rem;
   cursor: pointer;
+
   &-f {
     background-color: $color-grey-light-2;
     color: $color-grey-dark-3;
-}
-&-u {
+  }
 
-}
+  &-u {}
 }

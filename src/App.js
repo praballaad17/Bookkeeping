@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/useAuthListener';
 import MainLoader from './loader/mainLoader';
+import Dashboard from './pages/Dashboard';
 
 const Login = lazy(() => import('./pages/Login'));
 const SignUp = lazy(() => import('./pages/Signup'));
@@ -22,9 +23,9 @@ export default function App() {
         <Suspense fallback={<MainLoader />}>
 
           <Routes>
-            <Route path={ROUTES.LOGIN} element={<Login />} />
-            <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-            <Route path={ROUTES.DASHBOARD} element={<><Uppernavbar/><Sidebar/><Centerpart/></>} />
+            <Route path={ROUTES.LOGIN} element={<Login user={user} />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignUp user={user} />} />
+            <Route path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
             {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}
