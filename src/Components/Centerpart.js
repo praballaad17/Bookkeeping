@@ -14,11 +14,11 @@ const Centerpart = () => {
             <div className="right">
                 <div className="first">
                 <h3>Start using the websitename by creating your first Invoice</h3>
-                <button className='button'><Link to={ROUTES.LOGIN}><span>Add Invoices</span></Link></button>
+                <button className='button button-center'><Link to={ROUTES.LOGIN}><span>Add Invoices</span></Link></button>
                 </div>
                 <div className="sec">
                 <h3>Add your company details before starting</h3>
-                <button className='button'><Link to={ROUTES.LOGIN}><span>My Company </span></Link></button>
+                <button className='button button-center'><Link to={ROUTES.LOGIN}><span>My Company </span></Link></button>
                 </div>
             </div>
         </div>

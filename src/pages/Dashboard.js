@@ -14,10 +14,9 @@ export default function Dashboard({ user: loggedInUser }) {
 
     return (
         <div className="container bigger-flex">
-            <Sidebar />
-
+            <Sidebar open={open} onClose={()=>{setOpen(true);}}/>
             <DetailsModal open={open} onClose={() => setOpen(false)} />
-            {/* <Uppernavbar /> */}
+            <Uppernavbar />
             {/* <Centerpart /> */}
         </div>
     )

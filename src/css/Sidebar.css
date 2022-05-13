@@ -9,19 +9,22 @@ body {
   .sidebar {
     margin-top:45px;
     padding: 0;
-    width: 290px;
-    background-color: #000000;
+    width: 325px;
+    background-color: black;
     position: fixed;
     height: 100%;
     overflow: auto;
   }
-  
+  i{
+    margin-right: 8px;
+  }
   .sidebar a {
     display: block;
     color: white;
     padding: 16px;
     text-decoration: none;
     font-size: 20px;
+    /* padding-left: 100px; */
   }
   
   .sidebar a.active {
@@ -66,6 +69,23 @@ body {
   }
   .div-items{
     float: right;
-    width: 200px;
+    width: 500pxs;
     height: 200px;
   }
+.button-main{
+    display: inline-block;
+    border-radius: 7px;
+    background-color: rgb(182, 119, 42);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 34px;
+    width: 100%;
+    transition: all 0.5s;
+    cursor: pointer;
+    padding: 20px 20px;
+}
+.mainbuttondiv{
+  padding: 20px;
+  box-sizing: border-box;
+}
