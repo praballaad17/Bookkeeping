@@ -897,13 +897,15 @@ body {
   position: fixed;
   top: 50vh;
   left: 50vw;
-  background-color: #fff;
+  background-color: rgb(0, 0, 0);
+  color: white;
   transform: translate(-50%, -50%);
   z-index: 1000;
   border-radius: 1rem;
   overflow: hidden; }
   .modal-box__head {
-    margin: 2rem;
+    /* margin: 1rem; */
+    margin: 1rem 0rem;
     display: flex;
     align-self: center;
     justify-content: center; }
