@@ -1,43 +1,43 @@
 import React, { useEffect, useState } from "react";
 import "../../css/authenticationstyle.css";
-import {DASHBOARD, LOGIN} from '../../constants/routes';
-import { login } from '../../services/authenticationServices';
+import { DASHBOARD } from "../../constants/routes";
+import { login } from "../../services/authenticationServices";
 import { Link, Navigate } from "react-router-dom";
 
-const AuthLogin = ({user:User}) => {
-  const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false)
+const AuthLogin = ({ user: User }) => {
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const [error, setError] = useState('');
-    const isInvalid = password === '' || emailAddress === '';
+  const [error, setError] = useState("");
+  const isInvalid = password === "" || emailAddress === "";
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
-        setLoading(true)
-        try {
-            await login(emailAddress, password);
-            setLoading(false)
-            window.location = "/"
-        } catch (error) {
-            setEmailAddress('');
-            setPassword('');
-            setError(error.message);
-            setLoading(false)
-        }
-    };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      await login(emailAddress, password);
+      setLoading(false);
+      window.location = "/";
+    } catch (error) {
+      setEmailAddress("");
+      setPassword("");
+      setError(error.message);
+      setLoading(false);
+    }
+  };
 
-    useEffect(() => {
-        document.title = 'Login - Touch';
-    }, []);
+  useEffect(() => {
+    document.title = "Login - Touch";
+    setPassword(""); setEmailAddress("");
+  }, []);
 
-
-    if (User) return <Navigate to={DASHBOARD} />
+  if (User) return <Navigate to={DASHBOARD} />;
 
   return (
     <>
       <div className="form-container sign-in-container">
-        <form className="auth-form" action="#">
+        <form className="auth-form"  onSubmit={handleLogin} method="POST">
           <h1 className="auth-heading">Sign In</h1>
           <div className="social-container">
             <a href="#" className="social">
@@ -59,7 +59,7 @@ const AuthLogin = ({user:User}) => {
             name="email"
             placeholder="Email"
             onChange={({ target }) => setEmailAddress(target.value)}
-                            value={emailAddress}
+            value={emailAddress}
           />
           <input
             className="auth-input"
@@ -67,14 +67,18 @@ const AuthLogin = ({user:User}) => {
             name="password"
             placeholder="Password"
             onChange={({ target }) => setPassword(target.value)}
-                            value={password}
+            value={password}
           />
           <a href="#">Forgot Your Password</a>
 
-          <button disabled={isInvalid}
-                            type="submit"
-                            className={`auth-btn
-            ${isInvalid && 'u-opacity-50'}`}>Sign In</button>
+          <button
+            disabled={isInvalid}
+            type="submit"
+            className={`auth-btn
+            ${isInvalid && 'u-opacity-50'}`}
+          >
+            Sign In
+          </button>
         </form>
       </div>
       <div className="overlay-container">
@@ -84,11 +88,12 @@ const AuthLogin = ({user:User}) => {
             <p className="auth-p">
               Enter your details and start journey with us
             </p>
-            <button className="ghost" id="signUp">
-              <Link to={LOGIN}>
+
+            <Link to="/authentication/">
+              <button className="ghost" id="signUp">
                 Sign Up
-                </Link>
-            </button>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

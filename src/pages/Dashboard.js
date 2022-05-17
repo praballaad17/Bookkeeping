@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom';
-import Centerpart from '../Components/Centerpart';
-import DetailsModal from '../Components/DetailsModal';
-import Sidebar from '../Components/Sidebar'
-import Uppernavbar from '../Components/Uppernavbar';
-import * as ROUTES from '../constants/routes';
-
+import React, { useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "../Components/Home";
+import DetailsModal from "../Components/DetailsModal";
+import Sidebar from "../Components/Sidebar";
+import Uppernavbar from "../Components/Uppernavbar";
+import * as ROUTES from "../constants/routes";
+import "../css/dashboardStyle.css";
 export default function Dashboard({ user: loggedInUser }) {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  // if (!loggedInUser) return <Navigate to={ROUTES.LOGIN} />
 
-    // if (!loggedInUser) return <Navigate to={ROUTES.LOGIN} />  
-
-    return (
-        <div className="container bigger-flex">
-            <Sidebar open={open} onClose={()=>{setOpen(true);}}/>
-            <DetailsModal open={open} onClose={() => setOpen(false)} />
-            <Uppernavbar />
-            {/* <Centerpart /> */}
+  return (
+    <div className="dashboard-mian">
+      <div id="top-div">
+        <Uppernavbar />
+      </div>
+      <div id="bottom-div">
+        <div id="sidebar-div">
+          <Sidebar
+            open={open}
+            onClose={() => {
+              setOpen(true);
+            }}
+          />
         </div>
-    )
+
+        <DetailsModal open={open} onClose={() => setOpen(false)} />
+              <div id="central-div">
+                  <Routes>
+                    <Route path="/" element={<Home/>}/>
+                  </Routes>
+        </div>
+      </div>
+    </div>
+  );
 }

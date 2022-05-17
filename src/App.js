@@ -12,7 +12,6 @@ import AuthSignup from './pages/Authenticate/AuthSignup';
 // const SignUp = lazy(() => import('./pages/Signup'));
 const Sidebar = lazy(() => import('./Components/Sidebar'));
 const Uppernavbar = lazy(() => import('./Components/Uppernavbar'));
-const Centerpart = lazy(() => import('./Components/Centerpart'));
 // const NotFound = lazy(() => import('./pages/not-found')); 
 
 export default function App() {

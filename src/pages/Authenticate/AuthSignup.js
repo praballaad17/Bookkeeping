@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import "../../css/authenticationstyle.css";
 import { registerUser } from "../../services/authenticationServices";
-import { DASHBOARD, LOGIN } from "../../constants/routes";
+import { DASHBOARD } from "../../constants/routes";
 
 const AuthSignup = ({ user: User }) => {
   const [username, setUsername] = useState("");
@@ -32,6 +32,10 @@ const AuthSignup = ({ user: User }) => {
   };
   useEffect(() => {
     document.title = "Sign Up - Touch";
+    setFullName("");
+    setEmailAddress("");
+    setPassword("");
+    setError("");
   }, []);
 
   if (User) return <Navigate to={DASHBOARD} />;
@@ -58,36 +62,41 @@ const AuthSignup = ({ user: User }) => {
             type="text"
             name="username"
             placeholder="Userame"
-                      onChange={({ target }) => setUsername(target.value)}
-                            value={username}
+            onChange={({ target }) => setUsername(target.value)}
+            value={username}
           />
           <input
             className="auth-input"
             type="text"
             name="fullname"
-                      placeholder="Full Name" 
-                  onChange={({ target }) => setFullName(target.value)}
-                            value={fullName}    
+            placeholder="Full Name"
+            onChange={({ target }) => setFullName(target.value)}
+            value={fullName}
           />
           <input
             className="auth-input"
             type="email"
             name="email"
-                      placeholder="Email"
-                      onChange={({ target }) => setEmailAddress(target.value)}
-                            value={emailAddress}
+            placeholder="Email"
+            onChange={({ target }) => setEmailAddress(target.value)}
+            value={emailAddress}
           />
           <input
             className="auth-input"
             type="password"
             name="password"
-                      placeholder="Password"
-                      onChange={({ target }) => setPassword(target.value)}
-                            value={password}
+            placeholder="Password"
+            onChange={({ target }) => setPassword(target.value)}
+            value={password}
           />
-          <button type="submit"
-                      className={`auth-btn
-            ${isInvalid && 'u-opacity-50'}`} disabled={isInvalid}>SignUp</button>
+          <button
+            type="submit"
+            className={`auth-btn
+            ${isInvalid && "u-opacity-50"}`}
+            disabled={isInvalid}
+          >
+            SignUp
+          </button>
         </form>
       </div>
       <div className="overlay-container">
@@ -97,9 +106,12 @@ const AuthSignup = ({ user: User }) => {
             <p className="auth-p">
               To keep connected with us please login with your personal info
             </p>
-            <button className="ghost" id="signIn">
-              <Link to={LOGIN}>Sign In</Link>
-            </button>
+
+            <Link to="/authentication/login">
+              <button className="ghost" id="signIn">
+                Sign In
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React from "react";
-import '../css/Uppernavstyle.css'
+import '../css/uppernavstyle.css'
 const Uppernavbar = () => {
   return (
     <div className="topnav">
-      <a href="#company">Company</a>
-      <a href="#help">Help</a>
-      <a href="#shortcuts">Shortcuts</a>
+      <a className="topnav-links" href="#company">Company</a>
+      <a className="topnav-links" href="#help">Help</a>
+      <a className="topnav-links" href="#shortcuts">Shortcuts</a>
     </div>
   );
 };

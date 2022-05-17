@@ -1,4 +1,4 @@
-@keyframes moveInLeft {
+/* @keyframes moveInLeft {
   0% {
     opacity: 0;
     transform: translateX(-10rem); }
@@ -47,16 +47,16 @@ html {
 ::-webkit-scrollbar {
   width: 5px; }
 
-/* Track */
+Track
 ::-webkit-scrollbar-track {
   background: #f1f1f1; }
 
-/* Handle */
+Handle
 ::-webkit-scrollbar-thumb {
   width: 3px;
   background: #888; }
 
-/* Handle on hover */
+Handle on hover
 ::-webkit-scrollbar-thumb:hover {
   background: #555; }
 
@@ -904,7 +904,6 @@ body {
   border-radius: 1rem;
   overflow: hidden; }
   .modal-box__head {
-    /* margin: 1rem; */
     margin: 1rem 0rem;
     display: flex;
     align-self: center;
@@ -1206,7 +1205,7 @@ body {
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
   transform-origin: 0 0;
-  /* see note above */ }
+   }
 
 .ldio-ay9pk23eiyu div {
   box-sizing: content-box; }
@@ -1326,7 +1325,7 @@ div.content {
   justify-content: space-between;
   position: relative;
   float: right;
-  /* background-color: black; */ }
+  }
 
 .div-items {
   float: right;
@@ -1686,4 +1685,4 @@ div.content {
         margin-right: 2rem; }
         @media (max-width: 37.5em) {
           .profile__header-info-follow-count {
-            margin-right: 1rem; } }
+            margin-right: 1rem; } } */
