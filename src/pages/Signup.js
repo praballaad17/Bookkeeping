@@ -38,9 +38,9 @@ export default function SignUp({ user: loggedInUser }) {
     if (loggedInUser) return <Navigate to={ROUTES.DASHBOARD} />
 
     return (
-        <div className="login">
+        <div className="">
 
-            <div className="login__box">
+            {/* <div className="login__box">
                 <div className="login__box--sub">
                     <h1 className="login__box--head">
                         Touch
@@ -99,7 +99,7 @@ export default function SignUp({ user: loggedInUser }) {
                         </Link>
                     </p>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
