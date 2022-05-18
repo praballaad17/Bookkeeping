@@ -17,84 +17,40 @@ export default function DetailsModal({ open, onClose }) {
         <div className="crosstag">
           <div className="modal-box__head">
             <div className="left">
-              {/* <div className="form"> */}
-                {/* <fieldset>
-                            <legend>Gender *</legend>
-                            <p>
-                                Male <input type="radio" name="Gender" id="male" required />
-                                Female <input type="radio" name="Gender" id="female" required />
-                            </p>
-                        </fieldset> */}
-                <div className="leftinput">
-                  <label className="modal-box__item">Business Name</label>
-                  <input
-                    type="text"
-                    name=" "
-                    placeholder=""
-                    className="textbox"
-                  />
-                </div>
-                <div className="leftinput">
-                  <label for="phone" className="modal-box__item">
-                    Contact-No:
-                  </label>
-                  <input
-                    type="tel"
-                    className="textbox"
-                    name="phone"
-                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                  ></input>
-                </div>
-                <div className="leftinput">
-                  <label for="E-mail" className="modal-box__item">
-                    {" "}
-                    E-mail
-                  </label>
-                  <input
-                    type="email"
-                    className="textbox"
-                    name="email"
-                  ></input>{" "}
-                </div>
-                <div className="leftinput">
-                  <label for="GSTIN" className="modal-box__item">
-                    GST IN
-                  </label>
-                  <input type="text" className="textbox" name="GSTIN"></input>
-                </div>
+              <div className="leftinput">
+                <label className="modal-box__item">Business Name</label>
+                <input
+                  type="text"
+                  name=" "
+                  placeholder=""
+                  className="textbox"
+                />
               </div>
-            {/* </div> */}
-            <i className="fa-solid fa-xmark cross" onClick={onClose}></i>
-
-            <div className="right">
-              <div className="rightinput">
-                <label for="Business address" className="modal-box__item">
-                  Business Address
+              <div className="leftinput">
+                <label for="phone" className="modal-box__item">
+                  Contact-No:
                 </label>
-                <textarea
-                  rows="5"
-                  cols="50"
-                  name="comment"
-                  form="usrform"
-                  placeholder="Address.."
-                ></textarea>
+                <input
+                  type="tel"
+                  className="textbox"
+                  name="phone"
+                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                ></input>
               </div>
-              <br />
-              <div className="rightinput">
-                <label for="Business discription" className="modal-box__item">
+              <div className="leftinput field">
+                <label for="Business discription" className="modal-box__item ">
                   Business Discription
                 </label>
                 <textarea
-                  rows="5"
-                  cols="77"
+                  rows="4"
+                  cols="30"
                   name="comment"
                   form="usrform"
-                  placeholder="discription.."
+                  placeholder="Discription.."
+                  className="textareabusiness"
                 ></textarea>
               </div>
-            </div>
-            <div className="bottom">
-              <div className="bottominput">
+              {/* <div className="leftinput">
                 <label for="State" className="modal-box__item">
                   State
                 </label>
@@ -130,8 +86,8 @@ export default function DetailsModal({ open, onClose }) {
                   <option value="Uttarakhand">Uttarakhand</option>
                   <option value="West Bengal">West Bengal</option>
                 </select>
-              </div>
-              <div className="bottominput">
+              </div> */}
+              <div className="leftinput field2">
                 <label for="Business type" className="modal-box__item ">
                   Business Type
                 </label>
@@ -145,7 +101,44 @@ export default function DetailsModal({ open, onClose }) {
                   <option value="Others">Others</option>
                 </select>
               </div>
-              <div className="bottominput">
+            </div>
+            {/* </div> */}
+            <i className="fa-solid fa-xmark cross" onClick={onClose}></i>
+
+            <div className="right">
+              <div className="rightinput">
+                <label for="E-mail" className="modal-box__item">
+                  {" "}
+                  E-mail
+                </label>
+                <input
+                  type="email"
+                  className="textbox"
+                  name="email"
+                ></input>{" "}
+              </div>
+              <div className="rightinput">
+                <label for="GSTIN" className="modal-box__item">
+                  GST IN
+                </label>
+                <input type="text" className="textbox" name="GSTIN"></input>
+              </div>
+              <div className="rightinput field">
+                <label for="Business address" className="modal-box__item">
+                  Business Address
+                </label>
+                <textarea
+                  rows="4"
+                  cols="30"
+                  name="comment"
+                  form="usrform"
+                  placeholder="Address.."
+                  className="textareabusiness"
+                ></textarea>
+              </div>
+              <br />
+
+              <div className="rightinput">
                 <label for="Business Category" className="modal-box__item ">
                   Business Category
                 </label>
@@ -195,9 +188,9 @@ export default function DetailsModal({ open, onClose }) {
                   <option value="Others">Others</option>
                 </select>
               </div>
-              <div className="bottominput">
-              <button class="button11">Save</button>
-            </div>
+              <div className="rightinput">
+                <button class="button11">Save</button>
+              </div>
             </div>
           </div>
           {/* <ul className="modal-box__list">

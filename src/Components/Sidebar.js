@@ -6,13 +6,16 @@ export default function Sidebar({ open, onClose }) {
   return (
     <div className="sidebar">
       <div className="mainbuttondiv">
-        <button type="button" className="button-main" onClick={onClose}>
-          My Company<i class="fa-solid fa-angle-right"></i>
+      <button type="button" className="button-main" onClick={onClose}>
+          My Company  <i class="fa-solid fa-angle-right"></i>
         </button>
       </div>
-      <Link to="/dashboard/"><a className="active " href="#home">
+      {/* <Link to="/dashboard/"><a className="active " href="#home">
         <i class="fa-solid fa-house"></i> Home
-      </a></Link>
+      </a></Link> */}
+      <a className="active " href="#home">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
       <a href="#parties ">
         <i class="fa-solid fa-user-group"></i>Parties
       </a>

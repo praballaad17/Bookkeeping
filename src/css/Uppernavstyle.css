@@ -1,25 +1,30 @@
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
   }
   
   .topnav {
     overflow: hidden;
     background-color: rgb(77, 74, 74);
-    display:block;
-    position:fixed;
+    display:flex;
+    flex-direction: row;
+    align-content: center;
+    position:relative;
     width: 100vw;
     height:7vh;
-    
+    /* vertical-align: middle; */
   }
   
   .topnav a {
     float: left;
     color: #f2f2f2;
-    text-align: center;
+    text-align:justify;
     padding: 0px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
+    margin: 0;
+    vertical-align: middle;
+    margin:auto 0;
   }
   
   .topnav a:hover {
@@ -31,6 +36,6 @@ body {
     background-color: #04AA6D;
     color: white;
   }
-  .topnav-links{
+  /* .topnav-links{
     margin-top:2.5vh;
-  }
+  } */

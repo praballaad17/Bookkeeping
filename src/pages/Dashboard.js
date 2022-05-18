@@ -26,8 +26,8 @@ export default function Dashboard({ user: loggedInUser }) {
           />
         </div>
 
-        <DetailsModal open={open} onClose={() => setOpen(false)} />
               <div id="central-div">
+        <DetailsModal open={open} onClose={() => setOpen(false)} />
                   <Routes>
                     <Route path="/" element={<Home/>}/>
                   </Routes>

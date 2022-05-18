@@ -11,9 +11,10 @@
     flex-direction: row;
 }
 #sidebar-div{
-    width: 20vw;
+    width: 15vw;
 }
 #central-div{
-    width:80vw;
+    width:85vw;
     height:93vh;
+    position: relative;
 }
