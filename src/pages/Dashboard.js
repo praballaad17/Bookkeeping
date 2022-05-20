@@ -6,6 +6,8 @@ import Sidebar from "../Components/Sidebar";
 import Uppernavbar from "../Components/Uppernavbar";
 import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
+import Item from "../Components/Item";
+import AddItem from "../Components/AddItem";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
@@ -26,11 +28,13 @@ export default function Dashboard({ user: loggedInUser }) {
           />
         </div>
 
-              <div id="central-div">
-        <DetailsModal open={open} onClose={() => setOpen(false)} />
-                  <Routes>
-                    <Route path="/" element={<Home/>}/>
-                  </Routes>
+        <div id="central-div">
+          <DetailsModal open={open} onClose={() => setOpen(false)} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/item" element={<Item />} />
+            <Route path="/item/add" element={<AddItem />} />
+          </Routes>
         </div>
       </div>
     </div>

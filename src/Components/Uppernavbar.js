@@ -1,5 +1,6 @@
 import React from "react";
-import '../css/uppernavstyle.css'
+import '../css/Uppernavstyle.css'
+
 const Uppernavbar = () => {
   return (
     <div className="topnav">

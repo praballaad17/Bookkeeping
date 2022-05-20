@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Authentication from './pages/Authenticate/Authentication';
 import AuthLogin from './pages/Authenticate/AuthLogin';
 import AuthSignup from './pages/Authenticate/AuthSignup';
+import NotFound from './pages/NotFound';
 
 // const Login = lazy(() => import('./pages/Login'));
 // const SignUp = lazy(() => import('./pages/Signup'));
@@ -25,13 +26,14 @@ export default function App() {
         <Suspense fallback={<MainLoader />}>
 
           <Routes>
-            <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin ]} />
-            <Route path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
+            <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin]} />
+            <Route exact path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
             {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}
 
             {/* <Dashboard /> */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Router>

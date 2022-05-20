@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import "../css/sidebar.css";
+import * as ROUTES from '../constants/routes';
+
+import "../css/Sidebar.css";
+
 export default function Sidebar({ open, onClose }) {
   return (
     <div className="sidebar">
       <div className="mainbuttondiv">
-      <button type="button" className="button-main" onClick={onClose}>
+        <button type="button" className="button-main" onClick={onClose}>
           My Company  <i class="fa-solid fa-angle-right"></i>
         </button>
       </div>
@@ -19,9 +22,9 @@ export default function Sidebar({ open, onClose }) {
       <a href="#parties ">
         <i class="fa-solid fa-user-group"></i>Parties
       </a>
-      <a href="#Item ">
+      <Link to={ROUTES.ITEM}>
         <i class="fa-solid fa-box-archive"></i>Item
-      </a>
+      </Link>
       <a href="#Sale ">
         <i class="fa-solid fa-bag-shopping"></i>Sales
       </a>
