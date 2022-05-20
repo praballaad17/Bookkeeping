@@ -1,6 +1,10 @@
 export const DASHBOARD = '/dashboard/*';
 export const ITEM = '/dashboard/item';
 export const ADDITEM = '/dashboard/item/add';
+export const PURCHASEINV = '/purchase';
+export const ADDPURCHASEINV = '/purchase/add';
+export const SALESINV = '/sales';
+export const ADDSALESINV = '/sales/add';
 export const AUTHENTICATION = '/authentication/*';
 export const LOGIN = '/login';
 export const SIGN_UP = '/signup';

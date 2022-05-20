@@ -37,7 +37,7 @@ const AuthLogin = ({ user: User }) => {
   return (
     <>
       <div className="form-container sign-in-container">
-        <form className="auth-form"  onSubmit={handleLogin} method="POST">
+        <form className="auth-form" onSubmit={handleLogin} method="POST">
           <h1 className="auth-heading">Sign In</h1>
           <div className="social-container">
             <a href="#" className="social">
@@ -89,7 +89,7 @@ const AuthLogin = ({ user: User }) => {
               Enter your details and start journey with us
             </p>
 
-            <Link to="/authentication/">
+            <Link to="/authentication/signup">
               <button className="ghost" id="signUp">
                 Sign Up
               </button>

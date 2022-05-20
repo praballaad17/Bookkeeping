@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import useAuthListener from './hooks/useAuthListener';
 import MainLoader from './loader/mainLoader';
@@ -28,6 +28,9 @@ export default function App() {
           <Routes>
             <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin]} />
             <Route exact path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
+            <Route
+              path="/"
+              element={<Navigate to={ROUTES.DASHBOARD} replace />} />
             {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}

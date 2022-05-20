@@ -8,10 +8,14 @@ import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
 import Item from "../Components/Item";
 import AddItem from "../Components/AddItem";
+import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
+import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
+import SalesInvoice from "../Components/Invoice/SalesInvoice";
+import AddSalesInvoice from "../Components/Invoice/AddSalesInvoice";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
-  // if (!loggedInUser) return <Navigate to={ROUTES.LOGIN} />
+  if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
 
   return (
     <div className="dashboard-mian">
@@ -34,6 +38,11 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/" element={<Home />} />
             <Route path="/item" element={<Item />} />
             <Route path="/item/add" element={<AddItem />} />
+            <Route path="/purchase" element={<PurchaseInvoice />} />
+            <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
+            <Route path="/sales" element={<SalesInvoice />} />
+            <Route path="/sales/add" element={<AddSalesInvoice />} />
+
           </Routes>
         </div>
       </div>
