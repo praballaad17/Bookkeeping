@@ -1362,6 +1362,57 @@ body {
   border: 1px solid black;
   width: 250px; }
 
+.importitem {
+  width: 100%;
+  height: 100%; }
+  .importitem--heading {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 20px; }
+  .importitem__block {
+    display: flex;
+    height: 100%; }
+  .importitem--right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #777; }
+    .importitem--right__heading > span {
+      font-weight: 700; }
+  .importitem--box {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0; }
+    .importitem--box > i {
+      font-size: 60px;
+      margin: 10px 0;
+      color: #51abfe; }
+    .importitem--box > h5 {
+      color: #777;
+      font-size: 22px;
+      font-weight: 100; }
+    .importitem--box > h6 {
+      margin: 10px 0;
+      color: #777;
+      font-size: 20px;
+      font-weight: 100; }
+  .importitem--left {
+    width: 50%; }
+  .importitem__table {
+    border-collapse: collapse; }
+    .importitem__table th,
+    .importitem__table td {
+      border: 1px solid #e4e4e4;
+      padding: 8px;
+      text-align: left; }
+    .importitem__table tr:nth-child(even) {
+      background-color: #dddddd; }
+
 .loader {
   width: 100vw;
   height: 100vh;
@@ -1425,6 +1476,88 @@ body {
           font-weight: normal; }
         .mennoti__con__head > a:hover {
           text-decoration: underline; }
+
+.drop-file-input {
+  position: relative;
+  width: 95%;
+  height: 200px;
+  border: 2px dashed var(--border-color);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--input-bg);
+  border: 3px dashed #5643fa; }
+
+.drop-file-input input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; }
+
+.drop-file-input:hover,
+.drop-file-input.dragover {
+  opacity: 0.6; }
+
+.drop-file-input__label {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  color: #a6a6a6;
+  padding: 10px;
+  font-size: 25px; }
+
+.drop-file-input__label img {
+  width: 100px; }
+
+.drop-file-preview {
+  margin-top: 30px; }
+
+.drop-file-preview p {
+  font-weight: 500; }
+
+.drop-file-preview__title {
+  margin-bottom: 20px; }
+
+.drop-file-preview__item {
+  position: relative;
+  display: flex;
+  margin-bottom: 10px;
+  background-color: var(--input-bg);
+  padding: 15px;
+  border-radius: 20px; }
+
+.drop-file-preview__item img {
+  width: 50px;
+  margin-right: 20px; }
+
+.drop-file-preview__item__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.drop-file-preview__item__del {
+  background-color: var(--box-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease; }
+
+.drop-file-preview__item:hover .drop-file-preview__item__del {
+  opacity: 1; }
 
 .container {
   display: flex;

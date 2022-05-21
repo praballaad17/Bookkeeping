@@ -6,6 +6,7 @@ export default function ImportItem() {
     const [excelData, setExcelData] = useState(null);
     const [excelFile, setExcelFile] = useState(null);
     const [excelFileError, setExcelFileError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const fileType = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', '.csv', ''];
 
@@ -24,6 +25,7 @@ export default function ImportItem() {
 
     const handleFileUpload = (e) => {
         e.preventDefault();
+        setLoading(true);
         let selectedFile = e.target.files[0];
         if (selectedFile) {
             console.log(selectedFile, selectedFile.type);
@@ -35,42 +37,27 @@ export default function ImportItem() {
                     setExcelFile(e.target.result);
                     handleInputData(e.target.result);
                 }
+                setLoading(false);
             }
             else {
                 setExcelFileError('Please select only excel file types');
                 setExcelFile(null);
             }
+
         }
         else {
             console.log('plz select your file');
         }
+
     }
 
     console.log(excelFile, excelFileError, excelData);
 
-    return (
-        <>
-            <div className='importitem'>
-                <div className='importitem--heading'>Import Items</div>
-                <div className='importitem--left'>
-
-                </div>
-                <div className='importitem--right'>
-                    <div className='importitem--right'>
-                        <div className='importitem--right__heading'>
-                            Upload your .xls/ .xlsx (excel sheet)
-                        </div>
-                        <div className='importitem--box'>
-                            <div>icon</div>
-                            <h5>Drag & Drop files here</h5>
-                            <h6>or</h6>
-                            <input onChange={handleFileUpload} accept=".xlsx, .xls, .csv" type='file' />
-                        </div>
-                    </div>
-                </div>
-            </div>
+    if (excelData) return (
+        <div className='importitem'>
             <div>
-                <table>
+                <div className='importitem--heading'>Import Items</div>
+                <table className='importitem__table'>
                     <thead>
                         <tr>
                             <th>Item Name</th>
@@ -84,14 +71,48 @@ export default function ImportItem() {
                             <th>Minimum_stock_quantity</th>
                         </tr>
                     </thead>
-                    {excelData !== null && (<tbody>
-                        {excelData.map((item) => (
-                            <ItemIndividual item={item} />
-                        ))}
-                    </tbody>
+                    {excelData !== null && (
+                        <tbody>
+                            {excelData.map((item) => (
+                                <ItemIndividual item={item} />
+                            ))}
+                        </tbody>
                     )}
                 </table>
             </div>
+        </div>
+    )
+
+    return (
+        <>
+            <div className='importitem'>
+                <div className='importitem--heading'>Import Items</div>
+
+
+                <div className='importitem__block'>
+                    <div className='importitem--left'>
+
+                    </div>
+                    <div className='importitem--right'>
+                        <div className='importitem--right__heading'>
+                            Upload your <span>.xls/ .xlsx (excel sheet)</span>
+                        </div>
+                        <div className="drop-file-input ">
+                            {!loading ? <div className='importitem--box'>
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <h5>Drag & Drop file here</h5>
+                                {/* <h6>or</h6> */}
+                                <input onChange={handleFileUpload} accept=".xlsx, .xls, .csv" type='file' />
+                            </div> :
+                                <div>
+                                    ...loading
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }
