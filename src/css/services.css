@@ -8,7 +8,7 @@
     /* position:fixed; */
     width: 85vw;
     /* height:7vh; */
-    justify-content:space-around ; 
+    justify-content:space-around;
   }
   
   .topnav-list a {
@@ -32,18 +32,18 @@
     background-color: #04AA6D;
     color: white;
   }
-.products{
+.services{
     display: flex;
    flex-direction: column;
     align-items: center;
 }
-.productimage{
+.servicesimage{
     height: 350px;
     width: 350px;
     display: block;
     
 }
-.add-item-button{
+.add-services-button{
         border: none;
         color: white;
         padding: 12px 25px;
@@ -55,9 +55,9 @@
         border-radius: 8px;
 
       }
-      .add-item-button:hover{
+      .add-services-button:hover{
           background-color: #ced03e;
       }
-.producttext{
+.servicestext{
     text-align: center;
 }

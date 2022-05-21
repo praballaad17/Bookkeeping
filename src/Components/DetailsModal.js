@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
-import "../css/DetailModal.css";
+import "../css/detailModal.css";
 
 export default function DetailsModal({ open, onClose }) {
   // useEffect(() => {
@@ -43,7 +43,7 @@ export default function DetailsModal({ open, onClose }) {
                 </label>
                 <textarea
                   rows="4"
-                  cols="30"
+                  cols="24"
                   name="comment"
                   form="usrform"
                   placeholder="Discription.."
@@ -129,7 +129,7 @@ export default function DetailsModal({ open, onClose }) {
                 </label>
                 <textarea
                   rows="4"
-                  cols="30"
+                  cols="24"
                   name="comment"
                   form="usrform"
                   placeholder="Address.."

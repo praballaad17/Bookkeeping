@@ -14,7 +14,14 @@
     width: 15vw;
 }
 #central-div{
+    display: flex;
+    flex-direction: column;
     width:85vw;
     height:93vh;
     position: relative;
 }
+.inputboxtop{
+    width: 100%;
+    padding: 30px 10px;
+    height: 11vh;
+  }

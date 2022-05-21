@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as ROUTES from '../constants/routes';
 
-import "../css/Sidebar.css";
+import "../css/sidebar.css";
 
 export default function Sidebar({ open, onClose }) {
   return (
+      
     <div className="sidebar">
       <div className="mainbuttondiv">
         <button type="button" className="button-main" onClick={onClose}>
