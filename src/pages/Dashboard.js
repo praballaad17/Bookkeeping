@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../Components/Home";
 import DetailsModal from "../Components/DetailsModal";
-import Sidebar from "../Components/Sidebar";
+import Sidebar from "../Components/Sidebar/Sidebar";
 import Uppernavbar from "../Components/Uppernavbar";
 import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
 import Item from "../Components/Item";
 import AddItem from "../Components/AddItem";
+import ImportItem from "../Components/ImportItem";
 import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
 import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice";
@@ -42,7 +43,7 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
-
+            <Route path="/utilities/import/item" element={<ImportItem />} />
           </Routes>
         </div>
       </div>

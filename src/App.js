@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound';
 
 // const Login = lazy(() => import('./pages/Login'));
 // const SignUp = lazy(() => import('./pages/Signup'));
-const Sidebar = lazy(() => import('./Components/Sidebar'));
+const Sidebar = lazy(() => import('./Components/Sidebar/Sidebar'));
 const Uppernavbar = lazy(() => import('./Components/Uppernavbar'));
 // const NotFound = lazy(() => import('./pages/not-found')); 
 

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
-import "../css/detailModal.css";
+import "../css/DetailModal.css";
 
 export default function DetailsModal({ open, onClose }) {
   // useEffect(() => {
