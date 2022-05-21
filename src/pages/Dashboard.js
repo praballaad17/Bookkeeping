@@ -8,7 +8,7 @@ import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
 import Item from "../Components/Item";
 import AddItem from "../Components/AddItem";
-import ImportItem from "../Components/ImportItem";
+import ImportItem from "../Components/Utilities/ImportItem";
 import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
 import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice";

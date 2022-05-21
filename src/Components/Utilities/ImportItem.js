@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
+import ItemIndividual from './ItemIndividual';
 
 export default function ImportItem() {
     const [excelData, setExcelData] = useState(null);
@@ -85,17 +86,7 @@ export default function ImportItem() {
                     </thead>
                     {excelData !== null && (<tbody>
                         {excelData.map((item) => (
-                            <tr key={item.Item_code}>
-                                <th>{item.Item_name}</th>
-                                <th>{item.Item_code}</th>
-                                <th>{item.hns}</th>
-                                <th>{item.Sale_price}</th>
-                                <th>{item.Purchase_price}</th>
-                                <th>{item.Discount_Type}</th>
-                                <th>{item.Sale_Discount}</th>
-                                <th>{item.Opening_stock_quantity}</th>
-                                <th>{item.Minimum_stock_quantity}</th>
-                            </tr>
+                            <ItemIndividual item={item} />
                         ))}
                     </tbody>
                     )}
