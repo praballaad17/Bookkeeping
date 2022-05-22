@@ -1972,3 +1972,43 @@ div.content {
         @media (max-width: 37.5em) {
           .profile__header-info-follow-count {
             margin-right: 1rem; } }
+
+.individual-row {
+  width: 90%;
+  display: flex;
+  flex-direction: column; }
+  .individual-row .item-heading {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; }
+    .individual-row .item-heading .title {
+      border: 1px solid black;
+      width: 10%; }
+    .individual-row .item-heading .title-ppu {
+      width: 20%; }
+    .individual-row .item-heading .title-item {
+      width: 30%; }
+
+.item-row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+  .item-row:hover .itemremove-btn {
+    display: block; }
+  .item-row .title-input {
+    width: 10%; }
+  .item-row .title-item-input {
+    width: 30%; }
+  .item-row .title-ppu-input {
+    width: 10%; }
+  .item-row .itemList-input {
+    width: 100%;
+    border: 1px solid black; }
+  .item-row .itemremove-btn {
+    display: none;
+    position: absolute;
+    left: 1%; }

@@ -1,0 +1,67 @@
+$itemwidth: 30%;
+$commonwidth:10%;
+$ppuwidth:20%;
+
+@mixin  flexRowcenter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between ;
+}
+@mixin  flexColumncenter {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    // justify-content:space-between ;
+}
+@mixin  addBorder {
+    border:1px solid black;
+}
+.individual-row{
+    width:90%;
+    @include flexColumncenter();
+    
+    .item-heading{
+        width:100%;
+        @include flexRowcenter();
+
+        .title{
+            @include addBorder();
+            width:$commonwidth;
+        }
+        .title-ppu{
+            width:$ppuwidth
+        }
+        .title-item{
+            width: $itemwidth;
+        }
+    }
+}
+.item-row{
+    // width:104.5%;
+    position: relative;
+    &:hover .itemremove-btn{
+display: block;
+    }
+@include flexRowcenter();
+    .title-input{
+        width:$commonwidth;
+    }
+    .title-item-input{
+        width: $itemwidth;
+    }
+    .title-ppu-input{
+        width: $ppuwidth/2;
+    }
+    .itemList-input{
+        width:100%;
+        @include addBorder();
+    }
+    .itemremove-btn{
+        display: none;
+        position: absolute;
+        left:1%;
+
+    }
+}
+

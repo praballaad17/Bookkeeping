@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import ItemList from "./ItemList";
 
 export default function AddPurchaseInvoice() {
-    return (
-        <div>AddPurchaseInvoice</div>
-    )
+  return (
+    <div>
+      <ItemList />
+    </div>
+  );
 }
