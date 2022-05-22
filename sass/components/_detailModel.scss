@@ -1,0 +1,114 @@
+@import "../../sass/constants/constantsAndFunctions";
+
+.detailmodal-box{
+    position: fixed;
+  top: 50vh;
+  left: 50vw;
+  background-color: #fff;
+  transform: translate(-40%, -50%);
+  z-index: 1000;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.modal-box__head {
+  @include flexColumncenter();
+  width: 60vw;
+  height: 60vh;
+}
+
+.crosstag {
+  backdrop-filter: blur(500rem);
+}
+.modal-box__label {
+  width: fit-content;
+  padding: 1rem;
+  word-wrap: normal;
+}
+.subleft-left,
+.subleft-right,
+.subright-left,
+.subright-right {
+  width: 50%;
+  padding: 0% 2%;
+}
+.right {
+  font-size: 20px;
+  @include flexRowcenter();
+  width: 100%;
+  /* height: 39vh; */
+  height: 100%;
+  padding-top: 10px;
+  backdrop-filter: blur(100rem);
+}
+
+.left {
+  padding-top: 10px;
+  font-size: 20px;
+  @include flexRowcenter();
+  width: 100%;
+  //  align-content: flex-start;
+  height: 100%;
+  backdrop-filter: blur(100rem);
+}
+
+.leftinput {
+  width: 100%;
+  @include flexSpaceBetween();
+}
+
+.rightinput {
+  @include flexSpaceBetween();
+  width: 100%;
+}
+
+.crosstag {
+  width: 100%;
+  height: 100%;
+}
+#line-detailModal{
+    width:40%;
+    border-top: 1px solid greenyellow;
+}
+.cross {
+  position: absolute;
+  right: 0;
+  padding: 0.75% 1%;
+  border-radius: 50px;
+  background-color: rgb(138, 144, 130);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+textarea {
+  border-radius: 6px;
+  resize: none;
+}
+.button11 {
+  border: none;
+  color: white;
+  /* padding: 15px 32px; */
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 1px;
+  cursor: pointer;
+  background-color: #2bb3e0;
+  border-radius: 8px;
+  /* font-size: large; */
+}
+
+.button11:hover {
+  background-color: #00bfff;
+}
+
+.textareabusiness {
+  padding-top: 5px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid rgb(60, 109, 189);
+}
+

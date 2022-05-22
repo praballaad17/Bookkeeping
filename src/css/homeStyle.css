@@ -3,6 +3,8 @@
     background-color: rgb(231, 245, 231);
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     /* margin-top: 45px; */
     width: 100%;
     height: 100%;
@@ -21,6 +23,7 @@
     padding-right: 50px;
     text-align: center;
     width: 50%;
+    vertical-align: middle;
 }
 .home-sec{
     padding-left: 50px;
@@ -30,6 +33,8 @@
 }
 .home-subheading{
   padding: 0px 20px;
+  height:10vh;
+
 }
 .button-center {
     display: inline-block;
