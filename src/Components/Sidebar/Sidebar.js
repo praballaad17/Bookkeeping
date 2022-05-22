@@ -71,12 +71,12 @@ export default function Sidebar({ open, onClose }) {
         <Link to={ROUTES.ITEM}>
           <i class="fa-solid fa-box-archive"></i>Item
         </Link>
-        <a href="#Sale ">
+        <Link to={ROUTES.SALESINV}>
           <i class="fa-solid fa-bag-shopping"></i>Sales
-        </a>
-        <a href="#Purchases ">
+        </Link>
+        <Link to={ROUTES.PURCHASEINV} >
           <i class="fa-solid fa-cart-plus"></i>Purchases
-        </a>
+        </Link>
         <a href="#Expenses ">
           <i class="fa-solid fa-wallet"></i>Expenses
         </a>
