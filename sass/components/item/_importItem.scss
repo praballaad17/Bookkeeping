@@ -73,6 +73,11 @@
             text-align: left;
         }
 
+        & tbody {
+            font-size: 20px;
+            font-weight: 200;
+        }
+
         & tr:nth-child(even) {
             background-color: #dddddd;
         }
