@@ -184,10 +184,9 @@ body {
 .u-text-blue {
   color: blue; }
 
-.u-text-red-bold {
-  color: red;
-  font-weight: bold; }
-  .u-text-red-bold:hover {
+.u-text-red {
+  color: red; }
+  .u-text-red:hover {
     background-color: #fa7373;
     color: #fff; }
 
@@ -1605,23 +1604,24 @@ body {
 
 /* Contants */
 /*Functions*/
+.detailModal--btn {
+  display: flex;
+  justify-content: end;
+  padding: 10px; }
+
 .detailmodal-box {
   position: fixed;
   top: 50vh;
   left: 50vw;
+  max-width: 90vw;
   background-color: #fff;
-  transform: translate(-40%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 1000;
   border-radius: 1rem;
   overflow: hidden; }
 
 .modal-box__head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 60vw;
-  height: 60vh; }
+  display: flex; }
 
 .crosstag {
   backdrop-filter: blur(500rem); }

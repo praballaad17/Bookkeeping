@@ -13,6 +13,7 @@ import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
 import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice";
 import AddSalesInvoice from "../Components/Invoice/AddSalesInvoice";
+import ItemTable from "../Components/Utilities/ItemTable";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
@@ -36,14 +37,15 @@ export default function Dashboard({ user: loggedInUser }) {
         <div id="central-div">
           <DetailsModal open={open} onClose={() => setOpen(false)} />
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/item" element={<Item />} />
+            {/* <Route path="/item-table" element={<ItemTable />} />  */}
             <Route path="/item/add" element={<AddItem />} />
-            <Route path="/purchase" element={<PurchaseInvoice />} />
+            <Route path='/purchase' element={<PurchaseInvoice />} />
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </div>
       </div>

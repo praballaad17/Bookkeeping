@@ -62,9 +62,9 @@ export default function Sidebar({ open, onClose }) {
         {/* <Link to="/dashboard/"><a className="active " href="#home">
         <i class="fa-solid fa-house"></i> Home
       </a></Link> */}
-        <a className="active " href="#home">
+        <Link className="active " to={ROUTES.DASHBOARD}>
           <i class="fa-solid fa-house"></i> Home
-        </a>
+        </Link>
         <a href="#parties ">
           <i class="fa-solid fa-user-group"></i>Parties
         </a>

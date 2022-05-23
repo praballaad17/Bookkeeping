@@ -27,7 +27,7 @@ export default function App() {
 
           <Routes>
             <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin]} />
-            <Route exact path={ROUTES.DASHBOARD} element={<Dashboard user={user} />} />
+            <Route path={`${ROUTES.DASHBOARD}/*`} element={<Dashboard user={user} />} />
             <Route
               path="/"
               element={<Navigate to={ROUTES.DASHBOARD} replace />} />

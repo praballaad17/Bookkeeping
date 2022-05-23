@@ -1,4 +1,4 @@
-export const DASHBOARD = '/dashboard/*';
+export const DASHBOARD = '/dashboard';
 export const ITEM = '/dashboard/item';
 export const ADDITEM = '/dashboard/item/add';
 export const PURCHASEINV = '/dashboard/purchase';
