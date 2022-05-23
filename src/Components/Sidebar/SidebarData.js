@@ -9,7 +9,7 @@ export const SidebarData = [
         path: '/dashboard/utilities',
         icon: <AiIcons.AiFillHome />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpend: <RiIcons.RiArrowUpSFill />,
+        // iconOpend: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'Import Items',

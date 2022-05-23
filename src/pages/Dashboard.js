@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../Components/Home";
 import DetailsModal from "../Components/DetailsModal";
 import Sidebar from "../Components/Sidebar/Sidebar";
-import Uppernavbar from "../Components/Uppernavbar";
+// import Uppernavbar from "../Components/Uppernavbar";
 import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
 import Item from "../Components/Item";
@@ -20,9 +20,9 @@ export default function Dashboard({ user: loggedInUser }) {
 
   return (
     <div className="dashboard-mian">
-      <div id="top-div">
+      {/* <div id="top-div">
         <Uppernavbar />
-      </div>
+      </div> */}
       <div id="bottom-div">
         <div id="sidebar-div">
           <Sidebar

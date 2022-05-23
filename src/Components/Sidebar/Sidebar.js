@@ -104,7 +104,7 @@ export default function Sidebar({ open, onClose }) {
         {/* <a href="#Utilities">
           <i class="fa-solid fa-screwdriver-wrench"></i>Utilities
         </a> */}
-        <a>
+        <a className="sidedropdown">
           {SidebarData.map((item, index) => {
             return <SubMenu item={item} key={index} />;
           })}
