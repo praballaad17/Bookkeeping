@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemIndividual from './ItemIndividual'
 
 export default function ItemTable({ excelData }) {
+    const [uniqueItems, setUniqueItems] = useState([]);
 
     useEffect(() => {
-        excelData.map((item) => {
-            console.log(item);
-        })
-    })
+        // excelData.map((item) => {
+        //     console.log(item);
+        // })
 
+        const uniqueItems = [...excelData.reduce((map, obj) => map.set(obj.Item_code, obj), new Map()).values()]
+        setUniqueItems(uniqueItems);
+        console.log(uniqueItems);
+    }, [])
+    console.log(uniqueItems);
 
     return (
         <div className='importtable'>
@@ -31,9 +36,9 @@ export default function ItemTable({ excelData }) {
                             <th>Inclusive_Of_Tax</th>
                         </tr>
                     </thead>
-                    {excelData !== null && (
+                    {uniqueItems !== null && (
                         <tbody>
-                            {excelData.map((item) => (
+                            {uniqueItems.map((item) => (
                                 <ItemIndividual item={item} />
                             ))}
                         </tbody>
@@ -42,7 +47,7 @@ export default function ItemTable({ excelData }) {
             </div>
             <div className='importtable__foot'>
                 <div className='btn btn--error importtable__foot--btn'>See Items with error</div>
-                <div className='btn btn--primary importtable__foot--btn'>Import Valid Items</div>
+                <div className='btn btn--primary importtable__foot--btn'>Import {uniqueItems.length} Valid Items</div>
             </div>
         </div>
     )
