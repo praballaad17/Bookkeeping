@@ -63,14 +63,22 @@ export default function ImportItem() {
     return (
         <>
             <div className='importitem'>
-                <div className='importitem--heading'>Import Items</div>
+                <div className='importitem--heading'>Import Items From Excel File</div>
 
 
                 <div className='importitem__block'>
                     <div className='importitem--left'>
+                        <h3>Steps to import</h3>
+                        <h4>STEP 1</h4>
+                        <span>Create an Excel file with the following format.</span>
                         <a href={sample} className='btn btn--primary'>
                             Download Sample
                         </a>
+                        <img  src="https://exceltable.com/en/analyses-reports/images/analyses-reports29-1.png" alt="sample photo" />
+                        <h4>STEP 2</h4>
+                        <span><i class="fa fa-upload" aria-hidden="true"></i>Upload the file (xlsx or xls) by clicking on the Upload File button below.</span>
+                        <h4>STEP 3</h4>
+                        <span>Verify the items from the file & complete the import.</span>
                     </div>
                     <div className='importitem--right'>
                         <div className='importitem--right__heading'>

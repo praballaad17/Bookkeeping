@@ -1258,7 +1258,8 @@ body {
 .outerbox {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  padding: 40px; }
 
 .outer {
   width: 90%;
@@ -1289,7 +1290,7 @@ body {
   display: block;
   padding-bottom: 18px; }
 
-.button11 {
+.upperinputbutton {
   border: none;
   color: white;
   padding: 12px 25px;
@@ -1351,14 +1352,30 @@ body {
   border: 1px solid black;
   width: 250px; }
 
+.lowerbuttons {
+  border: 1px solid black;
+  margin-bottom: 70px; }
+
+.lowerbuttoninput {
+  border: none;
+  color: white;
+  float: right;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 10px; }
+
 .importitem {
   width: 100%;
-  height: 100%;
-  padding: 10px; }
+  height: 90%;
+  background-color: #dddddd; }
   .importitem--heading {
     font-size: 22px;
-    font-weight: 700;
-    margin: 20px; }
+    font-weight: 600;
+    margin: 18px;
+    width: 100%; }
   .importitem__block {
     display: flex;
     height: 100%; }
@@ -1368,7 +1385,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-left: 1px solid #777; }
+    border-left: 1px solid #777;
+    background-color: white; }
     .importitem--right__heading > span {
       font-weight: 700; }
   .importitem--box {
@@ -1392,7 +1410,20 @@ body {
       font-size: 20px;
       font-weight: 100; }
   .importitem--left {
-    width: 50%; }
+    background-color: white;
+    width: 50%;
+    border-right: 1px solid #777;
+    font-size: 20px;
+    padding: 30px; }
+    .importitem--left > img {
+      height: 27vh;
+      width: 32vw; }
+    .importitem--left > h4 {
+      color: red; }
+    .importitem--left > h3 {
+      padding-bottom: 20px; }
+    .importitem--left > span {
+      font-size: 17px; }
 
 .importtable {
   width: 100%;
