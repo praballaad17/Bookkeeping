@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ItemIndividual from './ItemIndividual'
 
 export default function ItemTable({ excelData }) {
+
+    useEffect(() => {
+        excelData.map((item) => {
+            console.log(item);
+        })
+    })
+
+
     return (
         <div className='importtable'>
             <div className='importtable--heading heading-secondary'>Import Items</div>

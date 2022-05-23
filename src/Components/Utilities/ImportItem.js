@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
 import ItemIndividual from './ItemIndividual';
 import ItemTable from './ItemTable';
+import sample from '../../utilities/sample1.xlsx';
 
 export default function ImportItem() {
     const [excelData, setExcelData] = useState(null);
     const [excelFile, setExcelFile] = useState(null);
     const [excelFileError, setExcelFileError] = useState(null);
     const [loading, setLoading] = useState(false);
+
 
     const fileType = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', '.csv', ''];
 
@@ -66,7 +68,9 @@ export default function ImportItem() {
 
                 <div className='importitem__block'>
                     <div className='importitem--left'>
-
+                        <a href={sample} className='btn btn--primary'>
+                            Download Sample
+                        </a>
                     </div>
                     <div className='importitem--right'>
                         <div className='importitem--right__heading'>
