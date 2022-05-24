@@ -161,12 +161,12 @@ export default function DetailsModal({ open, onClose }) {
               </div>
             </div>
             <div className="div-btn">
-              <button class="button11">Save</button>
+              <button className="button11">Save</button>
             </div>
           </div>
           {/* <ul className="modal-box__list">
                     <li className="progress__box">
-                        <span class="progress-bar"></span>
+                        <span className="progress-bar"></span>
                     </li>
                     {/* <li className="modal-box__label" >{progress}</li> */}
           {/* </ul> */}

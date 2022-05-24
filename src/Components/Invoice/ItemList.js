@@ -1,30 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function ItemList() {
-  const [itemlist, setitemlist] = useState([
-    {
-      item: "",
-      itemCategory: "",
-      itemCode: "",
-      decription: "",
-      discount: "",
-      quantity: "",
-      unit: "",
-      pricePerUnit: "",
-      taxPercent: "",
-      taxamount: "",
-      amount: "",
-    },
-  ]);
+export default function ItemList({itemlist, setitemlist}) {
 
   const handleChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...itemlist];
-    list[index][name] = value;
+    var list = [...itemlist];
+    list[index][e.target.name] = e.target.value;
     setitemlist(list);
   };
 
   const handleItemAdd = () => {
+    console.log(itemlist);
     setitemlist([
       ...itemlist,
       {
@@ -52,72 +37,80 @@ export default function ItemList() {
     <div>
       <div className="individual-row">
         <div className="item-heading">
-          <div class="title-item title">Item</div>
-          <div class="title">Item Code</div>
-          <div class="title">Quantity</div>
-          <div class="title">Unit</div>
-          <div class="title-ppu title">Price/Unit</div>
-          <div class="title">Tax</div>
-          <div class="title">Amount</div>
+          <div className="title-item title">Item</div>
+          <div className="title">Item Code</div>
+          <div className="title">Quantity</div>
+          <div className="title">Unit</div>
+          <div className="title-ppu title">Price/Unit</div>
+          <div className="title">Tax</div>
+          <div className="title">Amount</div>
         </div>
         {/* <div className="listofItems"></div> */}
         {itemlist.map((x, i) => {
           return (
-            <div className="item-row">
-              <div class="title-item-input title-input">
+            <div key={i} className="item-row">
+              <div className="title-item-input title-input">
                 <input
                   className="itemList-input"
                   name="item"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].item}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-input">
+              <div className="title-input">
                 <input
                   className="itemList-input"
                   name="itemCode"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].itemCode}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-input">
+              <div className="title-input">
                 <input
                   className="itemList-input"
                   name="quantity"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].quantity}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-input">
+              <div className="title-input">
                 <input
                   className="itemList-input"
                   name="unit"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].unit}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-ppu-input title-input">
+              <div className="title-ppu-input title-input">
                 <input
                   className="itemList-input"
                   name="pricePerUnit"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].pricePerUnit}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-ppu-input title-input">
+              <div className="title-ppu-input title-input">
                 <input
                   className="itemList-input"
                   name="taxPercent"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].taxPercent}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-input">
+              <div className="title-input">
                 <input
                   className="itemList-input"
                   name="taxamount"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].taxamount}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
-              <div class="title-input">
+              <div className="title-input">
                 <input
                   className="itemList-input"
                   name="amount"
-                  onChange={(e) => handleChange()}
+                  value={itemlist[i].amount}
+                  onChange={(e) => handleChange(e, i)}
                 />
               </div>
               <div className="itemremove-btn">

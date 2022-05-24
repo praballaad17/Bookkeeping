@@ -11,61 +11,61 @@ export default function Sidebar({ open, onClose }) {
     <div className="sidebar">
       <div className="mainbuttondiv">
         <button type="button" className="button-main" onClick={onClose}>
-          My Company  <i class="fa-solid fa-angle-right"></i>
+          My Company  <i className="fa-solid fa-angle-right"></i>
         </button>
       </div>
       {/* <Link to="/dashboard/"><a className="active " href="#home">
-        <i class="fa-solid fa-house"></i> Home
+        <i className="fa-solid fa-house"></i> Home
       </a></Link> */}
       <a className="active " href="#home">
-        <i class="fa-solid fa-house"></i> Home
+        <i className="fa-solid fa-house"></i> Home
       </a>
       <a href="#parties ">
-        <i class="fa-solid fa-user-group"></i>Parties
+        <i className="fa-solid fa-user-group"></i>Parties
       </a>
       <Link to={ROUTES.ITEM}>
-        <i class="fa-solid fa-box-archive"></i>Item
+        <i className="fa-solid fa-box-archive"></i>Item
       </Link>
       <a href="#Sale ">
-        <i class="fa-solid fa-bag-shopping"></i>Sales
+        <i className="fa-solid fa-bag-shopping"></i>Sales
       </a>
       <a href="#Purchases ">
-        <i class="fa-solid fa-cart-plus"></i>Purchases
+        <i className="fa-solid fa-cart-plus"></i>Purchases
       </a>
       <a href="#Expenses ">
-        <i class="fa-solid fa-wallet"></i>Expenses
+        <i className="fa-solid fa-wallet"></i>Expenses
       </a>
       <a href="#Cash ">
-        <i class="fa-light fa-wallet"></i>Cash and Bank
+        <i className="fa-light fa-wallet"></i>Cash and Bank
       </a>
       <a href="#Online ">
-        <i class="fa-solid fa-store"></i>My Online Store
+        <i className="fa-solid fa-store"></i>My Online Store
       </a>
       <a href="#Reports ">
-        <i class="fa-light fa-signal"></i>Reports
+        <i className="fa-light fa-signal"></i>Reports
       </a>
       <hr />
       <a href="#Otherproducts">
-        <i class="fa-solid fa-circle-stop"></i>Other Products
+        <i className="fa-solid fa-circle-stop"></i>Other Products
       </a>
       <a href="#sync">
-        <i class="fa-solid fa-arrow-rotate-right"></i>Sync
+        <i className="fa-solid fa-arrow-rotate-right"></i>Sync
       </a>
       <a href="#Backup">
-        <i class="fa-solid fa-window-restore"></i>Backup/Restore
+        <i className="fa-solid fa-window-restore"></i>Backup/Restore
       </a>
       <a href="#Utilities">
-        <i class="fa-solid fa-screwdriver-wrench"></i>Utilities
+        <i className="fa-solid fa-screwdriver-wrench"></i>Utilities
       </a>
       <a href="#Settings">
-        <i class="fa-solid fa-gear"></i>Settings
+        <i className="fa-solid fa-gear"></i>Settings
       </a>
       <hr />
       <a href="#Demo">
-        <i class="fa-brands fa-youtube-square"></i>Request a Demo
+        <i className="fa-brands fa-youtube-square"></i>Request a Demo
       </a>
       <a href="#Feedback">
-        <i class="fa-solid fa-star"></i>Share Feedback
+        <i className="fa-solid fa-star"></i>Share Feedback
       </a>
     </div>
   );
