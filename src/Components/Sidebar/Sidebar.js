@@ -60,9 +60,9 @@ export default function Sidebar({ open, onClose }) {
         {/* <Link to="/dashboard/"><a className="active " href="#home">
         <i className="fa-solid fa-house"></i> Home
       </a></Link> */}
-        <a className="active " href="#home">
-          <i className="fa-solid fa-house"></i> Home
-        </a>
+        <Link className="active " to={ROUTES.DASHBOARD}>
+          <i class="fa-solid fa-house"></i> Home
+        </Link>
         <a href="#parties ">
           <i className="fa-solid fa-user-group"></i>Parties
         </a>
@@ -101,7 +101,7 @@ export default function Sidebar({ open, onClose }) {
         {/* <a href="#Utilities">
           <i className="fa-solid fa-screwdriver-wrench"></i>Utilities
         </a> */}
-        <a href="#Backup">
+        <a className="sidedropdown">
           {SidebarData.map((item, index) => {
             return <SubMenu item={item} key={index} />;
           })}

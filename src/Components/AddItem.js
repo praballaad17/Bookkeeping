@@ -25,7 +25,7 @@ export default function AddItem() {
             />
           </div>
           <div className="upperinput">
-            <button className="button11">Select Unit</button>
+            <button class="upperinputbutton">Select Unit</button>
           </div>
           <div className="upperinput upperinputlast">
             <input
@@ -135,8 +135,17 @@ export default function AddItem() {
                 </div>
                </div>
           </div>
+               <div className="lowerbuttons">
+                  <div className="lowerbuttoninput">
+                    <button class="button11">Save</button>
+                  </div>
+                  <div className="lowerbuttoninput">
+                    <button class="button11">Save & New</button>
+                  </div>
+               </div>
         </div>
       </div>
+
     </div>
   );
 }

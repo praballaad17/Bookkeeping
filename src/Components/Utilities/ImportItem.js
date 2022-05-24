@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
 import ItemIndividual from './ItemIndividual';
 import ItemTable from './ItemTable';
+import sample from '../../utilities/sample1.xlsx';
 
 export default function ImportItem() {
     const [excelData, setExcelData] = useState(null);
     const [excelFile, setExcelFile] = useState(null);
     const [excelFileError, setExcelFileError] = useState(null);
     const [loading, setLoading] = useState(false);
+
 
     const fileType = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', '.csv', ''];
 
@@ -26,7 +28,7 @@ export default function ImportItem() {
 
     const handleFileUpload = (e) => {
         e.preventDefault();
-        setLoading(true);
+        // setLoading(true);
         let selectedFile = e.target.files[0];
         if (selectedFile) {
             console.log(selectedFile, selectedFile.type);
@@ -34,15 +36,26 @@ export default function ImportItem() {
                 let reader = new FileReader();
                 reader.readAsArrayBuffer(selectedFile);
                 reader.onload = (e) => {
-                    setExcelFileError(null);
-                    setExcelFile(e.target.result);
-                    handleInputData(e.target.result);
+                    // setExcelFileError(null);
+                    // setExcelFile(e.target.result);
+                    // handleInputData(e.target.result);
+                    const rdata = (e.target.result)
+                    if (rdata !== null) {
+                        const workbook = XLSX.read(rdata, { type: 'buffer' });
+                        const worksheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[worksheetName];
+                        const data = XLSX.utils.sheet_to_json(worksheet);
+                        setExcelData(data);
+                    }
+                    else {
+                        setExcelData(null);
+                    }
                 }
-                setLoading(false);
+                // setLoading(false); 
             }
             else {
-                setExcelFileError('Please select only excel file types');
-                setExcelFile(null);
+                // setExcelFileError('Please select only excel file types');
+                // setExcelFile(null); 
             }
 
         }
@@ -52,7 +65,7 @@ export default function ImportItem() {
 
     }
 
-    console.log(excelFile, excelFileError, excelData);
+    console.log(excelData);
 
     if (excelData) return (
         <ItemTable excelData={excelData} />
@@ -61,12 +74,22 @@ export default function ImportItem() {
     return (
         <>
             <div className='importitem'>
-                <div className='importitem--heading'>Import Items</div>
+                <div className='importitem--heading'>Import Items From Excel File</div>
 
 
                 <div className='importitem__block'>
                     <div className='importitem--left'>
-
+                        <h3>Steps to import</h3>
+                        <h4>STEP 1</h4>
+                        <span>Create an Excel file with the following format.</span>
+                        <a href={sample} className='btn btn--primary'>
+                            Download Sample
+                        </a>
+                        <img src="https://exceltable.com/en/analyses-reports/images/analyses-reports29-1.png" alt="sample photo" />
+                        <h4>STEP 2</h4>
+                        <span><i class="fa fa-upload" aria-hidden="true"></i>Upload the file (xlsx or xls) by clicking on the Upload File button below.</span>
+                        <h4>STEP 3</h4>
+                        <span>Verify the items from the file & complete the import.</span>
                     </div>
                     <div className='importitem--right'>
                         <div className='importitem--right__heading'>
