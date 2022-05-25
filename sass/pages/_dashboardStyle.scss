@@ -1,27 +1,31 @@
-.dashboard-main{
+.dashboard-main {
     display: flex;
     flex-direction: column;
 }
 
-#top-div{
-    height:7vh;
+#top-div {
+    height: 7vh;
 }
-#bottom-div{
+
+#bottom-div {
     display: flex;
     flex-direction: row;
 }
-#sidebar-div{
+
+#sidebar-div {
     width: 15vw;
 }
-#central-div{
+
+#central-div {
     display: flex;
     flex-direction: column;
-    width:85vw;
-    height:93vh;
+    width: 85vw;
+    height: 100vh;
     position: relative;
 }
-.inputboxtop{
+
+.inputboxtop {
     width: 100%;
     padding: 30px 10px;
     height: 11vh;
-  }
+}

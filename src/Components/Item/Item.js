@@ -31,7 +31,7 @@ export default function Item() {
                     <div className='item__heading'>Items</div>
                     <div className='items__box'>
                         <div className='items__box--left'>
-                            <ItemList />
+                            <ItemList items={items} />
                         </div>
                         <div className='items__box--right'>
                             <ItemIndividual />
