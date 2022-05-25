@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import * as ROUTES from "../../constants/routes";
 import { useUser } from '../../Context/userContext';
 import { getItemsByUserId } from '../../services/ItemServices';
-import ItemIndividual from '../Utilities/ItemIndividual';
+import ItemIndividual from './ItemIndividual';
+import ItemList from './ItemList';
 // import "../css/item.css";
 
 export default function Item() {
@@ -27,8 +28,16 @@ export default function Item() {
         <>
             {items && items !== null ?
                 <div className='items'>
-                    <div className='item__heading heading-primary'>Items</div>
-                    <div className='item__list'>
+                    <div className='item__heading'>Items</div>
+                    <div className='items__box'>
+                        <div className='items__box--left'>
+                            <ItemList />
+                        </div>
+                        <div className='items__box--right'>
+                            <ItemIndividual />
+                        </div>
+                    </div>
+                    {/* <div className='item__list'>
                         <table className='importtable__table'>
                             <thead>
                                 <tr>
@@ -54,7 +63,7 @@ export default function Item() {
                                 ))
                             }
                         </table>
-                    </div>
+                    </div> */}
                 </div> :
                 <div className="products">
                     <img src="https://static.vecteezy.com/system/resources/previews/005/073/073/original/no-item-in-the-shopping-cart-add-product-click-to-shop-now-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg" className='productimage' alt="" />
