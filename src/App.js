@@ -8,6 +8,7 @@ import Authentication from './pages/Authenticate/Authentication';
 import AuthLogin from './pages/Authenticate/AuthLogin';
 import AuthSignup from './pages/Authenticate/AuthSignup';
 import NotFound from './pages/NotFound';
+import { UserProvider } from './Context/userContext';
 
 // const Login = lazy(() => import('./pages/Login'));
 // const SignUp = lazy(() => import('./pages/Signup'));
@@ -22,24 +23,26 @@ export default function App() {
 
   return (
     <>
-      <Router>
-        <Suspense fallback={<MainLoader />}>
+      <UserProvider user={user} >
+        <Router>
+          <Suspense fallback={<MainLoader />}>
 
-          <Routes>
-            <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin]} />
-            <Route path={`${ROUTES.DASHBOARD}/*`} element={<Dashboard user={user} />} />
-            <Route
-              path="/"
-              element={<Navigate to={ROUTES.DASHBOARD} replace />} />
-            {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
+            <Routes>
+              <Route path={ROUTES.AUTHENTICATION} element={<Authentication user={user} />} children={[AuthSignup, AuthLogin]} />
+              <Route path={`${ROUTES.DASHBOARD}/*`} element={<Dashboard user={user} />} />
+              <Route
+                path="/"
+                element={<Navigate to={ROUTES.DASHBOARD} replace />} />
+              {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}
 
-            {/* <Dashboard /> */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </Router>
+              {/* <Dashboard /> */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </UserProvider>
     </>
 
   );

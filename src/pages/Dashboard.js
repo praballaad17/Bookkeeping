@@ -6,7 +6,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 // import Uppernavbar from "../Components/Uppernavbar";
 import * as ROUTES from "../constants/routes";
 import "../css/dashboardStyle.css";
-import Item from "../Components/Item";
+import Item from "../Components/Item/Item";
 import AddItem from "../Components/AddItem";
 import ImportItem from "../Components/Utilities/ImportItem";
 import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";

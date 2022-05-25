@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useUser } from '../../Context/userContext';
+import { importItemBulk } from '../../services/ItemServices';
 import ErrorItemTable from './ErrorItemTable';
 import ItemIndividual from './ItemIndividual'
 
@@ -6,6 +8,10 @@ export default function ItemTable({ excelData }) {
     const [uniqueItems, setUniqueItems] = useState();
     const [errorItems, setErrorItems] = useState([]);
     const [open, setOpen] = useState(false);
+
+    const { user } = useUser();
+
+    console.log(user);
 
     useEffect(() => {
         let uniqueItems = {};
@@ -23,6 +29,15 @@ export default function ItemTable({ excelData }) {
         setErrorItems(errorItems)
         setUniqueItems(Object.values(uniqueItems));
     }, [excelData])
+
+    const handleImport = async () => {
+        try {
+            const response = await importItemBulk(uniqueItems, user.id);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div>
@@ -57,7 +72,7 @@ export default function ItemTable({ excelData }) {
                 </div>
                 <div className='importtable__foot'>
                     <div className='btn btn--error importtable__foot--btn' onClick={() => setOpen(true)}>See {errorItems?.length} Items with error</div>
-                    <div className='btn btn--primary importtable__foot--btn'>Import {uniqueItems?.length} Valid Items</div>
+                    <div className='btn btn--primary importtable__foot--btn' onClick={handleImport}>Import {uniqueItems?.length} Valid Items</div>
                 </div>
             </div>
             <ErrorItemTable errorItems={errorItems} open={open} onClose={() => setOpen(false)} />
