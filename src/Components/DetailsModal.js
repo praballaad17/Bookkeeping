@@ -170,7 +170,7 @@ export default function DetailsModal({ open, onClose }) {
 
           {/* <ul className="modal-box__list">
                     <li className="progress__box">
-                        <span class="progress-bar"></span>
+                        <span className="progress-bar"></span>
                     </li>
                     {/* <li className="modal-box__label" >{progress}</li> */}
           {/* </ul> */}

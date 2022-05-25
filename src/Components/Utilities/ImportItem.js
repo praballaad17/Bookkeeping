@@ -97,7 +97,7 @@ export default function ImportItem() {
                         </div>
                         <div className="drop-file-input ">
                             {!loading ? <div className='importitem--box'>
-                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <i className="fa-solid fa-cloud-arrow-up"></i>
                                 <h5>Drag & Drop file here</h5>
                                 {/* <h6>or</h6> */}
                                 <input onChange={handleFileUpload} accept=".xlsx, .xls, .csv" type='file' />

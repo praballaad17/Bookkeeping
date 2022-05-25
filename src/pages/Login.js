@@ -39,7 +39,7 @@ export default function Login({ user: loggedInUser }) {
         {loading ? (
           <ul className="modal-box__list">
             <li className="progress__box">
-              <span class="progress-bar"></span>
+              <span className="progress-bar"></span>
             </li>
             {/* <li className="modal-box__item" >{progress}</li> */}
           </ul>

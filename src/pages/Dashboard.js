@@ -17,7 +17,7 @@ import ItemTable from "../Components/Utilities/ItemTable";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
-  if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
+  // if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
 
   return (
     <div className="dashboard-mian">
