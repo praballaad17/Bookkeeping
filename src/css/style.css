@@ -2269,42 +2269,71 @@ div.content {
   padding: 30px 10px;
   height: 11vh; }
 
-.individual-row {
-  width: 90%;
-  display: flex;
-  flex-direction: column; }
-  .individual-row .item-heading {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; }
-    .individual-row .item-heading .title {
-      border: 1px solid black;
-      width: 10%; }
-    .individual-row .item-heading .title-ppu {
+.item__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px; }
+  .item__table th,
+  .item__table td {
+    border: 1px solid #e4e4e4;
+    padding: 5px;
+    text-align: left;
+    overflow-wrap: break-word;
+    white-space: pre; }
+  .item__table tbody {
+    font-size: 14px; }
+  .item__table .item-heading {
+    width: 100%; }
+    .item__table .item-heading .title--tax {
+      display: flex;
+      flex-direction: column;
+      padding: 0 0px;
       width: 20%; }
-    .individual-row .item-heading .title-item {
+      .item__table .item-heading .title--tax__top {
+        padding: 0 10px; }
+      .item__table .item-heading .title--tax__foot {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid black; }
+        .item__table .item-heading .title--tax__foot--left {
+          width: 50%;
+          display: flex;
+          justify-content: center;
+          border-right: 1px solid black; }
+        .item__table .item-heading .title--tax__foot--right {
+          width: 50%;
+          text-align: center; }
+    .item__table .item-heading .title-ppu {
+      padding: 0px 10px; }
+      .item__table .item-heading .title-ppu--select {
+        height: 25px;
+        width: 100%;
+        padding: 0 10px; }
+    .item__table .item-heading .title-item {
       width: 30%; }
 
-.item-row {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between; }
-  .item-row:hover .itemremove-btn {
-    display: block; }
-  .item-row .title-input {
-    width: 10%; }
-  .item-row .title-item-input {
-    width: 30%; }
-  .item-row .title-ppu-input {
-    width: 10%; }
-  .item-row .itemList-input {
-    width: 100%;
-    border: 1px solid black; }
-  .item-row .itemremove-btn {
-    display: none;
-    position: absolute;
-    left: 1%; }
+.item-row:hover .itemremove-btn {
+  display: block; }
+
+.item-row .title-input {
+  width: 10%; }
+
+.item-row .title-ppu-input {
+  width: 50%; }
+
+.item-row .itemList-input {
+  width: 100%; }
+
+.item-row .itemremove-btn {
+  display: none;
+  position: absolute;
+  left: 1%; }
+
+.invoice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f7f7f7; }
