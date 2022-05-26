@@ -59,7 +59,7 @@ export default function AddPurchaseInvoice() {
       <div >
         <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} />
         <ItemList itemlist={itemlist} setitemlist={setitemlist} />
-        <button
+        <button className="btn btn--secondary"
           onClick={handleInvoice}
         >
           Create Invoice

@@ -490,6 +490,14 @@ body {
   font-size: 14px;
   box-shadow: 0px 0px 2px 2px #e4e4e4; }
 
+.btn--secondary {
+  color: #04b2d9;
+  background-color: #fff;
+  border: 2px solid #04b2d9; }
+  .btn--secondary:hover {
+    background-color: #04b2d9;
+    color: #fff; }
+
 .btn--grey {
   background-color: #e4e4e4;
   color: black;
@@ -783,7 +791,7 @@ body {
     font-size: 5rem;
     transform: translate(-50%, -50%); }
     .not-paid__lock:hover {
-      color: #1bb675; }
+      color: #04b2d9; }
   .not-paid__price {
     margin: 2rem;
     width: -webkit-fill-available;
@@ -2285,10 +2293,7 @@ div.content {
   .item__table .item-heading {
     width: 100%; }
     .item__table .item-heading .title--tax {
-      display: flex;
-      flex-direction: column;
-      padding: 0 0px;
-      width: 20%; }
+      padding: 0 0px; }
       .item__table .item-heading .title--tax__top {
         padding: 0 10px; }
       .item__table .item-heading .title--tax__foot {

@@ -32,7 +32,7 @@ export default function ItemList({ itemlist, setitemlist }) {
     list.splice(index, 1);
     setitemlist(list);
   };
-  console.log(itemlist);
+
   return (
     <div>
       <table className="item__table">
@@ -158,7 +158,7 @@ export default function ItemList({ itemlist, setitemlist }) {
       </table>
       <div className="itemAdd-btn">
         {itemlist.lenght !== 1 && (
-          <button className="add-btn" onClick={() => handleItemAdd()}>
+          <button className="btn btn--secondary" onClick={() => handleItemAdd()}>
             Add Item
           </button>
         )}
