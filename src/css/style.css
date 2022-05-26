@@ -1248,13 +1248,10 @@ body {
 .searchicon {
   position: absolute; }
 
-.fullname {
-  float: left;
-  display: inline; }
-
-.quantity {
-  display: inline;
-  float: right; }
+.itemstable {
+  padding: 15px 10px;
+  font-size: 11px;
+  height: 90%; }
 
 .productdetails {
   border: 1px solid black; }
@@ -1263,6 +1260,15 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px; }
+
+.importtable__table {
+  border: 1px solid black;
+  font-size: 11px;
+  width: 100%;
+  justify-content: space-around; }
+
+.theadbold {
+  font-size: 14px; }
 
 .topnav-list {
   overflow: hidden;
