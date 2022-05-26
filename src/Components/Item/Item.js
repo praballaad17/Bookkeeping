@@ -31,40 +31,104 @@ export default function Item() {
           <div className="item__heading">Items</div>
           <div className="items__box">
             <div className="items__box--left">
-              <input type="search" id="searchitem" name="searchitem" />
+              <div className="searchbox">
+                <i className="fa-solid fa-magnifying-glass searchicon"></i>
+                <input
+                  type="search"
+                  className="searchbar"
+                  id="searchitem"
+                  name="searchitem"
+                />
+              </div>
               <div className="productdetails">
-                {/* <span className="fullname">FULLNAME</span>
-                <span className="quantity">QUANTITY</span> */}
                 <table className="importtable__table">
-                    <thead className="theadbold">
-                        <tr>
-                            <th>FULLNAME</th>
-                            <th>QUANTITY</th>
-                        </tr>
-                    </thead>
+                  <thead className="theadbold">
+                    <tr>
+                      <th>
+                        <i class="fa-solid fa-arrow-up"></i>FULLNAME
+                        <i class="fa-solid fa-filter"></i>
+                      </th>
+                      <th>
+                        <i class="fa-solid fa-arrow-up"></i>QUANTITY
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ALOVERA JUICE</td>
+                      <td>60<i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    </tr>
+                    
+                    <tr>
+                      <td>AMLA CANDY 500G</td>
+                      <td>10<i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    </tr>
+                  </tbody>
                 </table>
                 {/* <ItemList items={items} /> */}
-                
               </div>
             </div>
             <div className="items__box--right">
               <div className="items__box--right__upper">
-                <span>BUNDLES</span>
+                <span className="boldspan">BUNDLES</span>
                 <button className=" items__box--right__upper--button ">
                   Add Conversion
                 </button>
+                <div className="spanrightupper">
+                  <span>
+                    SALE PRICE: <span className="price"> ₹100.00 </span>(exc)
+                  </span>
+                  <span>
+                    PURCHASE PRICE: <span className="price"> ₹100.00 </span>
+                    (exc)
+                  </span>
+                  <span>
+                    STOCK QUANTITY: <span className="price"> ₹100.00 </span>
+                    (exc)
+                  </span>
+                  <span>
+                    STOCK VALUE: <span className="price"> ₹100.00 </span>(exc)
+                  </span>
+                </div>
               </div>
               <div className="items__box--right__lower">
-                <span className="fullname">UNITS</span>
-                <input
-                  type="search"
-                  className=" items__box--right__lower--search "
-                />
+                <div className="items__box--right__lower__uppers">
+                  <span>TRANSACTION</span>
+                  <input
+                    type="search"
+                    className=" items__box--right__lower--search "
+                  />
+                </div>
                 <div className="item__list">
                   <table className="importtable__table">
                     <thead>
                       <tr>
-                        <th>Item Code</th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Type
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Date
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Quantity
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Date
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Price/Unit
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+                        <th>
+                          <i class="fa-solid fa-arrow-up"></i>Status
+                          <i class="fa-solid fa-filter"></i>
+                        </th>
+
+                        {/* <th>Item Code</th>
                         <th>Item Name</th>
                         <th>HNS</th>
                         <th>Sale Price</th>
@@ -75,14 +139,22 @@ export default function Item() {
                         <th>Minimum_stock_quantity</th>
                         <th>Item_Location</th>
                         <th>Tax_Rate</th>
-                        <th>Inclusive_Of_Tax</th>
+                        <th>Inclusive_Of_Tax</th> */}
                       </tr>
                     </thead>
-                    {items.map((item) => (
+                    {/* {items.map((item) => ( */}
                       <tbody>
-                        <ItemIndividual item={item} />
+                        <tr>
+                          <td>Opening Stock</td>
+                          <td>Opening Stock</td>
+                          <td>01/01/2001</td>
+                          <td>100</td>
+                          <td>100</td>
+                          <td></td>
+                        </tr>
+                        {/* <ItemIndividual item={item} /> */}
                       </tbody>
-                    ))}
+                    {/* ))} */}
                   </table>
                 </div>
               </div>
