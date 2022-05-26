@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDom from "react-dom";
 import { createInvoice } from "../../services/InvoiceServices";
 import ItemList from "./ItemList";
 
@@ -6,7 +7,7 @@ import ItemList from "./ItemList";
 export default function AddPurchaseInvoice() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [invoiceID, setinvoiceID]=useState("")
+  const [invoiceID, setinvoiceID] = useState("")
   const [itemlist, setitemlist] = useState([
     {
       item: "",
@@ -53,17 +54,18 @@ export default function AddPurchaseInvoice() {
       setLoading(false);
     }
   }
-  return (
-    <div>
-      <form method="submit" onSubmit={handleInvoice}>
-        <input name="invoiceID" value={invoiceID} onChange={(e)=>handleChange(e)}/>
+  return ReactDom.createPortal(
+    <div className="invoice">
+      <div >
+        <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} />
         <ItemList itemlist={itemlist} setitemlist={setitemlist} />
         <button
-          type="submit"
+          onClick={handleInvoice}
         >
           Create Invoice
         </button>
-      </form>
-    </div>
+      </div>
+    </div>,
+    document.getElementById("invoice")
   );
 }
