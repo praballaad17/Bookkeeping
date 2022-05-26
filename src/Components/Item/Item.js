@@ -31,10 +31,27 @@ export default function Item() {
                     <div className='item__heading'>Items</div>
                     <div className='items__box'>
                         <div className='items__box--left'>
-                            <ItemList items={items} />
+                            <input type="search" id="searchitem" name="searchitem"/>
+                                <div className="productdetails">
+                                <span className='fullname'>FULLNAME</span>
+                                <span className='quantity'>QUANTITY</span>
+                                
+                                    
+                                     <ItemList items={items} />
+                                 </div>
+            
+
                         </div>
                         <div className='items__box--right'>
-                            <ItemIndividual />
+                            <div className="items__box--right__upper">
+                            <span>BUNDLES</span>
+                            <button className=" items__box--right__upper--button ">Add Conversion</button> 
+                            </div>
+                            <div className="items__box--right__lower">
+                            <span className='fullname'>UNITS</span>
+                            <input type="search"  className=" items__box--right__lower--search " /> 
+                            </div>
+                            {/* <ItemIndividual /> */}
                         </div>
                     </div>
                     {/* <div className='item__list'>
