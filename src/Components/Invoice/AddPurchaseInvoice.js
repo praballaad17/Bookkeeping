@@ -57,13 +57,13 @@ export default function AddPurchaseInvoice() {
   return ReactDom.createPortal(
     <div className="invoice">
       <div >
-        <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} />
+        {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
         <ItemList itemlist={itemlist} setitemlist={setitemlist} />
-        <button className="btn btn--secondary"
+        {/* <button className="btn btn--secondary"
           onClick={handleInvoice}
         >
           Create Invoice
-        </button>
+        </button> */}
       </div>
     </div>,
     document.getElementById("invoice")
