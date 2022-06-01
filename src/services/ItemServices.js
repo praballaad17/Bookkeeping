@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Url from "../config.json";
 
-const apiEndpoint = Url?.localUrl + "/item";
+const apiEndpoint = Url?.apiUrl + "/item";
 
 
 export const importItemBulk = async (itemArray, userId) => {

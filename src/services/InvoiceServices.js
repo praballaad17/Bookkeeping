@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Url from "../config.json";
 
-const apiEndpointInvoice = Url?.localUrl + "/invoice";
-const apiEndpointItem = Url?.localUrl + "/item";
+const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+const apiEndpointItem = Url?.apiUrl + "/item";
 
 
 export const createInvoice = async (invoiceID, itemlist) => {
@@ -20,14 +20,14 @@ export const createInvoice = async (invoiceID, itemlist) => {
           // const itemObjectID = getitemObjectID.data._id;
           // arr.push([itemObjectID, individualItem.quantity]);
           // console.log(arr);
-          
+
         }
       });
       const itemIds = JSON.stringify(itemlist);
-      const request = { data: {  invoiceID, itemIds } };
+      const request = { data: { invoiceID, itemIds } };
       const response = await axios(`${apiEndpointInvoice}/addInvoice`, {
         method: "POST",
-        headers: { "Content-Type":"application/json" },
+        headers: { "Content-Type": "application/json" },
         ...request,
       });
       return response.data;

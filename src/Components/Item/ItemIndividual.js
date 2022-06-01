@@ -23,7 +23,7 @@ export default function ItemIndividual({ selectedItem }) {
                         (exc)
                     </span>
                     <span>
-                        STOCK VALUE: <span className="price"> ₹{selectedItem?.openigStockQuantity * selectedItem?.purchasePrice} </span>(exc)
+                        STOCK VALUE: <span className="price"> ₹{selectedItem ? 0 : selectedItem?.openigStockQuantity * selectedItem?.purchasePrice} </span>(exc)
                     </span>
                 </div>
             </div>
