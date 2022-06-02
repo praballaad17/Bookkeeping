@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { searchItem } from "../../services/ItemServices";
+import ItemSearchBox from "./ItemSearchBox";
 
 export default function ItemList({ itemlist, setitemlist }) {
-  const handleChange = (e, index) => {
+  const [index, setIndex] = useState(null);
+  const [result, setResult] = useState([]);
+  // const { result } = useSearch()
+
+  const handleChange = async (e, index) => {
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
-    setitemlist(list);
+    console.log(e.target.value);
+    if (e.target.value === '') {
+      console.log("null");
+      setIndex(null)
+    }
+    else {
+      setIndex(index);
+      setitemlist(list);
+      const result = await searchItem(e.target.value);
+      setResult(result);
+    }
   };
+
+  console.log(result);
 
   const handleItemAdd = () => {
     console.log(itemlist);
@@ -31,6 +49,8 @@ export default function ItemList({ itemlist, setitemlist }) {
     list.splice(index, 1);
     setitemlist(list);
   };
+
+  console.log(index);
 
   return (
     <div>
@@ -108,13 +128,16 @@ export default function ItemList({ itemlist, setitemlist }) {
             {itemlist.map((x, i) => {
               return (
                 <tr key={i} className="item-row">
-                  <td className="title-input">
+                  <td className="title-input invoice__item--searchbox">
                     <input
                       className="itemList-input"
                       name="item"
                       value={itemlist[i].item}
                       onChange={(e) => handleChange(e, i)}
                     />
+                    {index === i && <div className="invoice__item--search">
+                      <ItemSearchBox item={result} />
+                    </div>}
                   </td>
                   <td className="title-input">
                     <input

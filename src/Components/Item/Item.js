@@ -29,7 +29,10 @@ export default function Item() {
     <>
       {items && items !== null ? (
         <div className="items">
-          <div className="item__heading">Items</div>
+          <div className="items__head">
+            <div className="heading-secondary">Item</div>
+            <a className="btn btn--secondary" href={ROUTES.ADDITEM} >Add Item</a>
+          </div>
           <div className="items__box">
             <div className="items__box--left">
               <ItemList items={items} setSelectedItem={setSelectedItem} />
