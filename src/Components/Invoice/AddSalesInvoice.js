@@ -13,7 +13,7 @@ import { createInvoice } from "../../services/InvoiceServices";
 import ItemList from "./ItemListSales";
 
 
-export default function AddPurchaseInvoice() {
+export default function AddSalesInvoice() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [invoiceID, setinvoiceID] = useState("")
@@ -42,7 +42,7 @@ export default function AddPurchaseInvoice() {
     try {
       await createInvoice(invoiceID, itemlist);
       setLoading(false);
-      window.location = "/dashboard/purchase/";
+      window.location = "/dashboard/sales/";
     } catch (error) {
       setitemlist([
         {

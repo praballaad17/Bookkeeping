@@ -117,10 +117,10 @@ input{
     width: 50%;
     border-radius: 6px;
 }
-label{
+/* label{
     border-radius: 6px;
-    width: 43%;
-}
+    width: 50%; 
+} */
 
 select{
     border-radius: 6px;

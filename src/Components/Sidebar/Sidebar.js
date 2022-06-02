@@ -63,9 +63,12 @@ export default function Sidebar({ open, onClose }) {
         <Link className="active " to={ROUTES.DASHBOARD}>
           <i class="fa-solid fa-house"></i> Home
         </Link>
-        <a href="#parties ">
-          <i className="fa-solid fa-user-group"></i>Parties
-        </a>
+        {/* <a href="#parties ">
+        <i className="fa-solid fa-user-group"></i>Parties
+      </a> */}
+        <Link to={ROUTES.PARTIESINV}>
+            <i className="fa-solid fa-user-group"></i>Parties
+        </Link>
         <Link to={ROUTES.ITEM}>
           <i className="fa-solid fa-box-archive"></i>Item
         </Link>

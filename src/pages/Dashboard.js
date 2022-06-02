@@ -13,6 +13,8 @@ import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice";
 import AddSalesInvoice from "../Components/Invoice/AddSalesInvoice";
 import ItemTable from "../Components/Utilities/ItemTable";
+import PartiesInvoice from "../Components/Invoice/PartiesInvoice";
+import AddPartiesInvoice from "../Components/Invoice/AddPartiesInvoice";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
@@ -43,6 +45,8 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
+            <Route path="/parties" element={<PartiesInvoice />} />
+            <Route path="/parties/add" element={<AddPartiesInvoice />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />
             <Route path="/" element={<Home />} />
           </Routes>
