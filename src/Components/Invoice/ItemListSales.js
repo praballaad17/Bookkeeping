@@ -36,7 +36,15 @@ export default function ItemList({ itemlist, setitemlist }) {
     <div>
       <div className="scrolable">
         <div className="topnavbar">
-          <span>PURCHASE</span>
+          <div>
+            <span>SALES | </span>
+            <span className="creditspan">Credit </span>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span className="cashspan"> Cash</span>
+          </div>
           <div>
             <i className="fa-solid fa-calculator righticons"></i>
             <i className="fa-solid fa-circle-xmark righticons"></i>
@@ -46,7 +54,7 @@ export default function ItemList({ itemlist, setitemlist }) {
           <div className="abovetable">
             <div className="partyinput ">
               <select id="types" name="party" className="partyinputs">
-                <option value="party">Party *</option>
+                <option value="party">Customers *</option>
                 <option value="Retail">One</option>
                 <option value="WholeSale">Two</option>
                 <option value="Distributor">Three</option>
@@ -56,7 +64,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               </select>
             </div>
             <div>
-              <label htmlFor="quantity">Bill Number : </label>
+              <label htmlFor="quantity">Invoice Number : </label>
               <input type="tel" id="number" name="number" />
             </div>
             <div>
@@ -73,7 +81,7 @@ export default function ItemList({ itemlist, setitemlist }) {
             <div>
               <label htmlFor="billdate" className="inputbox">
                 {" "}
-                Bill Date :{" "}
+                Inovice Date :{" "}
               </label>
               <input type="date" id="billdate" name="billdate" />
             </div>
@@ -207,12 +215,12 @@ export default function ItemList({ itemlist, setitemlist }) {
         </div>
         <div className="belowtable">
           <div className="paymentinputleft ">
-            <label htmlFor="payment">Payment Mode : </label>
+            {/* <label htmlFor="payment">Payment Mode:</label>
             <select id="types" name="payment" className="paymentmode">
               <option value="Cash">Cash</option>
               <option value="Retail">One</option>
               <option value="WholeSale">Two</option>
-            </select>
+            </select> */}
           </div>
           <div className="paymentinputright">
             <input
@@ -221,7 +229,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               name="checkbox"
               className="checkboxinput"
             />
-              <label htmlFor="roundoff" className="roundofflabel">
+            <label htmlFor="roundoff" className="roundofflabel">
               Round-off :{" "}
             </label>
             <input
@@ -231,12 +239,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               className="roundoff"
             />
             <label htmlFor="total">Total : </label>
-            <input
-              type="number"
-              id="total"
-              name="total"
-              className="totalinput"
-            />
+            <input type="tel" id="total" name="total" className="totalinput" />
           </div>
         </div>
         <div className="buttonsubmit">
