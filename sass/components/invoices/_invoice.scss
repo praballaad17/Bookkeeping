@@ -6,4 +6,21 @@
     height: 100vh;
     width: 100vw;
     background-color: $color-grey-light-1;
+    overflow: scroll;
+
+    &__item--search {
+        position: absolute;
+        width: 50vw;
+        min-width: 800px;
+        height: 300px;
+        bottom: -300px;
+        left: 0;
+        background-color: palegoldenrod;
+        display: flex;
+        z-index: 1002;
+
+        &box {
+            position: relative;
+        }
+    }
 }
