@@ -1,29 +1,11 @@
-import React, { useState } from "react";
-import { searchItem } from "../../services/ItemServices";
-import ItemSearchBox from "./ItemSearchBox";
+import React from "react";
 
 export default function ItemList({ itemlist, setitemlist }) {
-  const [index, setIndex] = useState(null);
-  const [result, setResult] = useState([]);
-  // const { result } = useSearch()
-
-  const handleChange = async (e, index) => {
+  const handleChange = (e, index) => {
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
-    console.log(e.target.value);
-    if (e.target.value === '') {
-      console.log("null");
-      setIndex(null)
-    }
-    else {
-      setIndex(index);
-      setitemlist(list);
-      const result = await searchItem(e.target.value);
-      setResult(result);
-    }
+    setitemlist(list);
   };
-
-  console.log(result);
 
   const handleItemAdd = () => {
     console.log(itemlist);
@@ -50,13 +32,19 @@ export default function ItemList({ itemlist, setitemlist }) {
     setitemlist(list);
   };
 
-  console.log(index);
-
   return (
     <div>
       <div className="scrolable">
         <div className="topnavbar">
-          <span>PURCHASE</span>
+          <div>
+            <span>SALES | </span>
+            <span className="creditspan">Credit </span>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span className="cashspan"> Cash</span>
+          </div>
           <div>
             <i className="fa-solid fa-calculator righticons"></i>
             <i className="fa-solid fa-circle-xmark righticons"></i>
@@ -66,7 +54,7 @@ export default function ItemList({ itemlist, setitemlist }) {
           <div className="abovetable">
             <div className="partyinput ">
               <select id="types" name="party" className="partyinputs">
-                <option value="party">Party *</option>
+                <option value="party">Customers *</option>
                 <option value="Retail">One</option>
                 <option value="WholeSale">Two</option>
                 <option value="Distributor">Three</option>
@@ -76,7 +64,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               </select>
             </div>
             <div>
-              <label htmlFor="quantity">Bill Number : </label>
+              <label htmlFor="quantity">Invoice Number : </label>
               <input type="tel" id="number" name="number" />
             </div>
             <div>
@@ -93,7 +81,7 @@ export default function ItemList({ itemlist, setitemlist }) {
             <div>
               <label htmlFor="billdate" className="inputbox">
                 {" "}
-                Bill Date :{" "}
+                Inovice Date :{" "}
               </label>
               <input type="date" id="billdate" name="billdate" />
             </div>
@@ -128,16 +116,13 @@ export default function ItemList({ itemlist, setitemlist }) {
             {itemlist.map((x, i) => {
               return (
                 <tr key={i} className="item-row">
-                  <td className="title-input invoice__item--searchbox">
+                  <td className="title-input">
                     <input
                       className="itemList-input"
                       name="item"
                       value={itemlist[i].item}
                       onChange={(e) => handleChange(e, i)}
                     />
-                    {index === i && <div className="invoice__item--search">
-                      <ItemSearchBox item={result} />
-                    </div>}
                   </td>
                   <td className="title-input">
                     <input
@@ -230,12 +215,12 @@ export default function ItemList({ itemlist, setitemlist }) {
         </div>
         <div className="belowtable">
           <div className="paymentinputleft ">
-            <label htmlFor="payment">Payment Mode : </label>
+            {/* <label htmlFor="payment">Payment Mode:</label>
             <select id="types" name="payment" className="paymentmode">
               <option value="Cash">Cash</option>
               <option value="Retail">One</option>
               <option value="WholeSale">Two</option>
-            </select>
+            </select> */}
           </div>
           <div className="paymentinputright">
             <input
@@ -244,7 +229,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               name="checkbox"
               className="checkboxinput"
             />
-              <label htmlFor="roundoff" className="roundofflabel">
+            <label htmlFor="roundoff" className="roundofflabel">
               Round-off :{" "}
             </label>
             <input
@@ -254,12 +239,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               className="roundoff"
             />
             <label htmlFor="total">Total : </label>
-            <input
-              type="number"
-              id="total"
-              name="total"
-              className="totalinput"
-            />
+            <input type="tel" id="total" name="total" className="totalinput" />
           </div>
         </div>
         <div className="buttonsubmit">
