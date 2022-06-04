@@ -1207,8 +1207,12 @@ body {
 
 .items {
   height: 100%; }
-  .items__heading {
-    height: 10%; }
+  .items__head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 10px 30px; }
   .items__box {
     display: flex;
     width: 100%;
@@ -2484,7 +2488,20 @@ input:checked + .slider:before {
   z-index: 1000;
   height: 100vh;
   width: 100vw;
-  background-color: #f7f7f7; }
+  background-color: #f7f7f7;
+  overflow: scroll; }
+  .invoice__item--search {
+    position: absolute;
+    width: 50vw;
+    min-width: 800px;
+    height: 300px;
+    bottom: -300px;
+    left: 0;
+    background-color: palegoldenrod;
+    display: flex;
+    z-index: 1002; }
+    .invoice__item--searchbox {
+      position: relative; }
 
 .partymain {
   margin: 20px 30px;
