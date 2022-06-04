@@ -15,7 +15,7 @@ export default function ImportItem() {
 
     const handleInputData = (rdata) => {
         if (rdata !== null) {
-            const workbook = XLSX.read(rdata, { type: 'buffer' });
+            const workbook = XLSX.read(rdata, { type: 'buffer' }); 
             const worksheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[worksheetName];
             const data = XLSX.utils.sheet_to_json(worksheet);

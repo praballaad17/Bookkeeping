@@ -14,7 +14,7 @@ export const importItemBulk = async (itemArray, userId) => {
         return response.data;
     } catch (err) {
         throw new Error(err.response.data.error);
-    }
+    } 
 }
 
 export const getItemsByUserId = async (userId, limit, pagenumber) => {

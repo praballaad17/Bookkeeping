@@ -5,15 +5,27 @@ import ItemSearchBox from "./ItemSearchBox";
 export default function ItemList({ itemlist, setitemlist }) {
   const [index, setIndex] = useState(null);
   const [result, setResult] = useState([]);
-  // const { result } = useSearch()
+  const [open,setOpen] = useState(false)
 
-  const handleChange = async (e, index) => {
+  const handleChange =  (e, index) => {
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
-    console.log(e.target.value);
+    console.log( e.target.value,  e.target.name);
+    if(e.target.name === "itemWiseTax" || e.target.name === "unit") {
+      let taxper = e.target.value;
+      console.log(taxper.split('@').pop().split('%'));
+      list[index]["taxamount"] = taxper.split('@').pop().split('%')[0] * itemlist[index]["unit"];
+    }
+    setitemlist(list);
+  };
+
+  const handleSearchQuery = async (e, index) => {
+    setOpen(true);
+    var list = [...itemlist];
+    list[index][e.target.name] = e.target.value;
     if (e.target.value === '') {
-      console.log("null");
-      setIndex(null)
+      setIndex(null);
+      setOpen(false);
     }
     else {
       setIndex(index);
@@ -21,36 +33,49 @@ export default function ItemList({ itemlist, setitemlist }) {
       const result = await searchItem(e.target.value);
       setResult(result);
     }
-  };
+  }
 
-  console.log(result);
 
   const handleItemAdd = () => {
-    console.log(itemlist);
     setitemlist([
       ...itemlist,
       {
-        item: "",
+        name: "",
         itemCategory: "",
         itemCode: "",
         decription: "",
         discount: "",
-        quantity: "",
-        unit: "",
-        pricePerUnit: "",
-        taxPercent: "",
+        lowStockDialog: "",
+        openigStockQuantity: "",
+        purchasePrice: "",
+        salePrice: "",
+        itemWiseTax: "",
         taxamount: "",
-        amount: "",
+        inclusionTax: "",
+        unit: ""
       },
     ]);
   };
+
+  const setItemInput = (item, index) => {
+    let list = [...itemlist]
+    list[index] = {
+                    ...item,
+                    unit: "",
+                    taxamount: parseInt(item["purchasePrice"]) * parseInt(item["itemWiseTax"].split('@').pop().split('%')[0])
+                  }
+    setitemlist(list);
+  }
+
   const handleItemRemove = (index) => {
     const list = [...itemlist];
     list.splice(index, 1);
     setitemlist(list);
   };
 
-  console.log(index);
+  console.log(itemlist);
+  console.log(result);
+
 
   return (
     <div>
@@ -131,12 +156,12 @@ export default function ItemList({ itemlist, setitemlist }) {
                   <td className="title-input invoice__item--searchbox">
                     <input
                       className="itemList-input"
-                      name="item"
-                      value={itemlist[i].item}
-                      onChange={(e) => handleChange(e, i)}
+                      name="name"
+                      value={itemlist[i].name}
+                      onChange={(e) => handleSearchQuery(e, i)}
                     />
-                    {index === i && <div className="invoice__item--search">
-                      <ItemSearchBox item={result} />
+                    {open && index === i && <div className="invoice__item--search">
+                      <ItemSearchBox onClose={() => setOpen(false)} items={result} index={i} setItemInput={setItemInput} />
                     </div>}
                   </td>
                   <td className="title-input">
@@ -151,7 +176,7 @@ export default function ItemList({ itemlist, setitemlist }) {
                     <input
                       className="itemList-input"
                       name="quantity"
-                      value={itemlist[i].quantity}
+                      value={itemlist[i].openigStockQuantity}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
@@ -166,16 +191,16 @@ export default function ItemList({ itemlist, setitemlist }) {
                   <td className="title-input">
                     <input
                       className="itemList-input"
-                      name="pricePerUnit"
-                      value={itemlist[i].pricePerUnit}
+                      name="purchasePrice"
+                      value={itemlist[i].purchasePrice}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
                   <td className="title-input">
                     <input
                       className="itemList-input"
-                      name="taxPercent"
-                      value={itemlist[i].taxPercent}
+                      name="itemWiseTax"
+                      value={itemlist[i].itemWiseTax}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
