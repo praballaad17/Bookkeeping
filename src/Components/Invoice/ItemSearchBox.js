@@ -20,7 +20,7 @@ export default function ItemSearchBox({ items, setItemInput, index, onClose }) {
                 </tr>
             </thead>
             <tbody>
-                {items && items.map((item) => (
+                {items ? items.map((item) => (
                     <tr onClick={() => handleSelect(item)}>
                         <td>{item.name}</td>
                         <td>{item.salePrice}</td>
@@ -28,6 +28,9 @@ export default function ItemSearchBox({ items, setItemInput, index, onClose }) {
                         <td>{item.openigStockQuantity}</td>
                     </tr>
                 ))
+                    : <div>
+                        Loading...
+                    </div>
                 }
             </tbody>
         </table>

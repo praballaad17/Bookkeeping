@@ -1,38 +1,37 @@
 import axios from 'axios';
 import Url from "../config.json";
 
-const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-const apiEndpointItem = Url?.apiUrl + "/item";
+// const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+const apiEndpointInvoice = Url?.localUrl + "/invoice";
+const apiEndpointItem = Url?.localUrl + "/invoice";
 
 
-export const createInvoice = async (invoiceID, itemlist) => {
-  // var arr = [];
+export const createInvoice = async (itemlist, userId, type, total) => {
   try {
-    if (itemlist) {
-      itemlist.map(async (individualItem) => {
-        if (individualItem.item !== "") {
-          // const getitemObjectID = await axios(
-          //   `${apiEndpointItem}/getItem/${individualItem.item}`,
-          //   {
-          //     method: "GET",
-          //   }
-          // );
-          // const itemObjectID = getitemObjectID.data._id;
-          // arr.push([itemObjectID, individualItem.quantity]);
-          // console.log(arr);
 
-        }
-      });
-      const itemIds = JSON.stringify(itemlist);
-      const request = { data: { invoiceID, itemIds } };
-      const response = await axios(`${apiEndpointInvoice}/addInvoice`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        ...request,
-      });
-      return response.data;
-    }
+    const request = { data: { itemlist, userId, type, total } };
+    const response = await axios(`${apiEndpointInvoice}/addInvoice`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      ...request,
+    });
+    return response.data;
+
   } catch (err) {
     throw new Error(err.response.data.error);
   }
 };
+
+export const getPurchaseInvoiceUserId = async (userId) => {
+  try {
+
+    const response = await axios(`${apiEndpointInvoice}/getPurchaseInvoice/${userId}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data;
+
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
+}
