@@ -10,17 +10,19 @@ export default function AddPurchaseInvoice() {
   const [invoiceID, setinvoiceID] = useState("")
   const [itemlist, setitemlist] = useState([
     {
-      item: "",
-      itemCategory: "",
-      itemCode: "",
-      decription: "",
-      discount: "",
-      quantity: "",
-      unit: "",
-      pricePerUnit: "",
-      taxPercent: "",
-      taxamount: "",
-      amount: "",
+      name: "",
+        itemCategory: "",
+        itemCode: "",
+        decription: "",
+        discount: "",
+        lowStockDialog: "",
+        openigStockQuantity: "",
+        purchasePrice: "",
+        salePrice: "",
+        itemWiseTax: "",
+        taxamount: "",
+        inclusionTax: "",
+        unit: ""
     },
   ]);
 

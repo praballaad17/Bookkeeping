@@ -2322,6 +2322,8 @@ div.content {
         font-size: 15px; }
     .item__table .item-heading .title-item {
       width: 30%; }
+      .item__table .item-heading .title-item--index {
+        width: 30px; }
 
 .item-row:hover .itemremove-btn {
   display: block; }
@@ -2490,6 +2492,8 @@ input:checked + .slider:before {
   width: 100vw;
   background-color: #f7f7f7;
   overflow: scroll; }
+  .invoice__item--index {
+    width: 30px !important; }
   .invoice__item--search {
     position: absolute;
     width: 50vw;
@@ -2497,9 +2501,20 @@ input:checked + .slider:before {
     height: 300px;
     bottom: -300px;
     left: 0;
-    background-color: palegoldenrod;
+    background-color: #fff;
     display: flex;
-    z-index: 1002; }
+    z-index: 1002;
+    overflow: scroll;
+    box-shadow: 0px 0px 2px 2px #a6a6a6; }
+    .invoice__item--search__table {
+      width: 100%;
+      border-collapse: collapse; }
+      .invoice__item--search__table tbody tr {
+        cursor: pointer; }
+      .invoice__item--search__table tbody tr:hover {
+        background-color: #a6a6a6; }
+      .invoice__item--search__table--name {
+        width: 40%; }
     .invoice__item--searchbox {
       position: relative; }
 

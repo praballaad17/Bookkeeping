@@ -4,16 +4,44 @@ import ItemSearchBox from "./ItemSearchBox";
 
 export default function ItemList({ itemlist, setitemlist }) {
   const [index, setIndex] = useState(null);
+  // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
-  // const { result } = useSearch()
+  const [open, setOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
-  const handleChange = async (e, index) => {
+
+  const calculatTaxAmount = (taxPer, price, unit) => {
+    return taxPer * price * unit / 100;
+  }
+
+  const calculatItemAmount = (price, unit, tax) => {
+    return (price * unit) + tax;
+  }
+
+  const handleTotalAmount = (addAmount, prevTotal = total,) => {
+    setTotal(prevTotal + addAmount);
+  }
+
+  const handleChange = (e, index) => {
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
-    console.log(e.target.value);
+    console.log(e.target.value, e.target.name);
+    if (e.target.name === "itemWiseTax" || e.target.name === "unit") {
+      let taxper = e.target.value;
+      console.log(taxper.split('@').pop().split('%'));
+      list[index]["taxamount"] = calculatTaxAmount(parseInt(list[index]["itemWiseTax"].split('@').pop().split('%')[0]), parseInt(list[index]["purchasePrice"]), list[index]["unit"]);
+      list[index]["itemAmount"] = calculatItemAmount(parseInt(list[index]["purchasePrice"]), list[index]["unit"], list[index]["taxamount"]);
+    }
+    setitemlist(list);
+  };
+
+  const handleSearchQuery = async (e, index) => {
+    setOpen(true);
+    var list = [...itemlist];
+    list[index][e.target.name] = e.target.value;
     if (e.target.value === '') {
-      console.log("null");
-      setIndex(null)
+      setIndex(null);
+      setOpen(false);
     }
     else {
       setIndex(index);
@@ -21,36 +49,61 @@ export default function ItemList({ itemlist, setitemlist }) {
       const result = await searchItem(e.target.value);
       setResult(result);
     }
-  };
+  }
 
-  console.log(result);
 
-  const handleItemAdd = () => {
-    console.log(itemlist);
+  const handleItemAdd = (list = itemlist) => {
     setitemlist([
-      ...itemlist,
+      ...list,
       {
-        item: "",
+        name: "",
         itemCategory: "",
         itemCode: "",
         decription: "",
         discount: "",
-        quantity: "",
-        unit: "",
-        pricePerUnit: "",
-        taxPercent: "",
+        lowStockDialog: "",
+        openigStockQuantity: "",
+        purchasePrice: "",
+        salePrice: "",
+        itemWiseTax: "",
         taxamount: "",
-        amount: "",
+        inclusionTax: "",
+        unit: "",
+        itemAmount: "",
       },
     ]);
   };
+
+  const setItemInput = (item, index) => {
+    let list = [...itemlist]
+    const taxamount = calculatTaxAmount(parseInt(item["itemWiseTax"].split('@').pop().split('%')[0]), parseInt(item["purchasePrice"]), 1);
+    const itemAmount = calculatItemAmount(parseInt(item["purchasePrice"]), 1, taxamount)
+    list[index] = {
+      ...item,
+      unit: "1",
+      taxamount: taxamount,
+      itemAmount: itemAmount,
+    }
+    handleTotalAmount(itemAmount);
+    setitemlist(list);
+    handleItemAdd(list);
+  }
+
+
+
   const handleItemRemove = (index) => {
     const list = [...itemlist];
+    const itemAmount = list[index]["itemAmount"];
     list.splice(index, 1);
+    handleTotalAmount(-itemAmount)
     setitemlist(list);
+    console.log(list.length);
+    if (list.length == 0) {
+      handleItemAdd(list);
+    }
   };
 
-  console.log(index);
+
 
   return (
     <div>
@@ -102,6 +155,7 @@ export default function ItemList({ itemlist, setitemlist }) {
         <table className="item__table">
           <thead>
             <tr className="item-heading">
+              <th className="title-item--index">#</th>
               <th className="title-item title">Item</th>
               <th className="title">Item Code</th>
               <th className="title">Quantity</th>
@@ -127,16 +181,30 @@ export default function ItemList({ itemlist, setitemlist }) {
           <tbody>
             {itemlist.map((x, i) => {
               return (
-                <tr key={i} className="item-row">
+                <tr key={i} className="item-row"
+                // onSelect={() => { setIndex(i); console.log("select", i) }}
+                // onBlur={() => setIndex(null)}
+                >
+                  <td className="title-input invoice__item--index">
+                    {/* {index === i ? */}
+                    <div onClick={() => handleItemRemove(i)}>
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                    {/* : <div>
+                        {i}
+                      </div>
+                    } */}
+                  </td>
                   <td className="title-input invoice__item--searchbox">
                     <input
                       className="itemList-input"
-                      name="item"
-                      value={itemlist[i].item}
-                      onChange={(e) => handleChange(e, i)}
+                      name="name"
+                      value={itemlist[i].name}
+                      onChange={(e) => handleSearchQuery(e, i)}
+
                     />
-                    {index === i && <div className="invoice__item--search">
-                      <ItemSearchBox item={result} />
+                    {open && index === i && <div className="invoice__item--search">
+                      <ItemSearchBox onClose={() => setOpen(false)} items={result} index={i} setItemInput={setItemInput} handleItemAdd={handleItemAdd} />
                     </div>}
                   </td>
                   <td className="title-input">
@@ -151,7 +219,7 @@ export default function ItemList({ itemlist, setitemlist }) {
                     <input
                       className="itemList-input"
                       name="quantity"
-                      value={itemlist[i].quantity}
+                      value={itemlist[i].openigStockQuantity}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
@@ -166,16 +234,16 @@ export default function ItemList({ itemlist, setitemlist }) {
                   <td className="title-input">
                     <input
                       className="itemList-input"
-                      name="pricePerUnit"
-                      value={itemlist[i].pricePerUnit}
+                      name="purchasePrice"
+                      value={itemlist[i].purchasePrice}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
                   <td className="title-input">
                     <input
                       className="itemList-input"
-                      name="taxPercent"
-                      value={itemlist[i].taxPercent}
+                      name="itemWiseTax"
+                      value={itemlist[i].itemWiseTax}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
@@ -198,8 +266,8 @@ export default function ItemList({ itemlist, setitemlist }) {
                   <td className="title-input">
                     <input
                       className="itemList-input"
-                      name="amount"
-                      value={itemlist[i].amount}
+                      name="itemAmount"
+                      value={itemlist[i].itemAmount}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
@@ -244,7 +312,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               name="checkbox"
               className="checkboxinput"
             />
-              <label htmlFor="roundoff" className="roundofflabel">
+            <label htmlFor="roundoff" className="roundofflabel">
               Round-off :{" "}
             </label>
             <input
@@ -258,6 +326,7 @@ export default function ItemList({ itemlist, setitemlist }) {
               type="number"
               id="total"
               name="total"
+              value={total}
               className="totalinput"
             />
           </div>
@@ -269,6 +338,6 @@ export default function ItemList({ itemlist, setitemlist }) {
           <button class="button11 lastbutton">Save</button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
