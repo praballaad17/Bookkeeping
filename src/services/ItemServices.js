@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Url from "../config.json";
 
-// const apiEndpoint = Url?.apiUrl + "/item";
-const apiEndpoint = Url?.localUrl + "/item";
+const apiEndpoint = Url?.apiUrl + "/item";
+// const apiEndpoint = Url?.localUrl + "/item";
 
 export const importItemBulk = async (itemArray, userId) => {
     try {
@@ -14,7 +14,7 @@ export const importItemBulk = async (itemArray, userId) => {
         return response.data;
     } catch (err) {
         throw new Error(err.response.data.error);
-    } 
+    }
 }
 
 export const getItemsByUserId = async (userId, limit, pagenumber) => {

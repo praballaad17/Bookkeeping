@@ -2322,6 +2322,8 @@ div.content {
         font-size: 15px; }
     .item__table .item-heading .title-item {
       width: 30%; }
+      .item__table .item-heading .title-item--index {
+        width: 30px; }
 
 .item-row:hover .itemremove-btn {
   display: block; }
@@ -2490,6 +2492,8 @@ input:checked + .slider:before {
   width: 100vw;
   background-color: #f7f7f7;
   overflow: scroll; }
+  .invoice__item--index {
+    width: 30px !important; }
   .invoice__item--search {
     position: absolute;
     width: 50vw;

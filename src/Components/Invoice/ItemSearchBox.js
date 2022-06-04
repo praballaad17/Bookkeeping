@@ -8,7 +8,7 @@ export default function ItemSearchBox({ items, setItemInput, index, onClose }) {
         onClose();
     }
 
-    
+
     return (
         <table className="invoice__item--search__table">
             <thead>
@@ -21,13 +21,13 @@ export default function ItemSearchBox({ items, setItemInput, index, onClose }) {
             </thead>
             <tbody>
                 {items && items.map((item) => (
-                        <tr onClick={() => handleSelect(item)}>
-                            <td>{item.name}</td>
-                            <td>{item.salePrice}</td>
-                            <td>{item.purchasePrice}</td>
-                            <td>{item.openigStockQuantity}</td>
-                        </tr>
-                    ))
+                    <tr onClick={() => handleSelect(item)}>
+                        <td>{item.name}</td>
+                        <td>{item.salePrice}</td>
+                        <td>{item.purchasePrice}</td>
+                        <td>{item.openigStockQuantity}</td>
+                    </tr>
+                ))
                 }
             </tbody>
         </table>

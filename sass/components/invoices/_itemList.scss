@@ -26,8 +26,8 @@ $ppuwidth: 20%;
     border-collapse: collapse;
     font-size: 15px;
     margin-left: 15px;
-    
-    
+
+
     & th,
     & td {
         border: 1px solid $color-grey-light-2;
@@ -102,6 +102,10 @@ $ppuwidth: 20%;
 
         .title-item {
             width: $itemwidth;
+
+            &--index {
+                width: 30px;
+            }
         }
     }
 }
@@ -121,7 +125,7 @@ $ppuwidth: 20%;
     }
 
     // .title-item-input {
-        // width: $itemwidth;
+    // width: $itemwidth;
     // }
 
     .title-ppu-input {
@@ -141,67 +145,76 @@ $ppuwidth: 20%;
     }
 }
 
-.topnavbar{
-height:50px;
-width: 100%;
-background-color: white;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-font-weight:600;
-padding: 8px;
+.topnavbar {
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    padding: 8px;
 
 }
-.righticons{
+
+.righticons {
     padding: 10px;
 }
-.above{
+
+.above {
     height: 240px;
     border: 1px solid black;
 
 }
-.abovetable{
+
+.abovetable {
     display: flex;
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
     padding: 20px;
-    justify-content:space-between;
+    justify-content: space-between;
     font-size: 20px;
 }
-.abovetable > div {
-    flex: 50%; 
-  
-  }
-  .partyinput{
-      padding-bottom: 10px;
-  }
-.partyinputs{
-    width: 250px;
-    height: 40px;border-radius: 5px;
+
+.abovetable>div {
+    flex: 50%;
+
 }
 
-.belowtable{
+.partyinput {
+    padding-bottom: 10px;
+}
+
+.partyinputs {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.belowtable {
     border: 1px solid black;
     height: 160px;
 }
 
-.checkboxinput{
+.checkboxinput {
     padding-top: 12px;
     margin-right: 30px;
     width: 20px;
     height: 25px;
 
 }
-.belowtable{
-    padding-top:10px ;
+
+.belowtable {
+    padding-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 99%;
     margin: 10px 5px;
 }
-.buttonsubmit{
+
+.buttonsubmit {
     border: 1px solid black;
     width: 99%;
     margin-left: 5px;
@@ -210,15 +223,16 @@ padding: 8px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding-top: 10px ;
-    padding-bottom: 10px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-.sharebutton{
- height: 47px;
- border-radius: 7px;  
- text-align: center;
- padding-left: 5px;
- margin-right: 30px;
+
+.sharebutton {
+    height: 47px;
+    border-radius: 7px;
+    text-align: center;
+    padding-left: 5px;
+    margin-right: 30px;
 }
 
 // .scrolable{
