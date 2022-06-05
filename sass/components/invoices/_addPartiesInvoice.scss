@@ -1,0 +1,87 @@
+.partymain{
+ margin: 20px 30px;
+ background-color: rgb(244, 244, 242);
+}
+.partytop{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: large;
+    height: 8vh;
+}
+.middleupperparty{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    height: 25vh;
+    padding: 50px 20px;
+
+}
+.middleupperinput{
+    display: flex;
+    flex-direction: column;
+}
+.inputinput{
+    border: 1px solid black;
+}
+.labelclass{
+    width: 100%;
+}
+.middlebottomparty{
+    border: 1px solid black;
+    height: 50vh;
+    
+}
+.partyhr{
+    margin: 5px 90px;
+    align-items: center;
+    height: 3px;
+    background-color: rgb(74, 62, 62);
+}
+.gstaddress{
+    padding-left: 100px;
+    padding-right: 20px;
+}
+.middlebottomdata{
+    padding-left: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.gstdetails>div{
+    padding: 10px 50px;
+}
+.gstdetails>div>input,select{
+    width: 250px;
+    height: 40px;
+}
+.spangstdetails{
+    font-size: 18px;
+}
+.gstdetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.billingaddress>div{
+    padding: 10px 20px;
+}
+.vl {
+    border-left: 3px solid rgb(7, 7, 7);
+    height: 250px;
+  }
+  .bottompartydata{
+      border: 1px solid black;
+      height: 10vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 10px 5px;
+      margin-top: 55px;
+      background-color:rgb(244, 244, 242);
+  }

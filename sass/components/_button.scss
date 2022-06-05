@@ -1,35 +1,18 @@
 .btn {
+
   &,
   &:link,
   &:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10rem;
+    border-radius: 8px;
     transition: all 0.2s;
     position: relative;
-
-    //for button element
-    border: none;
     cursor: pointer;
-  }
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba($color-primary, 0.2);
-
-    &::after {
-      transform: scaleX(1.4) scaleY(1.6);
-      opacity: 0;
-    }
-  }
-  &:active,
-  &:focus {
-    outline: none;
-    transform: translateY(-1px);
-    box-shadow: 0 0.5rem 1rem rgba($color-primary, 0.2);
   }
 
   &--white {
@@ -41,11 +24,33 @@
     }
   }
 
-  &--tertiary {
-    background-color: $color-tertiary-light;
+  &--primary {
+    background-color: $color-tertiary-dark;
     color: $color-white;
     width: fit-content;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 14px;
+    // box-shadow: 0px 0px 2px 2px $color-grey-light-2;
+  }
+
+  &--error {
+    color: $color-danger;
+    border: 1px solid $color-grey-light-2;
+    width: fit-content;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0px 0px 2px 2px $color-grey-light-2;
+  }
+
+  &--secondary {
+    color: $color-primary;
+    background-color: $color-white;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
   }
 
   &--grey {
@@ -76,15 +81,16 @@
     animation-fill-mode: backwards;
   }
 
-  &-login{
+  &-login {
     background-color: blue;
     color: $color-white;
     width: -webkit-fill-available;
-    
+
   }
 }
 
 .btn-text {
+
   &:link,
   &:visited {
     font-size: $default-font-size;
@@ -95,19 +101,22 @@
     padding: 3px;
     transition: all 0.2s;
   }
+
   &:hover {
     background-color: $color-primary-dark;
     color: $color-white;
     box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
     transform: translateY(-5px);
   }
+
   &:active {
     box-shadow: 0 0.5rem 2rem rgba($color-black, 0.15);
     transform: translateY(0px);
   }
 
-  
+
 }
+
 .btn-follow {
   background-color: $color-tertiary-dark;
   color: $color-white;
@@ -116,11 +125,11 @@
   padding: 1rem;
   margin-left: 1rem;
   cursor: pointer;
+
   &-f {
     background-color: $color-grey-light-2;
     color: $color-grey-dark-3;
-}
-&-u {
+  }
 
-}
+  &-u {}
 }

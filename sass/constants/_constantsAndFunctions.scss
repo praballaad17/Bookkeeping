@@ -1,0 +1,23 @@
+/* Contants */
+
+
+
+/*Functions*/
+
+@mixin flexRowcenter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flexColumncenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center ;
+}
+@mixin flexSpaceBetween {
+    display: flex;
+    justify-content:space-between ;
+}
