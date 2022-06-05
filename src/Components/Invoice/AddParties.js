@@ -1,6 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { createParty } from "../../services/partyServices";
+import { useUser } from "../../Context/userContext"
 
-export default function AddPartiesInvoice() {
+export default function AddParties() {
+  const [party, setParty] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    balance: "",
+    parytType: "",
+    partyCatagory: "",
+    gstin: "",
+    placeOfSupply: "",
+    panNumber: "",
+    billAddress: "",
+    shippingAddress: "",
+    creditPeriod: "",
+    creditLimit: "",
+  })
+  const { user } = useUser()
+
+  const addParty = async () => {
+    console.log("sumit");
+    try {
+      const rparty = await createParty(party, user?.id)
+      console.log(rparty);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleParty = (e) => {
+    console.log(e.target.name, e.target.value);
+    setParty({
+      ...party,
+      [e.target.name]: e.target.value
+    })
+
+  }
+
+  console.log(party);
+
   return (
     <div className="partymain">
       <div className="partytop">
@@ -17,19 +57,19 @@ export default function AddPartiesInvoice() {
           <label htmlFor="party" className="labelclass">
             Party Name:
           </label>
-          <input type="text" id="Pname" name="Pname" className="inputinput" />
+          <input onChange={(e) => handleParty(e)} type="text" id="name" name="name" className="inputinput" />
         </div>
         <div className="middleupperinput">
-          <label htmlFor="gst" className="labelclass">
+          <label htmlFor="gstin" className="labelclass">
             GST IN:
           </label>
-          <input type="text" id="Pname" name="Pname" className="inputinput" />
+          <input onChange={(e) => handleParty(e)} type="text" id="gstin" name="gstin" className="inputinput" />
         </div>
         <div className="middleupperinput">
           <label htmlFor="gst" className="labelclass">
             Phone Number:
           </label>
-          <input type="tel" id="phone" name="phone" className="inputinput" />
+          <input onChange={(e) => handleParty(e)} type="tel" id="phone" name="phone" className="inputinput" />
         </div>
       </div>
       <div className="middlebottomparty">
@@ -39,7 +79,7 @@ export default function AddPartiesInvoice() {
         <div className="middlebottomdata">
           <div className="gstdetails">
             <div><span className="spangstdetails">GST Details</span></div>
-            <div> <select id="types" name="gsttype">
+            <div> <select onChange={(e) => handleParty(e)} id="parytType" name="parytType">
               <option value="" disabled selected hidden>
                 GST Type
               </option>
@@ -47,7 +87,7 @@ export default function AddPartiesInvoice() {
               <option value="Retail">Retail</option>
               <option value="WholeSale">WholeSale</option>
             </select></div>
-            <div><select id="types" name="state">
+            <div><select onChange={(e) => handleParty(e)} id="placeOfSupply" name="placeOfSupply">
               <option value="" disabled selected hidden>
                 State
               </option>
@@ -86,28 +126,30 @@ export default function AddPartiesInvoice() {
               id="email"
               name="email"
               placeholder="Email ID"
+              onChange={(e) => handleParty(e)}
             /></div>
           </div>
           <div class="vl"></div>
-          <div className="billingaddress">
-              <div><span>Billing Address</span></div>
-              <div>
-                <textarea
-                  rows="5"
-                  cols="40"
-                  name="comment"
-                  form="usrform"
-                  placeholder="Billing Address"
-                  className="billingaddressparty"
-                ></textarea>
-              </div>
+          <div className="billAddress">
+            <div><span>Billing Address</span></div>
+            <div>
+              <textarea
+                rows="5"
+                cols="40"
+                name="billAddress"
+                form="usrform"
+                placeholder="Billing Address"
+                className="billingaddressparty"
+                onChange={(e) => handleParty(e)}
+              ></textarea>
+            </div>
           </div>
         </div>
         <div className="bottompartydata">
-        <button class=" button11 partybutton">
+          <button class=" button11 partybutton">
             Save & New
           </button>
-          <button class="button11 partybutton">Save</button>
+          <button onClick={addParty} class="button11 partybutton">Save</button>
         </div>
       </div>
     </div>
