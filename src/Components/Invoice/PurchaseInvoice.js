@@ -33,7 +33,7 @@ export default function PurchaseInvoice() {
 
             </div>
             <div className='purinvoice__body'>
-                <table className='purinvoice__table'>
+                <table className='purinvoice__table item__table'>
                     <thead>
                         <th>#</th>
                         <th>Date</th>
