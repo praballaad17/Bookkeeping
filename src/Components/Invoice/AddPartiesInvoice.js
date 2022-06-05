@@ -51,9 +51,35 @@ export default function AddPartiesInvoice() {
               <option value="" disabled selected hidden>
                 State
               </option>
-              <option value="none">Unregistered/Consumer</option>
-              <option value="Retail">Retail</option>
-              <option value="WholeSale">WholeSale</option>
+              <option value="AP">Arunachal Pradesh</option>
+              <option value="AS">Assam</option>
+              <option value="BI">Bihar</option>
+              <option value="CH">Chhatisgarh</option>
+              <option value="GO">Goa</option>
+              <option value="GU">Gujarat</option>
+              <option value="HR">Haryana</option>
+              <option value="HP">Himachal Pradesh</option>
+              <option value="JK">Jammu and Kashmir</option>
+              <option value="JH">Jharkhand</option>
+              <option value="KR">Karnataka</option>
+              <option value="BI">Bihar</option>
+              <option value="kr">Kerela</option>
+              <option value="MP">Madhya Pradesh</option>
+              <option value="MH">Maharashtra</option>
+              <option value="MN">Manipur</option>
+              <option value="MG">Meghalaya</option>
+              <option value="MR">Mizoram</option>
+              <option value="NA">Nagaland</option>
+              <option value="OD">Odisha</option>
+              <option value="PB">Punjab</option>
+              <option value="RJ">Rajasthan</option>
+              <option value="SK">Sikkim</option>
+              <option value="TN">TamilNadu</option>
+              <option value="TE">Telangana</option>
+              <option value="TR">Tripura</option>
+              <option value="UP">Uttar Pradesh</option>
+              <option value="UK">Uttarakhand</option>
+              <option value="WB">West Bengal</option>
             </select></div>
             <div><input
               type="email"

@@ -1,0 +1,86 @@
+.purinvoice__head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    line-height: 1.4;
+    height: 10vh;
+    border: 1px solid black;
+}
+.leftheadpurchase{
+    display: flex;
+    flex-direction: column;
+}
+.smallfontpurchase{
+    font-size: 15px;
+    padding-top: 0;
+}
+.rightheadpurchase{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.invoicesettingbutton{
+    height: 32px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    background-color: white;
+    font-size: 15px;
+    
+}
+.addpurchasebutton{
+    margin-right: 5px;
+    // padding-top: 100px;
+    text-align: center;
+    margin: 0;
+    height: 32px;
+    background-color: blue;  
+    color: white;
+}
+.fa-keyboard{
+    padding-top: 5px;
+}
+.purinvoice__body{
+    border: 1px solid black;
+    background-color: rgb(247, 245, 244);
+    padding: 20px;
+    height: 88vh;
+
+}
+.searchbarpurchase{
+    font-size: 17px;
+    width: 240px;
+    border-radius: 0;
+    height: 34px;
+}
+.purinvoicebody{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+.purchaseinvoicebodyleft{
+    display: flex;
+    flex-direction: row;
+    padding-left: 15px;
+}
+.purchaseinvoicebodyright{
+    padding-right: 10px;
+}
+.timespanpurchase{
+    width: 280px;
+    height: 34px;
+    border-radius: 0;
+    margin-left: 5px;
+    // display: inline;
+ 
+}
+.reportpurchase{
+    width: 200px;
+    border-radius: 0;
+}
+.purchasebodyspan{
+    font-size: 15px;
+    padding-left: 15px;
+}
