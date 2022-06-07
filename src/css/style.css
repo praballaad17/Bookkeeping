@@ -2695,3 +2695,14 @@ input:checked + .slider:before {
   font-size: 15px;
   width: 150px;
   font-size: 14px; }
+
+.partieslefthead {
+  padding-top: 8px;
+  font-size: 27px; }
+
+.bulkpartybutton {
+  background-color: black;
+  color: white; }
+
+.addpartybutton {
+  width: 150px; }
