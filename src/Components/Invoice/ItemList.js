@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { searchItem } from "../../services/ItemServices";
 import ItemSearchBox from "./ItemSearchBox";
 
-export default function ItemList({ itemlist, setitemlist }) {
+export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
 
   const calculatTaxAmount = (taxPer, price, unit) => {

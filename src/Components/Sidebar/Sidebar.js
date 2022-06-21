@@ -67,7 +67,7 @@ export default function Sidebar({ open, onClose }) {
         <i className="fa-solid fa-user-group"></i>Parties
       </a> */}
         <Link to={ROUTES.PARTIESINV}>
-            <i className="fa-solid fa-user-group"></i>Parties
+          <i className="fa-solid fa-user-group"></i>Parties
         </Link>
         <Link to={ROUTES.ITEM}>
           <i className="fa-solid fa-box-archive"></i>Item
@@ -78,9 +78,9 @@ export default function Sidebar({ open, onClose }) {
         <Link to={ROUTES.PURCHASEINV}>
           <i className="fa-solid fa-cart-plus"></i>Purchases
         </Link>
-        <a href="#Expenses ">
+        <Link to={ROUTES.EXPENSES}>
           <i className="fa-solid fa-wallet"></i>Expenses
-        </a>
+        </Link>
         <a href="#Cash ">
           <i className="fa-light fa-wallet"></i>Cash and Bank
         </a>
@@ -104,14 +104,14 @@ export default function Sidebar({ open, onClose }) {
         {/* <a href="#Utilities">
           <i className="fa-solid fa-screwdriver-wrench"></i>Utilities
         </a> */}
-        <a className="sidedropdown">
+        <a className="sidedropdown" style={{ "padding": "0", "margin": "0" }}>
           {SidebarData.map((item, index) => {
             return <SubMenu item={item} key={index} />;
           })}
         </a>
-        <a href="#Settings">
+        <Link to={ROUTES.SETTING}>
           <i className="fa-solid fa-gear"></i>Settings
-        </a>
+        </Link>
         <hr />
         <a href="#Demo">
           <i className="fa-brands fa-youtube-square"></i>Request a Demo

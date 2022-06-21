@@ -1,36 +1,32 @@
-// import React from 'react'
-
-// export default function AddSalesInvoice() {
-//     return (
-//         <div>AddSalesInvoice</div>
-//     )
-// }
-
-
 import React, { useState } from "react";
 import ReactDom from "react-dom";
 import { createInvoice } from "../../services/InvoiceServices";
-import ItemList from "./ItemListSales";
-// import ItemList from "./ItemList";
+import ItemList from "./ItemListExpenses";
+import { useUser } from "../../Context/userContext"
+import * as VARIABLE from "../../constants/variables"
 
-
-export default function AddSalesInvoice() {
+export default function AddExpenses() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [invoiceID, setinvoiceID] = useState("")
+  const [total, setTotal] = useState(0);
+  const { user } = useUser()
+
   const [itemlist, setitemlist] = useState([
     {
-      item: "",
+      name: "",
       itemCategory: "",
       itemCode: "",
       decription: "",
       discount: "",
-      quantity: "",
-      unit: "",
-      pricePerUnit: "",
-      taxPercent: "",
+      lowStockDialog: "",
+      openigStockQuantity: "",
+      purchasePrice: "",
+      salePrice: "",
+      itemWiseTax: "",
       taxamount: "",
-      amount: "",
+      inclusionTax: "",
+      unit: ""
     },
   ]);
 
@@ -41,23 +37,25 @@ export default function AddSalesInvoice() {
     event.preventDefault();
     setLoading(true);
     try {
-      await createInvoice(invoiceID, itemlist);
+      await createInvoice(itemlist, user?.id, VARIABLE.INVOICETYPE.PURCHASE, total);
       setLoading(false);
-      window.location = "/dashboard/sales/";
+      window.location = "/dashboard/purchase/";
     } catch (error) {
       setitemlist([
         {
-          item: "",
+          name: "",
           itemCategory: "",
           itemCode: "",
           decription: "",
           discount: "",
-          quantity: "",
-          unit: "",
-          pricePerUnit: "",
-          taxPercent: "",
+          lowStockDialog: "",
+          openigStockQuantity: "",
+          purchasePrice: "",
+          salePrice: "",
+          itemWiseTax: "",
           taxamount: "",
-          amount: "",
+          inclusionTax: "",
+          unit: ""
         },
       ]);
       setError(error.message);
@@ -68,7 +66,7 @@ export default function AddSalesInvoice() {
     <div className="invoice">
       <div >
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
-        <ItemList itemlist={itemlist} setitemlist={setitemlist} />
+        <ItemList itemlist={itemlist} setitemlist={setitemlist} total={total} setTotal={setTotal} />
         {/* <button className="btn btn--secondary"
           onClick={handleInvoice}
         >

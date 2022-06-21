@@ -1,12 +1,48 @@
-// import React from 'react'
+// import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 // import * as ROUTES from '../../constants/routes';
+// import { useUser } from '../../Context/userContext';
+// import { getPartyByUserId } from '../../services/partyServices';
 
-// export default function SalesInvoice() {
+// export default function Parties() {
+//     const [parties, setParties] = useState([])
+//     const { user } = useUser()
+//     useEffect(() => {
+//         const getParty = async () => {
+//             try {
+//                 const parties = await getPartyByUserId(user?.id)
+//                 console.log(parties)
+//                 setParties(parties)
+//             } catch (error) {
+//                 console.log(parties);
+//             }
+//         }
+//         getParty()
+//     }, [])
+
 //     return (
 //         <>
-//             <div>SalesInvoice</div>
-//             <Link className='btn btn--tertiary' to={ROUTES.ADDSALESINV} >Add Sales Invoice</Link>
+//             <div>PartiesInvoice</div>
+//             <Link className='btn btn--tertiary' to={ROUTES.ADDPARTIESINV} >Add Parties</Link>
+//             <table>
+//                 <thead>
+//                     <th>Name</th>
+//                     <th>Category</th>
+//                     <th>Mobile Number</th>
+//                     <th>Party Type</th>
+//                     <th>Balance</th>
+//                     <th></th>
+//                 </thead>
+//                 <tbody>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                 </tbody>
+//             </table>
 //         </>
 //     )
 // }
@@ -17,7 +53,7 @@ import * as ROUTES from "../../constants/routes";
 import { useUser } from "../../Context/userContext";
 import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
 
-export default function SalesInvoice() {
+export default function Parties() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState();
 
@@ -41,26 +77,23 @@ export default function SalesInvoice() {
     <>
       <div className="purinvoice__head">
         <div className="leftheadpurchase">
-          <span>Sales Invoices</span>
-          <span className="smallfontpurchase">
-            Bill your Sales to Customers
-          </span>
+          <span className="partieslefthead">Parties</span>
         </div>
         <div className="rightheadpurchase">
           <i class="fa-solid fa-keyboard"></i>
           <button className="invoicesettingbutton">
-            Invoice Settings <i class="fa-solid fa-gear "></i>
+            Party Settings <i class="fa-solid fa-gear "></i>
           </button>
-          <button className="possalesbutton"> + POS Billing</button>
-          {/* <button className="addpurchasebutton"> */}
-          {/* {" "} */}
+          <button className="possalesbutton bulkpartybutton">
+            {" "}
+            Bulk Import Parties
+          </button>
           <Link
-            className="btn btn--tertiary addpurchasebutton"
-            to={ROUTES.ADDSALESINV}
+            className="btn btn--tertiary addpurchasebutton addpartybutton"
+            to={ROUTES.ADDPARTIESINV}
           >
-           + Create Sales Invoice
+            + Create Party
           </Link>
-          {/* </button> */}
         </div>
       </div>
       <div className="purinvoice__body">
@@ -75,21 +108,19 @@ export default function SalesInvoice() {
                 name="searchitem"
                 spellcheck="false"
                 data-ms-editor="true"
-                placeholder="Search Sales Invoices"
+                placeholder="Search Party"
               />
             </div>
             <div>
               <select id="types" name="timespan" class="timespanpurchase">
-                <option value="currentyear">Current Fiscal Year</option>
+                <option value="" disabled selected hidden>
+                  {" "}
+                  Search Category{" "}
+                </option>
                 <option value="today">Today</option>
                 <option value="yesterday">Yesterday</option>
                 <option value="thisweek">This Week</option>
                 <option value="thismonth">This Month</option>
-                <option value="thisquarter">This Quarter</option>
-                <option value="custom">Custom</option>
-                <option value="7days">Last 7 days</option>
-                <option value="previousyear">Previous Fiscal Year</option>
-                <option value="alltime">All Time</option>
               </select>
             </div>
           </div>
@@ -100,46 +131,32 @@ export default function SalesInvoice() {
                   {" "}
                   Reports{" "}
                 </option>
-                <option value="salessummary">Sales Summary</option>
-                <option value="gstr1">GSTR-1 (Sales)</option>
-                <option value="daybook">DayBook</option>
-                <option value="billwiseprofit">Bill Wise Profit</option>
+                <option value="partywise">Partywise Outstanding</option>
+                <option value="itemreport">Item Report By Party</option>
               </select>
             </div>
           </div>
         </div>
         <table className="purinvoice__table item__table">
           <thead>
-            <th>#</th>
-            <th>Date</th>
-            <th>Ref No</th>
-            <th>Party Name</th>
-            <th>Catagories Name</th>
-            <th>Type</th>
-            <th>Total</th>
-            <th>Recieve Party</th>
-            <th>Balance</th>
-            <th>Print</th>
+            <th>NAME</th>
+            <th>CATEGORY</th>
+            <th>MOBILE NUMBER</th>
+            <th>PARTY TYPE</th>
+            <th>BALANCE</th>
           </thead>
           <tbody>
-            {invoice &&
-              invoice.map((invoice) => (
-                <tr>
-                  <td></td>
-                  <td>{getDate(invoice?.todayDate)}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>{invoice?.total}</td>
-                  <td></td>
-                </tr>
-              ))}
+            <tbody>
+              {/* <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td> 
+              <td></td>
+              <td></td> */}
+            </tbody>
           </tbody>
         </table>
-        <span className="purchasebodyspan">
-        No Sales Invoice made during the selected time period
-        </span>
       </div>
     </>
   );

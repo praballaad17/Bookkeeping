@@ -20,10 +20,12 @@
 @import "components/item/addItem";
 @import "components/item/importItem";
 
+@import "components/setting/setting";
 
 @import "layouts/mainloader";
 @import "layouts/notification";
 @import "layouts/dragaAndDrop";
+
 
 @import "../sass/components/detailModel";
 @import "pages/dashboard";
@@ -36,3 +38,6 @@
 @import "./components/invoices/itemListSales";
 @import "./components/invoices/invoice";
 @import "./components/invoices/addPartiesInvoice";
+@import "./components/invoices/purchaseInvoice";
+@import "./components/invoices/salesInvoice";
+@import "./components/invoices/parties";

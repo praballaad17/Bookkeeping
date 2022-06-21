@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { searchItem } from "../../services/ItemServices";
 import ItemSearchBox from "./ItemSearchBox";
 
-export default function ItemList({ itemlist, setitemlist }) {
+export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
   const calculatTaxAmount = (taxPer, price, unit) => {
     return (taxPer * price * unit) / 100;
@@ -119,8 +119,8 @@ export default function ItemList({ itemlist, setitemlist }) {
       <div className="scrolable">
         <div className="topnavbar">
           <div>
-            <span>SALES | </span>
-            <span className="creditspan">Credit </span>
+            <span>Expense  </span>
+            <span className="creditspan">GST </span>
             <label class="switch">
               <input type="checkbox" />
               <span class="slider round"></span>
@@ -136,7 +136,7 @@ export default function ItemList({ itemlist, setitemlist }) {
           <div className="abovetable">
             <div className="partyinput ">
               <select id="types" name="party" className="partyinputs">
-                <option value="party">Customer *</option>
+                <option value="party">Expense Category*</option>
                 <option value="Retail">One</option>
                 <option value="WholeSale">Two</option>
                 <option value="Distributor">Three</option>
@@ -146,10 +146,10 @@ export default function ItemList({ itemlist, setitemlist }) {
               </select>
             </div>
             <div>
-              <label htmlFor="quantity">Invoice Number : </label>
+              <label htmlFor="quantity">Expense No. </label>
               <input type="tel" id="number" name="number" />
             </div>
-            <div>
+            {/* <div style={{"display":"none"}}>
               <input
                 type="tel"
                 id="phone"
@@ -158,12 +158,12 @@ export default function ItemList({ itemlist, setitemlist }) {
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 required
               />
-            </div>
+            </div> */}
 
-            <div>
+            <div style={{"margin-left":"805px"}}>
               <label htmlFor="billdate" className="inputbox">
                 {" "}
-                Invoice Date :{" "}
+                Date :{" "}
               </label>
               <input type="date" id="billdate" name="billdate" />
             </div>
@@ -297,6 +297,16 @@ export default function ItemList({ itemlist, setitemlist }) {
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
+                  {/* <div className="itemremove-btn">
+                  {itemlist.lenght !== 1 && (
+                    <button
+                      className="remove-btn"
+                      onClick={() => handleItemRemove(i)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div> */}
                 </tr>
               );
             })}
@@ -313,7 +323,14 @@ export default function ItemList({ itemlist, setitemlist }) {
           )}
         </div>
         <div className="belowtable">
-          <div className="paymentinputleft "></div>
+          <div className="paymentinputleft ">
+            <label htmlFor="payment">Payment Mode : </label>
+            <select id="types" name="payment" className="paymentmode">
+              <option value="Cash">Cash</option>
+              <option value="Retail">One</option>
+              <option value="WholeSale">Two</option>
+            </select>
+          </div>
           <div className="paymentinputright">
             <input
               type="checkbox"
