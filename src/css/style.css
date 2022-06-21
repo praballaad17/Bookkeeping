@@ -2526,8 +2526,12 @@ input:checked + .slider:before {
       position: relative; }
 
 .partymain {
-  margin: 20px 30px;
-  background-color: #f4f4f2; }
+  background-color: #f4f4f2;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  z-index: 1001; }
 
 .partytop {
   border: 1px solid black;
@@ -2580,7 +2584,8 @@ input:checked + .slider:before {
 .gstdetails > div {
   padding: 10px 50px; }
 
-.gstdetails > div > input, select {
+.gstdetails > div > input,
+select {
   width: 250px;
   height: 40px; }
 
@@ -2606,7 +2611,6 @@ input:checked + .slider:before {
   flex-direction: row;
   justify-content: flex-end;
   padding: 10px 5px;
-  margin-top: 55px;
   background-color: #f4f4f2; }
 
 .purinvoice__head {

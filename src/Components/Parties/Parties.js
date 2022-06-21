@@ -52,15 +52,20 @@ import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { useUser } from "../../Context/userContext";
 import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
+import { getPartyByUserId } from "../../services/partyServices";
+import AddParties from "./AddParties";
 
 export default function Parties() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState();
+  const [open, setOpen] = useState(false)
+  const [parties, setParties] = useState([])
 
   useEffect(() => {
     const getInvoice = async () => {
       const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
-      console.log(purchaseInvoice);
+      const parties = await getPartyByUserId(user?.id)
+      setParties(parties)
       setInvoice(purchaseInvoice);
     };
     getInvoice();
@@ -88,12 +93,13 @@ export default function Parties() {
             {" "}
             Bulk Import Parties
           </button>
-          <Link
+          <div
             className="btn btn--tertiary addpurchasebutton addpartybutton"
-            to={ROUTES.ADDPARTIESINV}
+            // to={ROUTES.ADDPARTIESINV}
+            onClick={() => setOpen(true)}
           >
             + Create Party
-          </Link>
+          </div>
         </div>
       </div>
       <div className="purinvoice__body">
@@ -147,17 +153,25 @@ export default function Parties() {
           </thead>
           <tbody>
             <tbody>
-              {/* <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td> 
-              <td></td>
-              <td></td> */}
+              <tr>
+                {parties.map(party => (
+                  <>
+                    <td>{party?.name}</td>
+                    <td></td>
+                    <td>{party?.phone}</td>
+                    <td></td>
+                    <td></td>
+                  </>
+                ))}
+              </tr>
             </tbody>
           </tbody>
         </table>
       </div>
+
+
+      {/* add party modal */}
+      <AddParties open={open} onClose={() => setOpen(false)} />
     </>
   );
 }
