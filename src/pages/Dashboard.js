@@ -15,6 +15,10 @@ import AddSalesInvoice from "../Components/Invoice/AddSalesInvoice";
 import ItemTable from "../Components/Utilities/ItemTable";
 import Parties from "../Components/Invoice/Parties";
 import AddParties from "../Components/Invoice/AddParties";
+import Expenses from "../Components/Invoice/Expenses";
+import AddExpenses from "../Components/Invoice/AddExpenses";
+
+
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
@@ -49,6 +53,10 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/parties/add" element={<AddParties />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />
             <Route path="/" element={<Home />} />
+            <Route path="/expenses" element={<Expenses/>} />
+            <Route path="/addexpenses" element={<AddExpenses/>} />
+          
+  
           </Routes>
         </div>
       </div>

@@ -5,7 +5,7 @@ import * as IoIcons from 'react-icons/io';
 
 export const SidebarData = [
     {
-        title: 'Utilities',
+        title: 'Utilities ',
         path: '/dashboard/utilities',
         icon: <AiIcons.AiFillHome />,
         iconClosed: <RiIcons.RiArrowDownSFill />,

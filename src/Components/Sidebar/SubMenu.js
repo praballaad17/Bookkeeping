@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const SidebarLink = styled(Link)`
   display: flex;
+  flex-direction:column;
   color: #e1e9fc;
   justify-content: space-between; 
   align-items: center;
@@ -28,6 +29,8 @@ const DropdownLink = styled(Link)`
   height: 60px;
   padding-left: 3rem;
   display: flex;
+  flex-direction:column;
+
   align-items: center;
   text-decoration: none;
   color: #f5f5f5;
@@ -46,18 +49,20 @@ const SubMenu = ({ item }) => {
     return (
         <>
             <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
-                <div>
+                {/* <div>
                     {item.icon}
-                    <SidebarLabel>{item.title}</SidebarLabel>
-                </div>
-                <div>
-                    {item.subNav && subnav
-                        ? item.iconOpened
+                    
+                </div> */}
+                <div >
+                     {item.subNav && subnav
+                        ? <SidebarLabel>{item.icon} {item.title}</SidebarLabel>
                         : item.subNav
-                            ? item.iconClosed
-                            : null}
+                            ? 
+                            <SidebarLabel>{item.icon } s{item.title}<i style={{"paddingLeft":"10px"}} className="fa-solid fa-angle-down"></i></SidebarLabel>
+                            : null} 
                 </div>
             </SidebarLink>
+            
             {subnav &&
                 item.subNav.map((item, index) => {
                     return (
