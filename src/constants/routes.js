@@ -9,6 +9,7 @@ export const EXPENSES = '/dashboard/expenses';
 export const ADDEXPENSES = '/dashboard/addexpenses';
 export const ADDSALESINV = '/dashboard/sales/add';
 export const ADDPARTIESINV = '/dashboard/parties/add';
+export const SETTING = '/dashboard/setting';
 export const AUTHENTICATION = '/authentication/*';
 export const LOGIN = '/login';
 export const SIGN_UP = '/signup';

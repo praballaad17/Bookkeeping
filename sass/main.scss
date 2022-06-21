@@ -20,10 +20,12 @@
 @import "components/item/addItem";
 @import "components/item/importItem";
 
+@import "components/setting/setting";
 
 @import "layouts/mainloader";
 @import "layouts/notification";
 @import "layouts/dragaAndDrop";
+
 
 @import "../sass/components/detailModel";
 @import "pages/dashboard";

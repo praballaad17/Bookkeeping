@@ -1583,6 +1583,13 @@ td {
     .importtable__foot--btn {
       margin: 10px; }
 
+.setting {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  position: fixed;
+  background-color: #fff; }
+
 .loader {
   width: 100vw;
   height: 100vh;

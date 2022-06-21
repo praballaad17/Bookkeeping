@@ -17,6 +17,7 @@ import Parties from "../Components/Invoice/Parties";
 import AddParties from "../Components/Invoice/AddParties";
 import Expenses from "../Components/Invoice/Expenses";
 import AddExpenses from "../Components/Invoice/AddExpenses";
+import Setting from "../Components/Setting/Setting";
 
 
 export default function Dashboard({ user: loggedInUser }) {
@@ -52,11 +53,10 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/parties" element={<Parties />} />
             <Route path="/parties/add" element={<AddParties />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />
+            <Route path="/setting" element={<Setting />} />
             <Route path="/" element={<Home />} />
-            <Route path="/expenses" element={<Expenses/>} />
-            <Route path="/addexpenses" element={<AddExpenses/>} />
-          
-  
+            <Route path="/expenses" element={<Expenses />} />
+            <Route path="/addexpenses" element={<AddExpenses />} />
           </Routes>
         </div>
       </div>
