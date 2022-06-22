@@ -1,11 +1,11 @@
 .partymain {
-    //  margin: 20px 30px;
-    background-color: rgb(244, 244, 242);
-    position: fixed;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    z-index: 1001;
+    // margin: 20px 30px;
+    // background-color: rgb(244, 244, 242);
+    // position: fixed;
+    // top: 50vh;
+    // left: 50vw;
+    // transform: translate(-50%, -50%);
+    // z-index: 1001;  
 }
 
 .partytop {
@@ -23,10 +23,10 @@
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-
+    flex-wrap: wrap;
     justify-content: space-around;
-    height: 25vh;
-    padding: 50px 20px;
+    height: 35vh;
+    padding: 30px 20px;
 
 }
 

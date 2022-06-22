@@ -9,7 +9,7 @@ export default function AddParties({ open, onClose }) {
     phone: "",
     email: "",
     balance: "",
-    parytType: "",
+    parytType: "custumer",
     partyCatagory: "",
     gstin: "",
     placeOfSupply: "",
@@ -33,6 +33,23 @@ export default function AddParties({ open, onClose }) {
 
   const handleParty = (e) => {
     console.log(e.target.name, e.target.value);
+    if (e.target.name === "balanceType") {
+      if (e.target.value === "pay") {
+        let tempBalance = Math.abs(parseInt(party.balance)) * -1
+        setParty({
+          ...party,
+          balance: tempBalance
+        })
+      }
+      if (e.target.value === "collect") {
+        let tempBalance = Math.abs(parseInt(party.balance))
+        setParty({
+          ...party,
+          balance: tempBalance
+        })
+      }
+      return
+    }
     setParty({
       ...party,
       [e.target.name]: e.target.value
@@ -42,10 +59,10 @@ export default function AddParties({ open, onClose }) {
 
   console.log(party);
 
-  if (!open) return null;
-  return ReactDom.createPortal(
+  // if (!open) return null;
+  return (
     <>
-      <div className="modal-layout" onClick={onClose} ></div>
+      {/* <div className="modal-layout" onClick={onClose} ></div> */}
       <div className="partymain">
         <div className="partytop">
           <div>
@@ -74,6 +91,25 @@ export default function AddParties({ open, onClose }) {
               Phone Number:
             </label>
             <input onChange={(e) => handleParty(e)} type="tel" id="phone" name="phone" className="inputinput" />
+          </div>
+          <div className="middleupperinput">
+            <label htmlFor="balance" className="labelclass">
+              Opening Balance:
+            </label>
+            <input onChange={(e) => handleParty(e)} type="text" id="balance" name="balance" className="inputinput" value={party?.balance} />
+            <select name="balanceType" onChange={(e) => handleParty(e)}>
+              <option value="collect" >To Collect</option>
+              <option value="pay">To Pay</option>
+            </select>
+          </div>
+          <div className="middleupperinput">
+            <label htmlFor="partyType" className="labelclass">
+              Party Type:
+            </label>
+            <select name="partyType" onSelect={(e) => handleParty(e)}>
+              <option defaultValue="custumer" >Custumer</option>
+              <option value="supplier">Supplier</option>
+            </select>
           </div>
         </div>
         <div className="middlebottomparty">
@@ -157,7 +193,6 @@ export default function AddParties({ open, onClose }) {
           </div>
         </div>
       </div>
-    </>,
-    document.getElementById("modal")
+    </>
   );
 }

@@ -93,13 +93,13 @@ export default function Parties() {
             {" "}
             Bulk Import Parties
           </button>
-          <div
+          <Link
             className="btn btn--tertiary addpurchasebutton addpartybutton"
-            // to={ROUTES.ADDPARTIESINV}
-            onClick={() => setOpen(true)}
+            to={ROUTES.ADDPARTIESINV}
+          // onClick={() => setOpen(true)}
           >
             + Create Party
-          </div>
+          </Link>
         </div>
       </div>
       <div className="purinvoice__body">
@@ -171,7 +171,7 @@ export default function Parties() {
 
 
       {/* add party modal */}
-      <AddParties open={open} onClose={() => setOpen(false)} />
+      {/* <AddParties open={open} onClose={() => setOpen(false)} /> */}
     </>
   );
 }

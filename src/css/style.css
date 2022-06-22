@@ -2525,14 +2525,6 @@ input:checked + .slider:before {
     .invoice__item--searchbox {
       position: relative; }
 
-.partymain {
-  background-color: #f4f4f2;
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
-  z-index: 1001; }
-
 .partytop {
   border: 1px solid black;
   display: flex;
@@ -2547,9 +2539,10 @@ input:checked + .slider:before {
   border: 1px solid black;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
-  height: 25vh;
-  padding: 50px 20px; }
+  height: 35vh;
+  padding: 30px 20px; }
 
 .middleupperinput {
   display: flex;
