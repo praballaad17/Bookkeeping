@@ -145,26 +145,24 @@ export default function Parties() {
         </div>
         <table className="purinvoice__table item__table">
           <thead>
-            <th>NAME</th>
-            <th>CATEGORY</th>
-            <th>MOBILE NUMBER</th>
-            <th>PARTY TYPE</th>
-            <th>BALANCE</th>
+            <tr>
+              <th>NAME</th>
+              <th>CATEGORY</th>
+              <th>MOBILE NUMBER</th>
+              <th>PARTY TYPE</th>
+              <th>BALANCE</th>
+            </tr>
           </thead>
           <tbody>
-            <tbody>
+            {parties.map(party => (
               <tr>
-                {parties.map(party => (
-                  <>
-                    <td>{party?.name}</td>
-                    <td></td>
-                    <td>{party?.phone}</td>
-                    <td></td>
-                    <td></td>
-                  </>
-                ))}
+                <td>{party?.name}</td>
+                <td>{party?.category ? party.category : "nil"}</td>
+                <td>{party?.phone}</td>
+                <td>{party?.partyType ? party.partyType : "nil"}</td>
+                <td>₹ {party?.balance ? party.balance : 0}</td>
               </tr>
-            </tbody>
+            ))}
           </tbody>
         </table>
       </div>
