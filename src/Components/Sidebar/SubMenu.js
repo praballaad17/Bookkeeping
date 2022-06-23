@@ -58,7 +58,7 @@ const SubMenu = ({ item }) => {
                         ? <SidebarLabel>{item.icon} {item.title}</SidebarLabel>
                         : item.subNav
                             ? 
-                            <SidebarLabel>{item.icon } s{item.title}<i style={{"paddingLeft":"10px"}} className="fa-solid fa-angle-down"></i></SidebarLabel>
+                            <SidebarLabel>{item.icon }   {item.title}<i style={{"paddingLeft":"10px"}} className="fa-solid fa-angle-down"></i></SidebarLabel>
                             : null} 
                 </div>
             </SidebarLink>
