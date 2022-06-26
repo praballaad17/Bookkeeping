@@ -8,10 +8,15 @@ import * as VARIABLE from "../../constants/variables"
 export default function AddPurchaseInvoice() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [invoiceID, setinvoiceID] = useState("")
   const [total, setTotal] = useState(0);
   const { user } = useUser()
-
+  const [invoice, setInvoice] = useState({
+    partyId: "",
+    type: "purchase",
+    total: 0,
+    invoiceNumber: 0,
+    date: ""
+  })
   const [itemlist, setitemlist] = useState([
     {
       name: "",
@@ -30,14 +35,26 @@ export default function AddPurchaseInvoice() {
     },
   ]);
 
+  const handleTotalAmount = (addAmount, prevTotal = invoice.total) => {
+    console.log("total add", addAmount);
+    setInvoice({
+      ...invoice,
+      total: prevTotal + addAmount
+    });
+  };
+
   const handleChange = (e) => {
-    setinvoiceID([e.target.name] = e.target.value);
+    setInvoice({
+      ...invoice,
+      [e.target.name]: e.target.value
+    });
   }
+
   const handleInvoice = async (event) => {
     event.preventDefault();
     setLoading(true);
     try {
-      await createInvoice(itemlist, user?.id, VARIABLE.INVOICETYPE.PURCHASE, total);
+      await createInvoice(invoice, itemlist, user?.id);
       setLoading(false);
       window.location = "/dashboard/purchase/";
     } catch (error) {
@@ -62,11 +79,14 @@ export default function AddPurchaseInvoice() {
       setLoading(false);
     }
   }
+
+  console.log(invoice);
+
   return ReactDom.createPortal(
     <div className="invoice">
       <div >
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
-        <ItemList itemlist={itemlist} setitemlist={setitemlist} total={total} setTotal={setTotal} />
+        <ItemList itemlist={itemlist} invoice={invoice} handleTotalAmount={handleTotalAmount} setitemlist={setitemlist} handleInvoice={handleChange} />
         <button className="btn btn--secondary"
           onClick={handleInvoice}
         >

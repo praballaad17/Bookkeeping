@@ -1,30 +1,18 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-// import * as ROUTES from '../../constants/routes';
-
-// export default function SalesInvoice() {
-//     return (
-//         <>
-//             <div>SalesInvoice</div>
-//             <Link className='btn btn--tertiary' to={ROUTES.ADDSALESINV} >Add Sales Invoice</Link>
-//         </>
-//     )
-// }
-
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
-import { useUser } from "../../Context/userContext";
-import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
+import { Link, useNavigate } from "react-router-dom";
+import * as ROUTES from "../../../constants/routes";
+import { INVOICETYPE } from "../../../constants/variables";
+import { useUser } from "../../../Context/userContext";
+import { getInvoiceUserId, deleteInvoice } from "../../../services/InvoiceServices";
 
 export default function SalesInvoice() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getInvoice = async () => {
-      const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
-      console.log(purchaseInvoice);
+      const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.SALES, user?.id);
       setInvoice(purchaseInvoice);
     };
     getInvoice();
@@ -36,6 +24,14 @@ export default function SalesInvoice() {
     // console.log(date.getDate());
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   };
+
+  const openInvoice = (invoice) => {
+    console.log(invoice);
+    navigate(
+      `/dashboard/invoice/sales/open/${invoice._id}`,
+      { state: { invoice } }
+    )
+  }
 
   return (
     <>
@@ -58,7 +54,7 @@ export default function SalesInvoice() {
             className="btn btn--tertiary addpurchasebutton"
             to={ROUTES.ADDSALESINV}
           >
-           + Create Sales Invoice
+            + Create Sales Invoice
           </Link>
           {/* </button> */}
         </div>
@@ -73,7 +69,7 @@ export default function SalesInvoice() {
                 class="searchbar searchbarpurchase"
                 id="searchitem"
                 name="searchitem"
-                spellcheck="false"
+                spellCheck="false"
                 data-ms-editor="true"
                 placeholder="Search Sales Invoices"
               />
@@ -110,35 +106,41 @@ export default function SalesInvoice() {
         </div>
         <table className="purinvoice__table item__table">
           <thead>
-            <th>#</th>
-            <th>Date</th>
-            <th>Ref No</th>
-            <th>Party Name</th>
-            <th>Catagories Name</th>
-            <th>Type</th>
-            <th>Total</th>
-            <th>Recieve Party</th>
-            <th>Balance</th>
-            <th>Print</th>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Invoice Number</th>
+              <th>Party Name</th>
+              <th>Catagories Name</th>
+              <th>Total</th>
+              <th>Recieve Party</th>
+              <th>Balance</th>
+              <th>Print</th>
+            </tr>
           </thead>
           <tbody>
             {invoice &&
               invoice.map((invoice) => (
-                <tr>
-                  <td></td>
-                  <td>{getDate(invoice?.todayDate)}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr key={invoice._id} className="purinvoice__table--invoice" onClick={() => openInvoice(invoice)}>
+                  <td>
+                    <div onClick={() => deleteInvoice(invoice._id)}>
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </td>
+                  <td>{invoice?.date}</td>
+                  <td>{invoice?.invoiceNumber}</td>
+                  <td>{invoice?.party?.name}</td>
                   <td></td>
                   <td>{invoice?.total}</td>
+                  <td></td>
+                  <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
                   <td></td>
                 </tr>
               ))}
           </tbody>
         </table>
         <span className="purchasebodyspan">
-        No Sales Invoice made during the selected time period
+          No Sales Invoice made during the selected time period
         </span>
       </div>
     </>

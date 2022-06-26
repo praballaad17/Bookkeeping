@@ -51,7 +51,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { useUser } from "../../Context/userContext";
-import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
+// import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
 import { getPartyByUserId } from "../../services/partyServices";
 import AddParties from "./AddParties";
 
@@ -63,10 +63,10 @@ export default function Parties() {
 
   useEffect(() => {
     const getInvoice = async () => {
-      const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
+      // const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
       const parties = await getPartyByUserId(user?.id)
       setParties(parties)
-      setInvoice(purchaseInvoice);
+      // setInvoice(purchaseInvoice);
     };
     getInvoice();
   }, [user]);

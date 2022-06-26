@@ -10,8 +10,8 @@ import AddItem from "../Components/AddItem";
 import ImportItem from "../Components/Utilities/ImportItem";
 import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
 import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
-import SalesInvoice from "../Components/Invoice/SalesInvoice";
-import AddSalesInvoice from "../Components/Invoice/AddSalesInvoice";
+import SalesInvoice from "../Components/Invoice/SalesInvoice/SalesInvoice";
+import AddSalesInvoice from "../Components/Invoice/SalesInvoice/AddSalesInvoice";
 import ItemTable from "../Components/Utilities/ItemTable";
 import Parties from "../Components/Parties/Parties";
 import AddParties from "../Components/Parties/AddParties";
@@ -50,6 +50,7 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
+            <Route path="/invoice/sales/open/:id" element={<AddSalesInvoice />} />
             <Route path="/parties" element={<Parties />} />
             <Route path="/parties/add" element={<AddParties />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />

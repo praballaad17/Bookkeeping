@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useUser } from "../../Context/userContext";
 import { searchItem } from "../../services/ItemServices";
+import { getPartyByUserId } from "../../services/partyServices";
 import ItemSearchBox from "./ItemSearchBox";
 
-export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
+export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
+  const { user } = useUser()
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
-  // const [total, setTotal] = useState(0);
+  const [supplier, setSupplier] = useState([])
 
+
+  useEffect(() => {
+    const getSupplier = async () => {
+      try {
+        const supplier = await getPartyByUserId(user?.id)
+        setSupplier(supplier)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getSupplier()
+  }, [])
 
   const calculatTaxAmount = (taxPer, price, unit) => {
     return taxPer * price * unit / 100;
@@ -18,9 +33,6 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
     return (price * unit) + tax;
   }
 
-  const handleTotalAmount = (addAmount, prevTotal = total,) => {
-    setTotal(prevTotal + addAmount);
-  }
 
   const handleChange = (e, index) => {
     var list = [...itemlist];
@@ -30,7 +42,9 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
       let taxper = e.target.value;
       console.log(taxper.split('@').pop().split('%'));
       list[index]["taxamount"] = calculatTaxAmount(parseInt(list[index]["itemWiseTax"].split('@').pop().split('%')[0]), parseInt(list[index]["purchasePrice"]), list[index]["unit"]);
+      const previousAmount = list[index]["itemAmount"]
       list[index]["itemAmount"] = calculatItemAmount(parseInt(list[index]["purchasePrice"]), list[index]["unit"], list[index]["taxamount"]);
+      handleTotalAmount(list[index]["itemAmount"] - previousAmount)
     }
     setitemlist(list);
   };
@@ -118,19 +132,17 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
         <div className="above">
           <div className="abovetable">
             <div className="partyinput ">
-              <select id="types" name="party" className="partyinputs">
+              <select onChange={(e) => { handleInvoice(e) }} id="partyId" name="partyId" className="partyinputs">
                 <option value="party">Party *</option>
-                <option value="Retail">One</option>
-                <option value="WholeSale">Two</option>
-                <option value="Distributor">Three</option>
-                <option value="Service">Four</option>
-                <option value="Manufacturing">Five</option>
-                <option value="Others">Others</option>
+                {supplier && supplier.length && supplier.map(supplier => (
+                  <option value={supplier?._id}>{supplier?.name}</option>
+                ))
+                }
               </select>
             </div>
             <div>
               <label htmlFor="quantity">Bill Number : </label>
-              <input type="tel" id="number" name="number" />
+              <input onChange={(e) => handleInvoice(e)} type="tel" id="invoiceNumber" name="invoiceNumber" />
             </div>
             <div>
               <input
@@ -148,7 +160,7 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
                 {" "}
                 Bill Date :{" "}
               </label>
-              <input type="date" id="billdate" name="billdate" />
+              <input type="date" id="date" name="date" onChange={e => handleInvoice(e)} />
             </div>
           </div>
         </div>
@@ -326,7 +338,7 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
               type="number"
               id="total"
               name="total"
-              value={total}
+              value={invoice?.total}
               className="totalinput"
             />
           </div>

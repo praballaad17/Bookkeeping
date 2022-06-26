@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
+import { INVOICETYPE } from "../../constants/variables";
 import { useUser } from "../../Context/userContext";
-import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
+import { getInvoiceUserId } from "../../services/InvoiceServices";
 
 export default function PurchaseInvoice() {
   const { user } = useUser();
@@ -10,7 +11,7 @@ export default function PurchaseInvoice() {
 
   useEffect(() => {
     const getInvoice = async () => {
-      const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
+      const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.PURCHASE, user?.id);
       console.log(purchaseInvoice);
       setInvoice(purchaseInvoice);
     };
@@ -19,7 +20,6 @@ export default function PurchaseInvoice() {
 
   const getDate = (d) => {
     const date = new Date(d);
-    console.log(date);
     // console.log(date.getDate());
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   };
@@ -80,9 +80,9 @@ export default function PurchaseInvoice() {
             </div>
           </div>
           <div className="purchaseinvoicebodyright">
-          <div >
+            <div >
               <select id="types" name="timespan" class="reportpurchase">
-              <option value="" disabled selected hidden> Reports </option>
+                <option value="" disabled selected hidden> Reports </option>
                 <option value="s=gstr">GSTR-2 (Purchase)</option>
                 <option value="daybook">DayBook</option>
               </select>
@@ -107,9 +107,9 @@ export default function PurchaseInvoice() {
               invoice.map((invoice) => (
                 <tr>
                   <td></td>
-                  <td>{getDate(invoice?.todayDate)}</td>
-                  <td></td>
-                  <td></td>
+                  <td>{invoice?.date}</td>
+                  <td>{invoice?.invoiceNumber}</td>
+                  <td>{invoice?.party?.name}</td>
                   <td></td>
                   <td></td>
                   <td>{invoice?.total}</td>

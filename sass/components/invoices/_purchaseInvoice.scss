@@ -1,4 +1,4 @@
-.purinvoice__head{
+.purinvoice__head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -7,83 +7,114 @@
     height: 10vh;
     border: 1px solid black;
 }
-.leftheadpurchase{
+
+.leftheadpurchase {
     display: flex;
     flex-direction: column;
 }
-.smallfontpurchase{
+
+.smallfontpurchase {
     font-size: 15px;
     padding-top: 0;
 }
-.rightheadpurchase{
+
+.rightheadpurchase {
     padding-top: 10px;
     display: flex;
     flex-direction: row;
 }
-.invoicesettingbutton{
+
+.invoicesettingbutton {
     height: 32px;
     padding: 5px;
     border-radius: 5px;
     margin-right: 5px;
     background-color: white;
     font-size: 15px;
-    
+
 }
-.addpurchasebutton{
+
+.addpurchasebutton {
     margin-right: 5px;
     // padding-top: 100px;
     text-align: center;
     margin: 0;
     height: 32px;
-    background-color: blue;  
+    background-color: blue;
     color: white;
     width: 230px;
     font-size: 14px;
 
 }
-.fa-keyboard{
+
+.fa-keyboard {
     padding-top: 5px;
 }
-.purinvoice__body{
+
+.purinvoice__body {
     border: 1px solid black;
     background-color: rgb(247, 245, 244);
     padding: 20px;
     height: 88vh;
 
 }
-.searchbarpurchase{
+
+.searchbarpurchase {
     font-size: 17px;
     width: 240px;
     border-radius: 0;
     height: 34px;
 }
-.purinvoicebody{
+
+.purinvoicebody {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: 15px;
 }
-.purchaseinvoicebodyleft{
+
+.purchaseinvoicebodyleft {
     display: flex;
     flex-direction: row;
     padding-left: 15px;
 }
-.purchaseinvoicebodyright{
+
+.purchaseinvoicebodyright {
     padding-right: 10px;
 }
-.timespanpurchase{
+
+.timespanpurchase {
     width: 280px;
     height: 34px;
     border-radius: 0;
     margin-left: 5px;
     // display: inline;
- 
+
 }
-.reportpurchase{
+
+.purinvoice__table {
+    &>thead {
+        background-color: $color-grey-light-1;
+    }
+
+    &>tbody {
+        background-color: $color-white;
+    }
+
+    &--invoice {
+        &:hover {
+            background-color: $color-grey-light-1;
+            cursor: pointer;
+        }
+    }
+}
+
+.reportpurchase {
     width: 200px;
     border-radius: 0;
 }
-.purchasebodyspan{
+
+.purchasebodyspan {
     font-size: 15px;
     padding-left: 15px;
 }
