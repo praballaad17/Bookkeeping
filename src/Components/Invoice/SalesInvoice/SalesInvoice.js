@@ -119,7 +119,7 @@ export default function SalesInvoice() {
             </tr>
           </thead>
           <tbody>
-            {invoice &&
+            {invoice && invoice.length ?
               invoice.map((invoice) => (
                 <tr key={invoice._id} className="purinvoice__table--invoice" onClick={() => openInvoice(invoice)}>
                   <td>
@@ -136,12 +136,19 @@ export default function SalesInvoice() {
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
                   <td></td>
                 </tr>
-              ))}
+              )) :
+              <tr>
+                <td colspan="8">
+                  <div className="u-flex-all-center"> Loading...</div>
+
+                </td>
+              </tr>
+            }
           </tbody>
         </table>
-        <span className="purchasebodyspan">
+        {!invoice || !invoice.length && (<span className="purchasebodyspan">
           No Sales Invoice made during the selected time period
-        </span>
+        </span>)}
       </div>
     </>
   );

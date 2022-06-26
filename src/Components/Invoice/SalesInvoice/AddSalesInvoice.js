@@ -111,14 +111,14 @@ export default function AddSalesInvoice() {
   return ReactDom.createPortal(
     <div className="invoice">
       <div >
-        {id && !isEdit ? <EditBox setEdit={setEdit} title={"Sales Invoice#"} name={invoice?.invoiceNumber} /> : <></>}
+        {id && !isEdit ? <EditBox id={location.state.invoice?._id} setEdit={setEdit} title={"Sales Invoice#"} name={invoice?.invoiceNumber} /> : <></>}
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
         <ItemList isEdit={isEdit} itemlist={itemlist} invoice={invoice} handleTotalAmount={handleTotalAmount} setitemlist={setitemlist} handleInvoice={handleChange} />
         <button className={`btn ${!isEdit ? "btn--disable" : "btn--secondary"}`}
           onClick={handleInvoice}
           disabled={!isEdit}
         >
-          Create Invoice
+          {id ? "Update Invoice" : "Create Invoice"}
         </button>
       </div>
     </div>,
