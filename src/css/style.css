@@ -1593,6 +1593,37 @@ td {
   position: fixed;
   background-color: #fff; }
 
+.settingsidebar {
+  margin: 0;
+  padding: 0;
+  width: 16vw;
+  background-color: #000000;
+  position: fixed;
+  height: 100%;
+  overflow: auto; }
+
+.settingsidebar a {
+  display: block;
+  color: white;
+  padding: 0.2rem 1rem 0.2rem 2rem;
+  text-decoration: none;
+  font-size: 1.4rem; }
+
+.settingsidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white; }
+
+.settingsidebar a.active {
+  background-color: #04aa6d;
+  color: white; }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default; }
+
+.fa-magnifying-glass {
+  cursor: pointer; }
+
 .loader {
   width: 100vw;
   height: 100vh;
