@@ -10,6 +10,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { useLocation, useParams } from "react-router-dom";
+import { SALESINV } from "../../../constants/routes";
 import { useUser } from "../../../Context/userContext";
 import { createInvoice, updateInvoice } from "../../../services/InvoiceServices";
 import EditBox from "../EditBox";
@@ -85,7 +86,7 @@ export default function AddSalesInvoice() {
     try {
       const data = await createInvoice(invoice, itemlist, user?.id);
       setLoading(false);
-      window.location = "/dashboard/sales/";
+      window.location = SALESINV;
     } catch (error) {
       setitemlist([
         {

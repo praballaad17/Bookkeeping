@@ -11,13 +11,21 @@ const apiEndpointInvoice = Url?.localUrl + "/invoice";
 
 export default function SalesInvoice() {
   const { user } = useUser();
-  const [invoice, setInvoice] = useState();
+  const [invoice, setInvoice] = useState([]);
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true)
     const getInvoice = async () => {
-      const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.SALES, user?.id);
-      setInvoice(purchaseInvoice);
+      try {
+        const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.SALES, user?.id);
+        setInvoice(purchaseInvoice);
+        setLoading(false)
+
+      } catch (error) {
+        console.log(error);
+      }
     };
     getInvoice();
   }, [user]);
@@ -32,21 +40,19 @@ export default function SalesInvoice() {
   const openInvoice = (invoice) => {
     console.log(invoice);
     navigate(
-      `/dashboard/invoice/sales/open/${invoice._id}`,
+      `/invoice/sales/open/${invoice._id}`,
       { state: { invoice } }
     )
   }
 
-  const handleDownloadPdf = async () => {
-    createAndDownloadPdf().then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-        console.log(pdfBlob);
-        saveAs(pdfBlob, 'newPdf.pdf');
-      })
+  const handleDownloadPdf = async (e) => {
+    e.preventDefault()
+    e.stopPropagation();
+    console.log("print");
+    createAndDownloadPdf()
   }
 
-
+  console.log(loading);
   return (
     <>
       <div className="purinvoice__head">
@@ -133,11 +139,15 @@ export default function SalesInvoice() {
             </tr>
           </thead>
           <tbody>
-            {invoice && invoice.length ?
+            {!loading ?
               invoice.map((invoice) => (
                 <tr key={invoice._id} className="purinvoice__table--invoice" onClick={() => openInvoice(invoice)}>
                   <td>
-                    <div onClick={() => deleteInvoice(invoice._id)}>
+                    <div onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      deleteInvoice(invoice._id)
+                    }}>
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </td>
@@ -148,7 +158,7 @@ export default function SalesInvoice() {
                   <td>{invoice?.total}</td>
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td><i class="fa-solid fa-print"></i></td>
+                  <td onClick={handleDownloadPdf}><i class="fa-solid fa-print"></i></td>
                 </tr>
               )) :
               <tr>
@@ -159,7 +169,7 @@ export default function SalesInvoice() {
             }
           </tbody>
         </table>
-        <button onClick={handleDownloadPdf}>download</button>
+
         {!invoice || !invoice.length && (<span className="purchasebodyspan">
           No Sales Invoice made during the selected time period
         </span>)}

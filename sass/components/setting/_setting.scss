@@ -4,16 +4,24 @@
   z-index: 2000;
   position: fixed;
   background-color: $color-white;
+  display: flex;
+
+  &__main {
+    width: 84vw;
+    height: 100vh;
+  }
 }
+
 .settingsidebar {
   margin: 0;
   padding: 0;
   width: 16vw;
   background-color: #000000;
-  position: fixed;
+  // position: fixed;
   height: 100%;
   overflow: auto;
 }
+
 .settingsidebar a {
   display: block;
   color: white;
@@ -21,18 +29,22 @@
   text-decoration: none;
   font-size: 1.4rem;
 }
+
 .settingsidebar a:hover:not(.active) {
   background-color: #555;
   color: white;
 }
+
 .settingsidebar a.active {
   background-color: #04aa6d;
   color: white;
 }
+
 a.disabled {
   pointer-events: none;
   cursor: default;
 }
-.fa-magnifying-glass{
-    cursor: pointer;
+
+.fa-magnifying-glass {
+  cursor: pointer;
 }

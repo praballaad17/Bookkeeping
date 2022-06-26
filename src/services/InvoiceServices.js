@@ -2,8 +2,8 @@ import axios from 'axios';
 import Url from "../config.json";
 import { saveAs } from 'file-saver';
 
-// const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-const apiEndpointInvoice = Url?.localUrl + "/invoice";
+const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+// const apiEndpointInvoice = Url?.localUrl + "/invoice";
 const apiEndpointItem = Url?.localUrl + "/invoice";
 
 
@@ -66,6 +66,11 @@ export const deleteInvoice = async (id) => {
 
 export const createAndDownloadPdf = async () => {
   const state = { name: "name", price1: 1200, price2: 1300, receiptId: 1 }
-  const res = await axios.post(`${apiEndpointInvoice}/invoice-pdf`, state)
-  return res;
+  const res = await axios.post(`${apiEndpointInvoice}/invoice-pdf`, state).then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
+    .then((res) => {
+      const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+      console.log(pdfBlob);
+      saveAs(pdfBlob, 'newPdf.pdf');
+    })
+  // return res;
 }

@@ -1591,14 +1591,17 @@ td {
   height: 100vh;
   z-index: 2000;
   position: fixed;
-  background-color: #fff; }
+  background-color: #fff;
+  display: flex; }
+  .setting__main {
+    width: 84vw;
+    height: 100vh; }
 
 .settingsidebar {
   margin: 0;
   padding: 0;
   width: 16vw;
   background-color: #000000;
-  position: fixed;
   height: 100%;
   overflow: auto; }
 
