@@ -1,8 +1,9 @@
 import axios from 'axios';
 import Url from "../config.json";
+import { saveAs } from 'file-saver';
 
-const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-// const apiEndpointInvoice = Url?.localUrl + "/invoice";
+// const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+const apiEndpointInvoice = Url?.localUrl + "/invoice";
 const apiEndpointItem = Url?.localUrl + "/invoice";
 
 
@@ -35,6 +36,20 @@ export const getInvoiceUserId = async (type, userId) => {
   }
 }
 
+export const updateInvoice = async (invoiceId, userId, itemlist, invoice) => {
+  try {
+    const request = { data: { ...invoice, itemlist } };
+    const response = await axios(`${apiEndpointInvoice}/userId/${userId}/invoiceId/${invoiceId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      ...request,
+    });
+    return response.data;
+  } catch (error) {
+
+  }
+}
+
 export const deleteInvoice = async (id) => {
   try {
 
@@ -47,4 +62,10 @@ export const deleteInvoice = async (id) => {
   } catch (err) {
     throw new Error(err.response.data.error);
   }
+}
+
+export const createAndDownloadPdf = async () => {
+  const state = { name: "name", price1: 1200, price2: 1300, receiptId: 1 }
+  const res = await axios.post(`${apiEndpointInvoice}/invoice-pdf`, state)
+  return res;
 }

@@ -3,7 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
-import { getInvoiceUserId, deleteInvoice } from "../../../services/InvoiceServices";
+import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf } from "../../../services/InvoiceServices";
+import { saveAs } from 'file-saver';
+import Url from "../../../config.json";
+import axios from 'axios';
+const apiEndpointInvoice = Url?.localUrl + "/invoice";
 
 export default function SalesInvoice() {
   const { user } = useUser();
@@ -32,6 +36,16 @@ export default function SalesInvoice() {
       { state: { invoice } }
     )
   }
+
+  const handleDownloadPdf = async () => {
+    createAndDownloadPdf().then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        console.log(pdfBlob);
+        saveAs(pdfBlob, 'newPdf.pdf');
+      })
+  }
+
 
   return (
     <>
@@ -134,18 +148,18 @@ export default function SalesInvoice() {
                   <td>{invoice?.total}</td>
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td></td>
+                  <td><i class="fa-solid fa-print"></i></td>
                 </tr>
               )) :
               <tr>
                 <td colspan="8">
                   <div className="u-flex-all-center"> Loading...</div>
-
                 </td>
               </tr>
             }
           </tbody>
         </table>
+        <button onClick={handleDownloadPdf}>download</button>
         {!invoice || !invoice.length && (<span className="purchasebodyspan">
           No Sales Invoice made during the selected time period
         </span>)}

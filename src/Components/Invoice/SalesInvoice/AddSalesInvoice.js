@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { useLocation, useParams } from "react-router-dom";
 import { useUser } from "../../../Context/userContext";
-import { createInvoice } from "../../../services/InvoiceServices";
+import { createInvoice, updateInvoice } from "../../../services/InvoiceServices";
 import EditBox from "../EditBox";
 import ItemList from "./ItemListSales";
 // import ItemList from "./ItemList";
@@ -21,7 +21,7 @@ export default function AddSalesInvoice() {
   const { user } = useUser()
   const { id } = useParams()
   const location = useLocation()
-  console.log(id, location.state);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isEdit, setEdit] = useState(true)
@@ -107,6 +107,19 @@ export default function AddSalesInvoice() {
     }
   }
 
+  const handleUpdateInvoice = async (e) => {
+    try {
+      console.log("update", invoice, itemlist);
+      const updated = await updateInvoice(location.state.invoice._id, user.id, itemlist, invoice)
+      setEdit(false)
+      console.log(updated);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  console.log("invoice", invoice);
+
 
   return ReactDom.createPortal(
     <div className="invoice">
@@ -115,7 +128,7 @@ export default function AddSalesInvoice() {
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
         <ItemList isEdit={isEdit} itemlist={itemlist} invoice={invoice} handleTotalAmount={handleTotalAmount} setitemlist={setitemlist} handleInvoice={handleChange} />
         <button className={`btn ${!isEdit ? "btn--disable" : "btn--secondary"}`}
-          onClick={handleInvoice}
+          onClick={id ? handleUpdateInvoice : handleInvoice}
           disabled={!isEdit}
         >
           {id ? "Update Invoice" : "Create Invoice"}
