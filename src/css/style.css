@@ -1420,20 +1420,31 @@ td {
   padding-bottom: 18px; }
 
 .upperinputbutton {
-  border: none;
-  color: white;
   padding: 12px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   margin: 2px 1px;
   cursor: pointer;
-  background-color: #2bb3e0;
   border-radius: 8px;
-  /* margin-right: 500px; */ }
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA; }
 
-.button11:hover {
-  background-color: #00bfff; }
+.upperinputbutton:hover {
+  background-color: #008CBA;
+  color: white; }
+
+.button12 {
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA;
+  padding: 12px 15px;
+  border-radius: 8px; }
+
+.button12:hover {
+  background-color: #008CBA;
+  color: white; }
 
 .lower {
   border: 1px solid black; }
@@ -1871,15 +1882,15 @@ textarea {
   margin-bottom: 10px;
   border-radius: 3px; }
 
-input {
+.checcc input {
   width: calc(100% - 10px);
   padding: 5px;
   border: 1px solid black; }
 
-input[type="date"] {
+.checcc input[type="date"] {
   padding: 4px 5px; }
 
-textarea {
+.checcc textarea {
   width: calc(100% - 12px);
   padding: 5px; }
 
@@ -1917,15 +1928,15 @@ input:hover::placeholder {
   flex-direction: row;
   flex-wrap: wrap; }
 
-.columsss div {
+.itemjjj {
   /* need to be changed*/
   width: 48%; }
 
-input[type="date"]::-webkit-inner-spin-button {
+.checcc input[type="date"]::-webkit-inner-spin-button {
   display: none; }
 
 .itemjjj i,
-input[type="date"]::-webkit-calendar-picker-indicator {
+.checcc input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   font-size: 20px;
   color: #a3c2c2; }
@@ -1935,11 +1946,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 30px;
   z-index: 1; }
 
-input[type="radio"],
-input[type="checkbox"] {
+.checcc input[type="radio"],
+.checcc input[type="checkbox"] {
   display: none; }
 
-input[type="radio"]:checked + label:after {
+.checcc input[type="radio"]:checked + label:after {
   opacity: 1; }
 
 .flax {
