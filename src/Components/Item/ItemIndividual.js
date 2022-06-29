@@ -7,7 +7,7 @@ export default function ItemIndividual({ selectedItem }) {
         <>
             <div className="items__box--right__upper">
                 <span className="boldspan">{selectedItem?.name}</span>
-                <button className=" items__box--right__upper--button ">
+                <button className=" items__box--right__upper--button addconversion">
                     Add Conversion
                 </button>
                 <div className="spanrightupper">

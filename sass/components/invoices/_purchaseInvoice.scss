@@ -31,7 +31,13 @@
     margin-right: 5px;
     background-color: white;
     font-size: 15px;
-
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;;
+}
+.invoicesettingbutton:hover{
+    background-color:#008CBA;
+    color: white;
 }
 
 .addpurchasebutton {
@@ -40,11 +46,15 @@
     text-align: center;
     margin: 0;
     height: 32px;
-    background-color: blue;
-    color: white;
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;;
     width: 230px;
     font-size: 14px;
-
+}
+.addpurchasebutton:hover{
+    background-color:#008CBA;
+    color: white;
 }
 
 .fa-keyboard {

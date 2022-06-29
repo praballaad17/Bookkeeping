@@ -25,7 +25,7 @@ export default function ItemList({ items, setSelectedItem }) {
         <>
             <div>
                 <div className="searchbox">
-                    <i className="fa-solid fa-magnifying-glass searchicon"></i>
+                    <i  style={{"paddingLeft":"5px"}}  className="fa-solid fa-magnifying-glass searchicon"></i>
                     <input
                         type="search"
                         className="searchbar"

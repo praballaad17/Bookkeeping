@@ -4,7 +4,7 @@ import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
 import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf } from "../../../services/InvoiceServices";
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import Url from "../../../config.json";
 import axios from 'axios';
 const apiEndpointInvoice = Url?.localUrl + "/invoice";
@@ -63,9 +63,9 @@ export default function SalesInvoice() {
           </span>
         </div>
         <div className="rightheadpurchase">
-          <i class="fa-solid fa-keyboard"></i>
+          <i className="fa-solid fa-keyboard"></i>
           <button className="invoicesettingbutton">
-            Invoice Settings <i class="fa-solid fa-gear "></i>
+            Invoice Settings <i className="fa-solid fa-gear "></i>
           </button>
           <button className="possalesbutton"> + POS Billing</button>
           {/* <button className="addpurchasebutton"> */}
@@ -82,11 +82,11 @@ export default function SalesInvoice() {
       <div className="purinvoice__body">
         <div className="purinvoicebody">
           <div className="purchaseinvoicebodyleft">
-            <div class="searchbox">
-              <i class="fa-solid fa-magnifying-glass searchicon"></i>
+            <div className="searchbox">
+              <i style={{"paddingLeft":"5px"}} className="fa-solid fa-magnifying-glass searchicon"></i>
               <input
                 type="search"
-                class="searchbar searchbarpurchase"
+                className="searchbar searchbarpurchase"
                 id="searchitem"
                 name="searchitem"
                 spellCheck="false"
@@ -95,7 +95,7 @@ export default function SalesInvoice() {
               />
             </div>
             <div>
-              <select id="types" name="timespan" class="timespanpurchase">
+              <select id="types" name="timespan" className="timespanpurchase">
                 <option value="currentyear">Current Fiscal Year</option>
                 <option value="today">Today</option>
                 <option value="yesterday">Yesterday</option>
@@ -111,7 +111,7 @@ export default function SalesInvoice() {
           </div>
           <div className="purchaseinvoicebodyright">
             <div>
-              <select id="types" name="timespan" class="reportpurchase">
+              <select id="types" name="timespan" className="reportpurchase">
                 <option value="" disabled selected hidden>
                   {" "}
                   Reports{" "}
@@ -148,7 +148,7 @@ export default function SalesInvoice() {
                       e.stopPropagation()
                       deleteInvoice(invoice._id)
                     }}>
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i className="fa-solid fa-trash-can"></i>
                     </div>
                   </td>
                   <td>{invoice?.date}</td>
@@ -158,7 +158,7 @@ export default function SalesInvoice() {
                   <td>{invoice?.total}</td>
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td onClick={handleDownloadPdf}><i class="fa-solid fa-print"></i></td>
+                  <td onClick={handleDownloadPdf}><i className="fa-solid fa-print"></i></td>
                 </tr>
               )) :
               <tr>

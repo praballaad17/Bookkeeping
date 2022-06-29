@@ -1,12 +1,26 @@
 .possalesbutton{
-    color: blue;
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;;
     height: 32px;
     padding: 5px;
     border-radius: 5px;
     margin-right: 5px;
-    background-color: white;
     font-size: 15px;
     width: 150px;
     font-size: 14px;
 
+}
+.possalesbutton:hover{
+    background-color:#008CBA;
+    color: white;
+}
+.addconversion{
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;;
+}
+.addconversion:hover{
+    background-color:#008CBA;
+    color: white;
 }
