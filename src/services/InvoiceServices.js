@@ -2,8 +2,8 @@ import axios from 'axios';
 import Url from "../config.json";
 import { saveAs } from 'file-saver';
 
-const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-// const apiEndpointInvoice = Url?.localUrl + "/invoice";
+// const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+const apiEndpointInvoice = Url?.localUrl + "/invoice";
 const apiEndpointItem = Url?.localUrl + "/invoice";
 
 
@@ -26,6 +26,20 @@ export const getInvoiceUserId = async (type, userId) => {
   try {
 
     const response = await axios(`${apiEndpointInvoice}/invoiceId/${userId}/type/${type}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data;
+
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
+}
+
+export const getInvoiceInvoiceId = async (invoiceId) => {
+  try {
+
+    const response = await axios(`${apiEndpointInvoice}/invoiceId/${invoiceId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
@@ -64,7 +78,7 @@ export const deleteInvoice = async (id) => {
   }
 }
 
-export const createAndDownloadPdf = async () => {
+export const createAndDownloadPdf = async (itemList, party, invoice) => {
   const state = { name: "name", price1: 1200, price2: 1300, receiptId: 1 }
   const res = await axios.post(`${apiEndpointInvoice}/invoice-pdf`, state).then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
     .then((res) => {

@@ -12,7 +12,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
   const [open, setOpen] = useState(false);
   const [customers, setCustumers] = useState([])
 
-
+  console.log(itemlist);
   useEffect(() => {
     const getCustumers = async () => {
       try {

@@ -119,7 +119,7 @@ export default function AddSalesInvoice() {
     }
   }
 
-  console.log("invoice", invoice);
+  console.log("invoice", location.state?.invoice);
 
 
   return ReactDom.createPortal(

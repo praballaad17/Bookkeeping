@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
-import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf } from "../../../services/InvoiceServices";
+import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf, getInvoiceInvoiceId } from "../../../services/InvoiceServices";
 import { saveAs } from 'file-saver';
 import Url from "../../../config.json";
 import axios from 'axios';
@@ -45,11 +45,13 @@ export default function SalesInvoice() {
     )
   }
 
-  const handleDownloadPdf = async (e) => {
+  const handleDownloadPdf = async (e, id) => {
     e.preventDefault()
     e.stopPropagation();
-    console.log("print");
-    createAndDownloadPdf()
+    const invoice = await getInvoiceInvoiceId(id)
+    console.log(invoice);
+    // console.log("print");
+    // createAndDownloadPdf()
   }
 
   console.log(loading);
@@ -158,7 +160,7 @@ export default function SalesInvoice() {
                   <td>{invoice?.total}</td>
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td onClick={handleDownloadPdf}><i class="fa-solid fa-print"></i></td>
+                  <td onClick={(e) => handleDownloadPdf(e, invoice._id)}><i class="fa-solid fa-print"></i></td>
                 </tr>
               )) :
               <tr>
