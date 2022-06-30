@@ -53,7 +53,7 @@ export default function PurchaseInvoice() {
         <div className="purinvoicebody">
           <div className="purchaseinvoicebodyleft">
             <div class="searchbox">
-              <i class="fa-solid fa-magnifying-glass searchicon"></i>
+              <i style={{"paddingLeft":"5px"}} class="fa-solid fa-magnifying-glass searchicon"></i>
               <input
                 type="search"
                 class="searchbar searchbarpurchase"

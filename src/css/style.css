@@ -1420,20 +1420,31 @@ td {
   padding-bottom: 18px; }
 
 .upperinputbutton {
-  border: none;
-  color: white;
   padding: 12px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   margin: 2px 1px;
   cursor: pointer;
-  background-color: #2bb3e0;
   border-radius: 8px;
-  /* margin-right: 500px; */ }
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA; }
 
-.button11:hover {
-  background-color: #00bfff; }
+.upperinputbutton:hover {
+  background-color: #008CBA;
+  color: white; }
+
+.button12 {
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA;
+  padding: 12px 15px;
+  border-radius: 8px; }
+
+.button12:hover {
+  background-color: #008CBA;
+  color: white; }
 
 .lower {
   border: 1px solid black; }
@@ -1775,22 +1786,6 @@ a.disabled {
 
 /* Contants */
 /*Functions*/
-.detailModal--btn {
-  display: flex;
-  justify-content: end;
-  padding: 10px; }
-
-.detailmodal-box {
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
-  max-width: 90vw;
-  background-color: #fff;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  border-radius: 1rem;
-  overflow: hidden; }
-
 .modal-box__head {
   display: flex; }
 
@@ -1809,39 +1804,6 @@ a.disabled {
   width: 50%;
   padding: 0% 2%; }
 
-.right {
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  /* height: 39vh; */
-  height: 100%;
-  padding-top: 10px;
-  backdrop-filter: blur(100rem); }
-
-.left {
-  padding-top: 10px;
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(100rem); }
-
-.leftinput {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; }
-
-.rightinput {
-  display: flex;
-  justify-content: space-between;
-  width: 100%; }
-
 .crosstag {
   width: 100%;
   height: 100%; }
@@ -1853,9 +1815,6 @@ a.disabled {
 .cross {
   position: absolute;
   right: 0;
-  padding: 0.75% 1%;
-  border-radius: 50px;
-  background-color: #8a9082;
   cursor: pointer;
   z-index: 1000; }
 
@@ -1887,6 +1846,152 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: 2px solid #3c6dbd; }
+
+textarea {
+  width: calc(100% - 12px);
+  padding: 5px;
+  border-radius: 6px;
+  resize: none; }
+
+.testbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  padding: 20px; }
+
+.checcc {
+  width: 50%;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 8px #669999;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  max-width: 90vw;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  border-radius: 1rem;
+  overflow: hidden; }
+
+input,
+select,
+textarea {
+  margin-bottom: 10px;
+  border-radius: 3px; }
+
+.checcc input {
+  width: calc(100% - 10px);
+  padding: 5px;
+  border: 1px solid black; }
+
+.checcc input[type="date"] {
+  padding: 4px 5px; }
+
+.checcc textarea {
+  width: calc(100% - 12px);
+  padding: 5px; }
+
+.itemjjj:hover p,
+.itemjjj:hover i,
+.question:hover p,
+.question label:hover,
+input:hover::placeholder {
+  color: #669999; }
+
+.itemjjj input:hover,
+.itemjjj select:hover,
+.itemjjj textarea:hover {
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 0 #669999;
+  color: #669999; }
+
+.itemjjj {
+  position: relative;
+  margin: 10px 0; }
+
+.itemjjj > input {
+  border: 1px solid black; }
+
+.itemjjj span {
+  color: red; }
+
+.week {
+  display: flex;
+  /* justfiy-content: space-between; */ }
+
+.columsss {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.itemjjj {
+  /* need to be changed*/
+  width: 48%; }
+
+.checcc input[type="date"]::-webkit-inner-spin-button {
+  display: none; }
+
+.itemjjj i,
+.checcc input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  font-size: 20px;
+  color: #a3c2c2; }
+
+.itemjjj i {
+  right: 1%;
+  top: 30px;
+  z-index: 1; }
+
+.checcc input[type="radio"],
+.checcc input[type="checkbox"] {
+  display: none; }
+
+.checcc input[type="radio"]:checked + label:after {
+  opacity: 1; }
+
+.flax {
+  display: flex;
+  justify-content: space-around; }
+
+.btn-block {
+  margin-top: 10px;
+  text-align: center; }
+
+.detailmodalselect {
+  width: 96.5%;
+  height: 55%; }
+
+.buttondetailmodal {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #669999;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer; }
+
+.buttondetailmodal:hover {
+  background: #a3c2c2; }
+
+@media (min-width: 568px) {
+  .name-itemjjj,
+  .city-itemjjj {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+  .name-itemjjj input,
+  .name-itemjjj div {
+    width: calc(50% - 20px); }
+  .name-itemjjj div input {
+    width: 97%; }
+  .name-itemjjj div label {
+    display: block;
+    padding-bottom: 5px; } }
 
 .container {
   display: flex;
@@ -2689,17 +2794,29 @@ select {
   border-radius: 5px;
   margin-right: 5px;
   background-color: white;
-  font-size: 15px; }
+  font-size: 15px;
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA; }
+
+.invoicesettingbutton:hover {
+  background-color: #008CBA;
+  color: white; }
 
 .addpurchasebutton {
   margin-right: 5px;
   text-align: center;
   margin: 0;
   height: 32px;
-  background-color: blue;
-  color: white;
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA;
   width: 230px;
   font-size: 14px; }
+
+.addpurchasebutton:hover {
+  background-color: #008CBA;
+  color: white; }
 
 .fa-keyboard {
   padding-top: 5px; }
@@ -2755,15 +2872,29 @@ select {
   padding-left: 15px; }
 
 .possalesbutton {
-  color: blue;
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA;
   height: 32px;
   padding: 5px;
   border-radius: 5px;
   margin-right: 5px;
-  background-color: white;
   font-size: 15px;
   width: 150px;
   font-size: 14px; }
+
+.possalesbutton:hover {
+  background-color: #008CBA;
+  color: white; }
+
+.addconversion {
+  background-color: white;
+  border: 1px solid #008CBA;
+  color: #008CBA; }
+
+.addconversion:hover {
+  background-color: #008CBA;
+  color: white; }
 
 .partieslefthead {
   padding-top: 8px;
