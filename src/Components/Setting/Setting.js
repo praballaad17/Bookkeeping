@@ -25,29 +25,24 @@ export default function Setting() {
       <div className="setting__main">
         <Routes>
           <Route path="/general" element={<General />} />
+
+          <Route path="/item" element={<Item />} />
+
+          <Route path="/management" element={<Management />} />
+
+          <Route path="/partiii" element={<Partiii />} />
+
+          <Route path="/priiint" element={<Priiint />} />
+
+          <Route path="/taxes" element={<Taxes />} />
+
+          <Route path="/transaction" element={<Transaction />} />
+
+          <Route path="/transactionmessage" element={<TransactionMessage />} />
+          <Route
+            path="/"
+            element={<Navigate to="/setting/general" />} replace />
         </Routes>
-        <Routes>
-          <Route path="/item" element={<Item/>} />
-        </Routes>
-        <Routes>
-          <Route path="/management" element={<Management/>} />
-        </Routes>
-        <Routes>
-          <Route path="/partiii" element={<Partiii/>} />
-        </Routes>
-        <Routes>
-          <Route path="/priiint" element={<Priiint/>} />
-        </Routes>
-        <Routes>
-          <Route path="/taxes" element={<Taxes/>} />
-        </Routes>
-        <Routes>
-          <Route path="/transaction" element={<Transaction/>} />
-        </Routes>
-        <Routes>
-          <Route path="/transactionmessage" element={<TransactionMessage/>} />
-        </Routes>
-        
 
       </div>
     </div>,

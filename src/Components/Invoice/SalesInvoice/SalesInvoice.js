@@ -4,8 +4,6 @@ import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
 import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf, getInvoiceInvoiceId } from "../../../services/InvoiceServices";
-import { saveAs } from 'file-saver';
-import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf } from "../../../services/InvoiceServices";
 // import { saveAs } from 'file-saver';
 import Url from "../../../config.json";
 import axios from 'axios';
@@ -53,7 +51,7 @@ export default function SalesInvoice() {
     const invoice = await getInvoiceInvoiceId(id)
     console.log(invoice);
     // console.log("print");
-    // createAndDownloadPdf()
+    createAndDownloadPdf(invoice)
   }
 
   console.log(loading);
