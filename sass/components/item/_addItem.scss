@@ -36,21 +36,32 @@
     display: block;
     padding-bottom: 18px;
 }
-.upperinputbutton {
-    border: none;
-    color: white;
+.upperinputbutton {  
      padding: 12px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     margin: 2px 1px;
     cursor: pointer;
-    background-color: #2bb3e0;
     border-radius: 8px;
-    /* margin-right: 500px; */
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;;
   }
-  .button11:hover{
-      background-color: #00bfff;
+  .upperinputbutton:hover{
+    background-color:#008CBA;
+    color: white;
+  }
+  .button12{
+    background-color: white;
+    border: 1px solid #008CBA;
+    color:#008CBA;
+    padding: 12px 15px;
+    border-radius: 8px;
+  }
+  .button12:hover{
+    background-color:#008CBA;
+    color: white;
   }
   .lower{
       border: 1px solid black;

@@ -17,7 +17,7 @@
         left: 50vw;
         background-color: $color-white;
         transform: translate(-50%, -50%);
-        z-index: 1000;
+        z-index: 3000;
         border-radius: 1rem;
         overflow: hidden;
 
@@ -164,6 +164,31 @@
                         line-height: 2rem;
                     }
                 }
+            }
+        }
+    }
+
+    &--delete {
+        display: flex;
+        flex-direction: column;
+        padding: 30px 50px;
+        justify-content: space-between;
+
+        &--icon {
+            font-size: 50px;
+            color: $color-danger;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        &-btn {
+            display: flex;
+            justify-content: end;
+
+            &>button {
+                margin-left: 10px;
+                margin-top: 20px;
             }
         }
     }

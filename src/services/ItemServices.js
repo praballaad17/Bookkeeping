@@ -10,7 +10,6 @@ export const importItemBulk = async (itemArray, userId) => {
             itemArray,
             userId
         });
-        console.log(response.data);
         return response.data;
     } catch (err) {
         throw new Error(err.response.data.error);
@@ -22,7 +21,6 @@ export const getItemsByUserId = async (userId, limit, pagenumber) => {
         const response = await axios.get(`${apiEndpoint}/items/userId/${userId}`, {
             params: { pagenumber, limit }
         });
-        console.log(response.data);
         return response.data;
     } catch (err) {
         throw new Error(err.response.data.error);
@@ -32,7 +30,6 @@ export const getItemsByUserId = async (userId, limit, pagenumber) => {
 export const searchItem = async (query) => {
     try {
         const response = await axios.get(`${apiEndpoint}/searchItem/${query}`);
-        console.log(response.data);
         return response.data;
     } catch (err) {
         throw new Error(err.response.data.error);

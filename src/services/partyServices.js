@@ -10,7 +10,6 @@ export const createParty = async (party, userId) => {
             party,
             userId
         });
-        console.log(response.data);
         return response.data;
     } catch (error) {
         return error
@@ -22,7 +21,6 @@ export const createParty = async (party, userId) => {
 export const getPartyByUserId = async (userId) => {
     try {
         const response = await axios.get(`${apiEndpoint}/getPartyByUserId/${userId}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         return error

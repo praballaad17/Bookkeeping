@@ -20,7 +20,15 @@
 @import "components/item/addItem";
 @import "components/item/importItem";
 
+@import "components/setting/general";
+@import "components/setting/item";
+@import "components/setting/management";
+@import "components/setting/party";
+@import "components/setting/print";
 @import "components/setting/setting";
+@import "components/setting/taxes";
+@import "components/setting/transaction";
+@import "components/setting/transactionmessage";
 
 @import "layouts/mainloader";
 @import "layouts/notification";
@@ -34,6 +42,7 @@
 @import "pages/profile";
 @import "pages/dashboardStyle";
 
+@import "./components/invoices/editbox";
 @import "./components/invoices/itemList";
 @import "./components/invoices/itemListSales";
 @import "./components/invoices/invoice";

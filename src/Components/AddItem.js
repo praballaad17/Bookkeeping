@@ -137,10 +137,10 @@ export default function AddItem() {
           </div>
                <div className="lowerbuttons">
                   <div className="lowerbuttoninput">
-                    <button class="button11">Save</button>
+                    <button class="button12">Save</button>
                   </div>
                   <div className="lowerbuttoninput">
-                    <button class="button11">Save & New</button>
+                    <button class="button12">Save & New</button>
                   </div>
                </div>
         </div>
