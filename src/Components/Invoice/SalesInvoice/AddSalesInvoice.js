@@ -68,9 +68,10 @@ export default function AddSalesInvoice() {
 
   const handleTotalAmount = (addAmount, prevTotal = invoice.total) => {
     console.log("total add", addAmount);
+
     setInvoice({
       ...invoice,
-      total: prevTotal + addAmount
+      total: (parseFloat(prevTotal) + parseFloat(addAmount)).toFixed(3)
     });
   };
 

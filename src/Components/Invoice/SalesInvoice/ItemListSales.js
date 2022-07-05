@@ -3,6 +3,7 @@ import { searchItem } from "../../../services/ItemServices";
 import ItemSearchBox from "../ItemSearchBox";
 import { useUser } from "../../../Context/userContext"
 import { getPartyByUserId } from "../../../services/partyServices";
+import DeleteModal from "./DeleteModal";
 
 export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
   const { user } = useUser()
@@ -10,6 +11,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
+
   const [customers, setCustumers] = useState([])
 
   console.log(itemlist);
@@ -120,6 +122,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
 
   const handleItemRemove = (index) => {
     const list = [...itemlist];
+
     const itemAmount = list[index]["itemAmount"];
     list.splice(index, 1);
     handleTotalAmount(-itemAmount);
@@ -209,7 +212,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
               <th className="title">Amount</th>
             </tr>
           </thead>
-          {/* <div className="listofItems"></div> */}
+
           <tbody>
             {itemlist.map((x, i) => {
               return (

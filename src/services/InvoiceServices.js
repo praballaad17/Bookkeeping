@@ -79,20 +79,21 @@ export const deleteInvoice = async (id) => {
 }
 
 export const createAndDownloadPdf = async (invoice) => {
+  console.log(invoice);
   let totalQuantity = 0
   invoice.itemIds.map((item) => {
-    totalQuantity += item.unit;
+    totalQuantity += Number(item.unit);
     return
   })
   const state = {
-    name: "name", gstin: "234587Dfggfdf45", phone: "874596123", date: invoice?.date, partyName: invoice?.party?.name, address: invoice?.party?.billAddress, placeOfSupply: invoice?.party?.placeOfSupply,
+    name: "name", gstin: "234587Dfggfdf45", invoiceNumber: invoice.invoiceNumber, phone: "874596123", date: invoice?.date, partyName: invoice?.party?.name, address: invoice?.party?.billAddress, placeOfSupply: invoice?.party?.placeOfSupply,
     itemlist: invoice?.itemIds, discount: 0, total: invoice?.total, totalQuantity, receivedAmount: 0, bankAccount: "1245789865", ifsc: "SBIN0010802"
   }
-  const res = await axios.post(`${apiEndpointInvoice}/invoice-pdf`, state).then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
+  axios.post(`${apiEndpointInvoice}/invoice-pdf`, state).then(() => axios.get(`${apiEndpointInvoice}/get-pdf-invoice`, { responseType: 'blob' }))
     .then((res) => {
       const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
       console.log(pdfBlob);
-      saveAs(pdfBlob, 'newPdf.pdf');
+      saveAs(pdfBlob, `${invoice.invoiceNumber}-${invoice?.date}`);
     })
   // return res;
 }

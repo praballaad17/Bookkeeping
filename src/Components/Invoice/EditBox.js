@@ -12,7 +12,7 @@ export default function EditBox({ id, name, title, setEdit }) {
             console.log(err);
             alert("Error: Invoice not deleted")
         }).finally(() => {
-            window.location = "/dashboard/sales/";
+            window.location = "/sales/";
         })
     }
     return (

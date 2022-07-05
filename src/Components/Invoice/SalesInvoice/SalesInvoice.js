@@ -4,15 +4,14 @@ import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
 import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf, getInvoiceInvoiceId } from "../../../services/InvoiceServices";
-// import { saveAs } from 'file-saver';
-import Url from "../../../config.json";
-import axios from 'axios';
-const apiEndpointInvoice = Url?.localUrl + "/invoice";
+import DeleteModal from "./DeleteModal";
 
 export default function SalesInvoice() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [deleteModal, setDelete] = useState(false)
+  const [refresh, setRefresh] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,17 +27,13 @@ export default function SalesInvoice() {
       }
     };
     getInvoice();
-  }, [user]);
+    setRefresh(false)
+  }, [user, refresh]);
 
-  const getDate = (d) => {
-    const date = new Date(d);
-    console.log(date);
-    // console.log(date.getDate());
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-  };
+
 
   const openInvoice = (invoice) => {
-    console.log(invoice);
+
     navigate(
       `/invoice/sales/open/${invoice._id}`,
       { state: { invoice } }
@@ -54,7 +49,15 @@ export default function SalesInvoice() {
     createAndDownloadPdf(invoice)
   }
 
-  console.log(loading);
+  const HandleDeleteInvoice = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDelete(true)
+    console.log(invoice);
+    // deleteInvoice(invoice._id)
+  }
+
+
   return (
     <>
       <div className="purinvoice__head">
@@ -145,11 +148,7 @@ export default function SalesInvoice() {
               invoice.map((invoice) => (
                 <tr key={invoice._id} className="purinvoice__table--invoice" onClick={() => openInvoice(invoice)}>
                   <td>
-                    <div onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      deleteInvoice(invoice._id)
-                    }}>
+                    <div onClick={HandleDeleteInvoice}>
                       <i className="fa-solid fa-trash-can"></i>
                     </div>
                   </td>
@@ -161,6 +160,8 @@ export default function SalesInvoice() {
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
                   <td onClick={(e) => handleDownloadPdf(e, invoice._id)}><i class="fa-solid fa-print"></i></td>
+                  <DeleteModal deleted={(e) => { e.stopPropagation(); deleteInvoice(invoice._id); setDelete(false); setRefresh(true) }} open={deleteModal} onClose={() => setDelete(false)} />
+
                 </tr>
               )) :
               <tr>
