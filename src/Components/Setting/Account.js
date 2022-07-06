@@ -3,7 +3,7 @@ import React from "react";
 const Account = () => {
   return (
     <>
-      <div className="purinvoice__head">
+      <div className="purinvoice__head"  style={{"height":"65px"}}>
         <div className="leftheadpurchase">
           <span>Account Settings</span>
           <span className="smallfontpurchase">
