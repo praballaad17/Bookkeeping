@@ -20,15 +20,13 @@
 @import "components/item/addItem";
 @import "components/item/importItem";
 
-@import "components/setting/general";
-@import "components/setting/item";
-@import "components/setting/management";
-@import "components/setting/party";
-@import "components/setting/print";
+@import "components/setting/account";
+@import "components/setting/reminder";
+@import "components/setting/managebusiness";
+@import "components/setting/invoicetheme";
+@import "components/setting/manageuser";
 @import "components/setting/setting";
-@import "components/setting/taxes";
-@import "components/setting/transaction";
-@import "components/setting/transactionmessage";
+
 
 @import "layouts/mainloader";
 @import "layouts/notification";

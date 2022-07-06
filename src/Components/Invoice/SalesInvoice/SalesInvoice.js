@@ -3,60 +3,60 @@ import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
-import { getInvoiceUserId, deleteInvoice, createAndDownloadPdf, getInvoiceInvoiceId } from "../../../services/InvoiceServices";
+import {
+  getInvoiceUserId,
+  deleteInvoice,
+  createAndDownloadPdf,
+  getInvoiceInvoiceId,
+} from "../../../services/InvoiceServices";
 import DeleteModal from "./DeleteModal";
 
 export default function SalesInvoice() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const [deleteModal, setDelete] = useState(false)
-  const [refresh, setRefresh] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [deleteModal, setDelete] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const getInvoice = async () => {
       try {
-        const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.SALES, user?.id);
+        const purchaseInvoice = await getInvoiceUserId(
+          INVOICETYPE.SALES,
+          user?.id
+        );
         setInvoice(purchaseInvoice);
-        setLoading(false)
-
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     getInvoice();
-    setRefresh(false)
+    setRefresh(false);
   }, [user, refresh]);
 
-
-
   const openInvoice = (invoice) => {
-
-    navigate(
-      `/invoice/sales/open/${invoice._id}`,
-      { state: { invoice } }
-    )
-  }
+    navigate(`/invoice/sales/open/${invoice._id}`, { state: { invoice } });
+  };
 
   const handleDownloadPdf = async (e, id) => {
-    e.preventDefault()
+    e.preventDefault();
     e.stopPropagation();
-    const invoice = await getInvoiceInvoiceId(id)
+    const invoice = await getInvoiceInvoiceId(id);
     console.log(invoice);
     // console.log("print");
-    createAndDownloadPdf(invoice)
-  }
+    createAndDownloadPdf(invoice);
+  };
 
   const HandleDeleteInvoice = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDelete(true)
+    e.preventDefault();
+    e.stopPropagation();
+    setDelete(true);
     console.log(invoice);
     // deleteInvoice(invoice._id)
-  }
-
+  };
 
   return (
     <>
@@ -88,7 +88,10 @@ export default function SalesInvoice() {
         <div className="purinvoicebody">
           <div className="purchaseinvoicebodyleft">
             <div className="searchbox">
-              <i style={{ "paddingLeft": "5px" }} className="fa-solid fa-magnifying-glass searchicon"></i>
+              <i
+                style={{ paddingLeft: "5px" }}
+                className="fa-solid fa-magnifying-glass searchicon"
+              ></i>
               <input
                 type="search"
                 className="searchbar searchbarpurchase"
@@ -144,9 +147,13 @@ export default function SalesInvoice() {
             </tr>
           </thead>
           <tbody>
-            {!loading ?
+            {!loading ? (
               invoice.map((invoice) => (
-                <tr key={invoice._id} className="purinvoice__table--invoice" onClick={() => openInvoice(invoice)}>
+                <tr
+                  key={invoice._id}
+                  className="purinvoice__table--invoice"
+                  onClick={() => openInvoice(invoice)}
+                >
                   <td>
                     <div onClick={HandleDeleteInvoice}>
                       <i className="fa-solid fa-trash-can"></i>
@@ -159,23 +166,37 @@ export default function SalesInvoice() {
                   <td>{invoice?.total}</td>
                   <td></td>
                   <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td onClick={(e) => handleDownloadPdf(e, invoice._id)}><i class="fa-solid fa-print"></i></td>
-                  <DeleteModal deleted={(e) => { e.stopPropagation(); deleteInvoice(invoice._id); setDelete(false); setRefresh(true) }} open={deleteModal} onClose={() => setDelete(false)} />
-
+                  <td onClick={(e) => handleDownloadPdf(e, invoice._id)}>
+                    <i className="fa-solid fa-print"></i>
+                  </td>
+                  <DeleteModal
+                    deleted={(e) => {
+                      e.stopPropagation();
+                      deleteInvoice(invoice._id);
+                      setDelete(false);
+                      setRefresh(true);
+                    }}
+                    open={deleteModal}
+                    onClose={() => setDelete(false)}
+                  />
                 </tr>
-              )) :
+              ))
+            ) : (
               <tr>
                 <td colspan="8">
                   <div className="u-flex-all-center"> Loading...</div>
                 </td>
               </tr>
-            }
+            )}
           </tbody>
         </table>
 
-        {!invoice || !invoice.length && (<span className="purchasebodyspan">
-          No Sales Invoice made during the selected time period
-        </span>)}
+        {!invoice ||
+          (!invoice.length && (
+            <span className="purchasebodyspan">
+              No Sales Invoice made during the selected time period
+            </span>
+          ))}
       </div>
     </>
   );

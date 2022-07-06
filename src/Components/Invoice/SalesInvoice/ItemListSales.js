@@ -140,9 +140,9 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
           <div>
             <span>SALES | </span>
             <span className="creditspan">Credit </span>
-            <label class="switch">
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider round"></span>
+              <span className="slider round"></span>
             </label>
             <span className="cashspan"> Cash</span>
           </div>
@@ -225,7 +225,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                   <td className="title-input invoice__item--index">
                     {/* {index === i ? */}
                     <div disabled={!isEdit} onClick={() => handleItemRemove(i)}>
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i className="fa-solid fa-trash-can"></i>
                     </div>
                     {/* : <div>
                         {i}

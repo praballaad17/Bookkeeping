@@ -87,7 +87,7 @@ export default function ImportItem() {
                         </a>
                         <img src="https://exceltable.com/en/analyses-reports/images/analyses-reports29-1.png" alt="sample photo" />
                         <h4>STEP 2</h4>
-                        <span><i class="fa fa-upload" aria-hidden="true"></i>Upload the file (xlsx or xls) by clicking on the Upload File button below.</span>
+                        <span><i className="fa fa-upload" aria-hidden="true"></i>Upload the file (xlsx or xls) by clicking on the Upload File button below.</span>
                         <h4>STEP 3</h4>
                         <span>Verify the items from the file & complete the import.</span>
                     </div>

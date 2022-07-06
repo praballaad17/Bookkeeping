@@ -34,9 +34,9 @@ export default function PurchaseInvoice() {
           </span>
         </div>
         <div className="rightheadpurchase">
-          <i class="fa-solid fa-keyboard"></i>
+          <i className="fa-solid fa-keyboard"></i>
           <button className="invoicesettingbutton">
-            Invoice Settings <i class="fa-solid fa-gear "></i>
+            Invoice Settings <i className="fa-solid fa-gear "></i>
           </button>
           {/* <button className="addpurchasebutton"> */}
           {/* {" "} */}
@@ -52,11 +52,11 @@ export default function PurchaseInvoice() {
       <div className="purinvoice__body">
         <div className="purinvoicebody">
           <div className="purchaseinvoicebodyleft">
-            <div class="searchbox">
-              <i style={{"paddingLeft":"5px"}} class="fa-solid fa-magnifying-glass searchicon"></i>
+            <div className="searchbox">
+              <i style={{"paddingLeft":"5px"}} className="fa-solid fa-magnifying-glass searchicon"></i>
               <input
                 type="search"
-                class="searchbar searchbarpurchase"
+                className="searchbar searchbarpurchase"
                 id="searchitem"
                 name="searchitem"
                 spellcheck="false"
@@ -65,7 +65,7 @@ export default function PurchaseInvoice() {
               />
             </div>
             <div >
-              <select id="types" name="timespan" class="timespanpurchase">
+              <select id="types" name="timespan" className="timespanpurchase">
                 <option value="currentyear">Current Fiscal Year</option>
                 <option value="today">Today</option>
                 <option value="yesterday">Yesterday</option>
@@ -81,7 +81,7 @@ export default function PurchaseInvoice() {
           </div>
           <div className="purchaseinvoicebodyright">
             <div >
-              <select id="types" name="timespan" class="reportpurchase">
+              <select id="types" name="timespan" className="reportpurchase">
                 <option value="" disabled selected hidden> Reports </option>
                 <option value="s=gstr">GSTR-2 (Purchase)</option>
                 <option value="daybook">DayBook</option>

@@ -2,16 +2,11 @@ import ReactDom from "react-dom";
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SideBar from "./SideBar";
-import General from "./General";
-import Management from "./Management";
-import Item from "./Item";
-// import SettingParty from "./setPrint";
-import Taxes from "./Taxes";
-import Transaction from "./Transaction";
-import TransactionMessage from "./TransactionMessage";
-import Partiii from "./Partiii";
-import Priiint from "./Priiint";
-// import SettingParty from "./setParty";
+import Account from "./Account";
+import ManageBusiness from "./ManageBusiness";
+import InvoiceTheme from "./InvoiceTheme";
+import ManageUser from "./ManageUser";
+import Reminder from "./Reminder";
 
 
 
@@ -24,21 +19,15 @@ export default function Setting() {
       <SideBar />
       <div className="setting__main">
         <Routes>
-          <Route path="/general" element={<General />} />
+          <Route path="/account" element={<Account/>} />
 
-          <Route path="/item" element={<Item />} />
+          <Route path="/managebusiness" element={<ManageBusiness/>} />
 
-          <Route path="/management" element={<Management />} />
+          <Route path="/invoicetheme" element={<InvoiceTheme/>} />
 
-          <Route path="/partiii" element={<Partiii />} />
+          <Route path="/manageuser" element={<ManageUser/>} />
 
-          <Route path="/priiint" element={<Priiint />} />
-
-          <Route path="/taxes" element={<Taxes />} />
-
-          <Route path="/transaction" element={<Transaction />} />
-
-          <Route path="/transactionmessage" element={<TransactionMessage />} />
+          <Route path="/reminder" element={<Reminder/>} />
           <Route
             path="/"
             element={<Navigate to="/setting/general" />} replace />

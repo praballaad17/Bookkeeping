@@ -61,7 +61,7 @@ export default function Sidebar({ open, onClose }) {
         <i className="fa-solid fa-house"></i> Home
       </a></Link> */}
         <Link className="active " to={ROUTES.DASHBOARD}>
-          <i class="fa-solid fa-house"></i> Home
+          <i className="fa-solid fa-house"></i> Home
         </Link>
         {/* <a href="#parties ">
         <i className="fa-solid fa-user-group"></i>Parties

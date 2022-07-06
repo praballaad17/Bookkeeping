@@ -40,28 +40,28 @@ export default function ItemIndividual({ selectedItem }) {
                         <thead>
                             <tr>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Type
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Type
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Date
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Date
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Quantity
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Quantity
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Date
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Date
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Price/Unit
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Price/Unit
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>Status
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>Status
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
 
                                 {/* <th>Item Code</th>

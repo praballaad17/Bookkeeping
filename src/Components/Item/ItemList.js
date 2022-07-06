@@ -39,11 +39,11 @@ export default function ItemList({ items, setSelectedItem }) {
                         <thead className="theadbold">
                             <tr>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>FULLNAME
-                                    <i class="fa-solid fa-filter"></i>
+                                    <i className="fa-solid fa-arrow-up"></i>FULLNAME
+                                    <i className="fa-solid fa-filter"></i>
                                 </th>
                                 <th>
-                                    <i class="fa-solid fa-arrow-up"></i>QUANTITY
+                                    <i className="fa-solid fa-arrow-up"></i>QUANTITY
                                 </th>
                             </tr>
                         </thead>
@@ -51,7 +51,7 @@ export default function ItemList({ items, setSelectedItem }) {
                             {result && result !== null && result.map(item => (
                                 <tr onClick={() => setSelectedItem(item)}>
                                     <td>{item.name}</td>
-                                    <td>{item.openigStockQuantity}<i class="fa-solid fa-ellipsis-vertical"></i></td>
+                                    <td>{item.openigStockQuantity}<i className="fa-solid fa-ellipsis-vertical"></i></td>
                                 </tr>
 
                             ))

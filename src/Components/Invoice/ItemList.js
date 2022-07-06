@@ -200,7 +200,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   <td className="title-input invoice__item--index">
                     {/* {index === i ? */}
                     <div onClick={() => handleItemRemove(i)}>
-                      <i class="fa-solid fa-trash-can"></i>
+                      <i className="fa-solid fa-trash-can"></i>
                     </div>
                     {/* : <div>
                         {i}
@@ -344,10 +344,10 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
           </div>
         </div>
         <div className="buttonsubmit">
-          <button class=" sharebutton">
-            Share | <i class="fa-solid fa-angle-down"></i>
+          <button className=" sharebutton">
+            Share | <i className="fa-solid fa-angle-down"></i>
           </button>
-          <button class="button11 lastbutton">Save</button>
+          <button className="button11 lastbutton">Save</button>
         </div>
       </div>
     </div >
