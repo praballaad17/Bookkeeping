@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
-import { createInvoice } from "../../services/InvoiceServices";
+import { createInvoice } from "../../../services/InvoiceServices";
 import ItemList from "./ItemList";
-import { useUser } from "../../Context/userContext"
-import * as VARIABLE from "../../constants/variables"
+import { useUser } from "../../../Context/userContext"
 
 export default function AddPurchaseInvoice() {
+  const { user } = useUser()
+  const { id } = useParams()
+  const location = useLocation()
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [total, setTotal] = useState(0);
-  const { user } = useUser()
+  const [isEdit, setEdit] = useState(true)
   const [invoice, setInvoice] = useState({
     partyId: "",
     type: "purchase",

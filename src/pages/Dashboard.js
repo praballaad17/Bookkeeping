@@ -8,8 +8,8 @@ import * as ROUTES from "../constants/routes";
 import Item from "../Components/Item/Item";
 import AddItem from "../Components/AddItem";
 import ImportItem from "../Components/Utilities/ImportItem";
-import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice";
-import AddPurchaseInvoice from "../Components/Invoice/AddPurchaseInvoice";
+import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice/PurchaseInvoice";
+import AddPurchaseInvoice from "../Components/Invoice/PurchaseInvoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice/SalesInvoice";
 import AddSalesInvoice from "../Components/Invoice/SalesInvoice/AddSalesInvoice";
 import ItemTable from "../Components/Utilities/ItemTable";
@@ -23,7 +23,7 @@ import Setting from "../Components/Setting/Setting";
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
-  // if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
+  if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
 
   return (
     <div className="dashboard-mian">

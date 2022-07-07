@@ -51,12 +51,11 @@ export default function SalesInvoice() {
   };
 
   const HandleDeleteInvoice = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDelete(true);
-    console.log(invoice);
-    // deleteInvoice(invoice._id)
-  };
+    e.preventDefault()
+    e.stopPropagation()
+    setDelete(true)
+  }
+
 
   return (
     <>
