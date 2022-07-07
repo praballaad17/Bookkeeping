@@ -1,28 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
-import { INVOICETYPE } from "../../constants/variables";
-import { useUser } from "../../Context/userContext";
-import { getInvoiceUserId } from "../../services/InvoiceServices";
+import { Link, useNavigate } from "react-router-dom";
+import * as ROUTES from "../../../constants/routes";
+import { INVOICETYPE } from "../../../constants/variables";
+import { useUser } from "../../../Context/userContext";
+import { createAndDownloadPdf, deleteInvoice, getInvoiceInvoiceId, getInvoiceUserId } from "../../../services/InvoiceServices";
+import DeleteModal from "../SalesInvoice/DeleteModal";
 
 export default function PurchaseInvoice() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState();
+  const [refresh, setRefresh] = useState(false)
+  const [deleteModal, setDelete] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getInvoice = async () => {
-      const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.PURCHASE, user?.id);
-      console.log(purchaseInvoice);
-      setInvoice(purchaseInvoice);
+      try {
+        const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.PURCHASE, user?.id);
+        setInvoice(purchaseInvoice);
+
+      } catch (error) {
+        console.log(error);
+      }
     };
     getInvoice();
-  }, [user]);
+    setRefresh(false)
+  }, [user, refresh]);
 
-  const getDate = (d) => {
-    const date = new Date(d);
-    // console.log(date.getDate());
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-  };
+  const openInvoice = (invoice) => {
+
+    navigate(
+      `/invoice/purchase/open/${invoice._id}`,
+      { state: { invoice } }
+    )
+  }
+
+  const handleDownloadPdf = async (e, id) => {
+    e.preventDefault()
+    e.stopPropagation();
+    const invoice = await getInvoiceInvoiceId(id)
+    createAndDownloadPdf(invoice)
+  }
+
+  const HandleDeleteInvoice = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDelete(true)
+  }
 
   return (
     <>
@@ -53,7 +77,7 @@ export default function PurchaseInvoice() {
         <div className="purinvoicebody">
           <div className="purchaseinvoicebodyleft">
             <div class="searchbox">
-              <i style={{"paddingLeft":"5px"}} class="fa-solid fa-magnifying-glass searchicon"></i>
+              <i style={{ "paddingLeft": "5px" }} class="fa-solid fa-magnifying-glass searchicon"></i>
               <input
                 type="search"
                 class="searchbar searchbarpurchase"
@@ -111,9 +135,10 @@ export default function PurchaseInvoice() {
                   <td>{invoice?.invoiceNumber}</td>
                   <td>{invoice?.party?.name}</td>
                   <td></td>
-                  <td></td>
                   <td>{invoice?.total}</td>
                   <td></td>
+                  <td onClick={(e) => handleDownloadPdf(e, invoice._id)}><i class="fa-solid fa-print"></i></td>
+                  <DeleteModal deleted={(e) => { e.stopPropagation(); deleteInvoice(invoice._id); setDelete(false); setRefresh(true) }} open={deleteModal} onClose={() => setDelete(false)} />
                 </tr>
               ))}
           </tbody>

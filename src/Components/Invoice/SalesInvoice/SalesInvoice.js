@@ -53,8 +53,6 @@ export default function SalesInvoice() {
     e.preventDefault()
     e.stopPropagation()
     setDelete(true)
-    console.log(invoice);
-    // deleteInvoice(invoice._id)
   }
 
 

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
-import { createInvoice } from "../../services/InvoiceServices";
+import { createInvoice } from "../../../services/InvoiceServices";
 import ItemList from "./ItemList";
-import { useUser } from "../../Context/userContext"
-import * as VARIABLE from "../../constants/variables"
+import { useUser } from "../../../Context/userContext"
 
 export default function AddPurchaseInvoice() {
   const [loading, setLoading] = useState(false);

@@ -1,12 +1,3 @@
-// import React from 'react'
-
-// export default function AddSalesInvoice() {
-//     return (
-//         <div>AddSalesInvoice</div>
-//     )
-// }
-
-
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { useLocation, useParams } from "react-router-dom";
@@ -15,7 +6,6 @@ import { useUser } from "../../../Context/userContext";
 import { createInvoice, updateInvoice } from "../../../services/InvoiceServices";
 import EditBox from "../EditBox";
 import ItemList from "./ItemListSales";
-// import ItemList from "./ItemList";
 
 
 export default function AddSalesInvoice() {
