@@ -2,14 +2,69 @@
     width: 100%;
     height: 100%;
     display: flex;
+    background-color: rgb(241, 241, 241);
 }
 .managebusinessbodyleft{
    border: 1px solid black;
    flex: 50%;
-   
+   padding:30px;
+     
 }
 .managebusinessbodyright{
     border: 1px solid black;
     flex: 50%;
     right: 0;
+}
+.managebusinessbodyleft>div{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+}
+.managebusinessbodyleft>div>input,.managebusinessbodyleft>div>textarea{
+    border: 1px solid black;
+    width: 80%;
+    padding-left: 8px;
+}
+.managebusinessbodyleft>div>label,.managebusinessbodyright>div>label{
+    padding-bottom: 2px;
+}
+.managerightupperpart{
+    display: flex;
+    flex-direction: row;
+    // padding:30px;
+}
+.managerightupperpart>div{
+    width: 50%;
+}
+.managebusinessbodyright{
+    padding:30px;
+}
+.bankdetails{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    width: 80%;
+}
+.bankdetailsbutton{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(213, 207, 207);
+}
+.bankdetails>input{
+    width: 100%;
+    padding-left: 8px;
+}
+.termconditions{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+.TandCspan{
+    padding: 10px 5px;
+    border: 2px solid black;
+}
+.signaturebutton{
+    background-color: rgb(213, 207, 207);
+    height: 105px;
+    width: 250px;
 }

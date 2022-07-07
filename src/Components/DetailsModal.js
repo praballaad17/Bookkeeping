@@ -19,31 +19,31 @@ export default function DetailsModal({ open, onClose }) {
             </div>
             <div className="columsss">
               <div className="itemjjj">
-                <label for="bname">Business Name</label>
+                <label htmlFor="bname">Business Name</label>
                 <input id="bname" type="text" name="bname" required />
               </div>
               <div className="itemjjj">
-                <label for="email"> Email Address</label>
+                <label htmlFor="email"> Email Address</label>
                 <input id="email" type="email" name="lname" required />
               </div>
               <div className="itemjjj">
-                <label for="tel">Contact-No:</label>
+                <label htmlFor="tel">Contact-No:</label>
                 <input id="tel" type="tel" name="address1" required />
               </div>
               <div className="itemjjj">
-                <label for="state">State</label>
+                <label htmlFor="state">State</label>
                 <input id="state" type="text" name="state" required />
               </div>
               <div className="itemjjj">
-                <label for="zip">Zip/Postal Code</label>
+                <label htmlFor="zip">Zip/Postal Code</label>
                 <input id="zip" type="text" name="zip" required />
               </div>
               <div className="itemjjj">
-                <label for="gstin">GST IN</label>
+                <label htmlFor="gstin">GST IN</label>
                 <input id="gstin" type="text" name="gstin" required />
               </div>
               <div className="itemjjj">
-                <label for="businesstype">Business Type</label>
+                <label htmlFor="businesstype">Business Type</label>
                 <select
                   id="types"
                   className="detailmodalselect"
@@ -59,7 +59,7 @@ export default function DetailsModal({ open, onClose }) {
                 </select>
               </div>
               <div className="itemjjj">
-                <label for="businessCategory">Business Category</label>
+                <label htmlFor="businessCategory">Business Category</label>
                 <select
                   id="types"
                   className="detailmodalselect"
@@ -111,7 +111,7 @@ export default function DetailsModal({ open, onClose }) {
                 </select>
               </div>
               <div className="itemjjj">
-                <label for="phone">Business Discription</label>
+                <label htmlFor="phone">Business Discription</label>
                 <textarea
                   rows="4"
                   cols="24"
@@ -122,7 +122,7 @@ export default function DetailsModal({ open, onClose }) {
                 ></textarea>
               </div>
               <div className="itemjjj">
-                <label for="phone">Business Address</label>
+                <label htmlFor="phone">Business Address</label>
                 <textarea
                   rows="4"
                   cols="24"

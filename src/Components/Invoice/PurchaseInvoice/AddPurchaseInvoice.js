@@ -6,8 +6,8 @@ import { useUser } from "../../../Context/userContext"
 
 export default function AddPurchaseInvoice() {
   const { user } = useUser()
-  const { id } = useParams()
-  const location = useLocation()
+  // const { id } = useParams()
+  // const location = useLocation()
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
