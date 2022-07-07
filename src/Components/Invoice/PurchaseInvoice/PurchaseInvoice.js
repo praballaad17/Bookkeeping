@@ -117,10 +117,9 @@ export default function PurchaseInvoice() {
           <thead>
             <th>#</th>
             <th>Date</th>
-            <th>Ref No</th>
+            <th>Invoice Number</th>
             <th>Party Name</th>
             <th>Catagories Name</th>
-            <th>Type</th>
             <th>Total</th>
             <th>Recieve Party</th>
             <th>Balance</th>
@@ -129,16 +128,30 @@ export default function PurchaseInvoice() {
           <tbody>
             {invoice &&
               invoice.map((invoice) => (
-                <tr>
-                  <td></td>
+                <tr key={invoice._id}
+                  className="purinvoice__table--invoice"
+                  onClick={() => openInvoice(invoice)}
+                >
+                  <td>
+                    <div onClick={HandleDeleteInvoice}>
+                      <i className="fa-solid fa-trash-can"></i>
+                    </div>
+                  </td>
                   <td>{invoice?.date}</td>
                   <td>{invoice?.invoiceNumber}</td>
                   <td>{invoice?.party?.name}</td>
                   <td></td>
                   <td>{invoice?.total}</td>
                   <td></td>
+                  <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
                   <td onClick={(e) => handleDownloadPdf(e, invoice._id)}><i class="fa-solid fa-print"></i></td>
-                  <DeleteModal deleted={(e) => { e.stopPropagation(); deleteInvoice(invoice._id); setDelete(false); setRefresh(true) }} open={deleteModal} onClose={() => setDelete(false)} />
+                  <DeleteModal deleted={(e) => {
+                    e.stopPropagation();
+                    deleteInvoice(invoice._id);
+                    setDelete(false);
+                    setRefresh(true)
+                  }} open={deleteModal}
+                    onClose={() => setDelete(false)} />
                 </tr>
               ))}
           </tbody>

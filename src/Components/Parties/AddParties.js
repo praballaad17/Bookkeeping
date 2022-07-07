@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import ReactDom from "react-dom";
 import { createParty } from "../../services/partyServices";
 import { useUser } from "../../Context/userContext"
+import { useNavigate } from "react-router-dom";
 
 export default function AddParties({ open, onClose }) {
+  const navigate = useNavigate();
+
   const [party, setParty] = useState({
     name: "",
     phone: "",
     email: "",
     balance: "",
-    parytType: "custumer",
+    partyType: "custumer",
     partyCatagory: "",
     gstin: "",
     placeOfSupply: "",
@@ -22,17 +24,17 @@ export default function AddParties({ open, onClose }) {
   const { user } = useUser()
 
   const addParty = async () => {
-    console.log("sumit");
     try {
       const rparty = await createParty(party, user?.id)
-      console.log(rparty);
+      navigate(`/parties`, { state: { rparty } });
+
     } catch (error) {
       console.log(error);
     }
   }
 
   const handleParty = (e) => {
-    console.log(e.target.name, e.target.value);
+
     if (e.target.name === "balanceType") {
       if (e.target.value === "pay") {
         let tempBalance = Math.abs(parseInt(party.balance)) * -1
@@ -66,6 +68,7 @@ export default function AddParties({ open, onClose }) {
       <div className="partymain">
         <div className="partytop">
           <div>
+            <i onClick={() => navigate(-1)} className="fa-solid fa-arrow-left editbox--back"></i>
             <span>Add Party</span>
           </div>
           <div className="partytopicon">
@@ -106,8 +109,8 @@ export default function AddParties({ open, onClose }) {
             <label htmlFor="partyType" className="labelclass">
               Party Type:
             </label>
-            <select name="partyType" onSelect={(e) => handleParty(e)}>
-              <option defaultValue="custumer" >Custumer</option>
+            <select name="partyType" onChange={(e) => handleParty(e)}>
+              <option value="custumer" >Custumer</option>
               <option value="supplier">Supplier</option>
             </select>
           </div>

@@ -101,17 +101,12 @@ export default function AddSalesInvoice() {
 
   const handleUpdateInvoice = async (e) => {
     try {
-      console.log("update", invoice, itemlist);
       const updated = await updateInvoice(location.state.invoice._id, user.id, itemlist, invoice)
       setEdit(false)
-      console.log(updated);
     } catch (error) {
       console.log(error);
     }
   }
-
-  console.log("invoice", location.state?.invoice);
-
 
   return ReactDom.createPortal(
     <div className="invoice">

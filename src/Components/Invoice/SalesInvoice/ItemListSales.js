@@ -14,11 +14,11 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
 
   const [customers, setCustumers] = useState([])
 
-  console.log(itemlist);
+
   useEffect(() => {
     const getCustumers = async () => {
       try {
-        const customers = await getPartyByUserId(user?.id)
+        const customers = await getPartyByUserId(user?.id, "custumer")
         setCustumers(customers)
       } catch (error) {
         console.log(error);

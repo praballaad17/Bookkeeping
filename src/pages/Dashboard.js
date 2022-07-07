@@ -6,7 +6,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 // import Uppernavbar from "../Components/Uppernavbar";
 import * as ROUTES from "../constants/routes";
 import Item from "../Components/Item/Item";
-import AddItem from "../Components/AddItem";
+import AddItem from "../Components/Item/AddItem";
 import ImportItem from "../Components/Utilities/ImportItem";
 import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice/PurchaseInvoice";
 import AddPurchaseInvoice from "../Components/Invoice/PurchaseInvoice/AddPurchaseInvoice";
@@ -48,6 +48,7 @@ export default function Dashboard({ user: loggedInUser }) {
             {/* <Route path="/item-table" element={<ItemTable />} />  */}
             <Route path='/purchase' element={<PurchaseInvoice />} />
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
+            <Route path="/invoice/purchase/open/:id" element={<AddPurchaseInvoice />} />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
             <Route path="/invoice/sales/open/:id" element={<AddSalesInvoice />} />
