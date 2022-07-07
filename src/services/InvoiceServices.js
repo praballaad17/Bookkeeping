@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Url from "../config.json";
-// import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 
 const apiEndpointInvoice = Url?.apiUrl + "/invoice";
 // const apiEndpointInvoice = Url?.localUrl + "/invoice";
@@ -92,7 +92,7 @@ export const createAndDownloadPdf = async (invoice) => {
     .then((res) => {
       const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
       console.log(pdfBlob);
-      // saveAs(pdfBlob, `${invoice.invoiceNumber}-${invoice?.date}`);
+      saveAs(pdfBlob, `${invoice.invoiceNumber}-${invoice?.date}`);
     })
   // return res;
 }

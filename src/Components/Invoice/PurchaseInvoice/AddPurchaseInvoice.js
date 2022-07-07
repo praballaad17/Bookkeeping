@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
-import { createInvoice } from "../../../services/InvoiceServices";
+import { createInvoice, updateInvoice } from "../../../services/InvoiceServices";
 import ItemList from "./ItemList";
 import { useUser } from "../../../Context/userContext"
+import { useLocation, useParams } from "react-router-dom";
+import EditBox from "../EditBox";
 
 export default function AddPurchaseInvoice() {
   const { user } = useUser()
@@ -37,6 +39,23 @@ export default function AddPurchaseInvoice() {
     },
   ]);
 
+
+  useEffect(() => {
+    if (location.state && location.state.invoice) {
+
+      const { date, type, invoiceNumber, total, party, itemIds } = location.state?.invoice
+
+      setInvoice({
+        date, type, invoiceNumber, total, partyId: party._id
+      })
+
+      setitemlist(itemIds)
+      if (id)
+        setEdit(false)
+    }
+  }, [location.state])
+
+
   const handleTotalAmount = (addAmount, prevTotal = invoice.total) => {
     console.log("total add", addAmount);
     setInvoice({
@@ -58,7 +77,7 @@ export default function AddPurchaseInvoice() {
     try {
       await createInvoice(invoice, itemlist, user?.id);
       setLoading(false);
-      window.location = "/dashboard/purchase/";
+      window.location = "/purchase/";
     } catch (error) {
       setitemlist([
         {
@@ -82,17 +101,27 @@ export default function AddPurchaseInvoice() {
     }
   }
 
-  console.log(invoice);
+  const handleUpdateInvoice = async (e) => {
+    try {
+      const updated = await updateInvoice(location.state.invoice._id, user.id, itemlist, invoice)
+      setEdit(false)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return ReactDom.createPortal(
     <div className="invoice">
       <div >
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
-        <ItemList itemlist={itemlist} invoice={invoice} handleTotalAmount={handleTotalAmount} setitemlist={setitemlist} handleInvoice={handleChange} />
-        <button className="btn btn--secondary"
-          onClick={handleInvoice}
+        {id && !isEdit ? <EditBox id={location.state.invoice?._id} setEdit={setEdit} title={"Purchase Invoice#"} name={invoice?.invoiceNumber} /> : <></>}
+        <ItemList isEdit={isEdit} itemlist={itemlist} invoice={invoice} handleTotalAmount={handleTotalAmount} setitemlist={setitemlist} handleInvoice={handleChange} />
+        <button className={`btn ${!isEdit ? "btn--disable" : "btn--secondary"}`}
+          onClick={id ? handleUpdateInvoice : handleInvoice}
+          disabled={!isEdit}
         >
-          Create Invoice
+          {id ? "Update Invoice" : "Create Invoice"}
         </button>
       </div>
     </div>,

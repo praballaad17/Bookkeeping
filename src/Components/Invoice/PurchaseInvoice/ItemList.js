@@ -4,7 +4,7 @@ import { searchItem } from "../../../services/ItemServices";
 import { getPartyByUserId } from "../../../services/partyServices";
 import ItemSearchBox from "../ItemSearchBox";
 
-export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
+export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
   const { user } = useUser()
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
@@ -16,7 +16,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
   useEffect(() => {
     const getSupplier = async () => {
       try {
-        const supplier = await getPartyByUserId(user?.id)
+        const supplier = await getPartyByUserId(user?.id, "supplier")
         setSupplier(supplier)
       } catch (error) {
         console.log(error);
@@ -133,16 +133,16 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
           <div className="abovetable">
             <div className="partyinput ">
               <select onChange={(e) => { handleInvoice(e) }} id="partyId" name="partyId" className="partyinputs">
-                <option value="party">Party *</option>
+                <option value="party">Supplier *</option>
                 {supplier && supplier.length && supplier.map(supplier => (
-                  <option value={supplier?._id}>{supplier?.name}</option>
+                  <option key={supplier?._id} value={supplier?._id}>{supplier?.name}</option>
                 ))
                 }
               </select>
             </div>
             <div>
               <label htmlFor="quantity">Bill Number : </label>
-              <input onChange={(e) => handleInvoice(e)} type="tel" id="invoiceNumber" name="invoiceNumber" />
+              <input readOnly={!isEdit} value={invoice?.invoiceNumber} onChange={(e) => handleInvoice(e)} type="tel" id="invoiceNumber" name="invoiceNumber" />
             </div>
             <div>
               <input
@@ -152,15 +152,16 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                 placeholder="Phone No."
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 required
+                readOnly={!isEdit}
               />
             </div>
 
             <div>
               <label htmlFor="billdate" className="inputbox">
                 {" "}
-                Bill Date :{" "}
+                Invoice Date :{" "}
               </label>
-              <input type="date" id="date" name="date" onChange={e => handleInvoice(e)} />
+              <input readOnly={!isEdit} defaultValue={invoice?.date} type="date" id="date" name="date" onChange={e => handleInvoice(e)} />
             </div>
           </div>
         </div>
@@ -197,7 +198,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                 // onSelect={() => { setIndex(i); console.log("select", i) }}
                 // onBlur={() => setIndex(null)}
                 >
-                  <td className="title-input invoice__item--index">
+                  <td disabled={!isEdit} className="title-input invoice__item--index">
                     {/* {index === i ? */}
                     <div onClick={() => handleItemRemove(i)}>
                       <i className="fa-solid fa-trash-can"></i>
@@ -209,6 +210,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input invoice__item--searchbox">
                     <input
+                      readOnly={!isEdit}
                       className="itemList-input"
                       name="name"
                       value={itemlist[i].name}
@@ -221,6 +223,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly={!isEdit}
                       className="itemList-input"
                       name="itemCode"
                       value={itemlist[i].itemCode}
@@ -229,6 +232,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly={!isEdit}
                       className="itemList-input"
                       name="quantity"
                       value={itemlist[i].openigStockQuantity}
@@ -237,6 +241,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly={!isEdit}
                       className="itemList-input"
                       name="unit"
                       value={itemlist[i].unit}
@@ -245,6 +250,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly
                       className="itemList-input"
                       name="purchasePrice"
                       value={itemlist[i].purchasePrice}
@@ -253,6 +259,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly
                       className="itemList-input"
                       name="itemWiseTax"
                       value={itemlist[i].itemWiseTax}
@@ -261,38 +268,24 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
                   </td>
                   <td className="title-input">
                     <input
+                      readOnly
                       className="itemList-input"
                       name="taxamount"
                       value={itemlist[i].taxamount}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
-                  {/* <td className="title-input">
-                  <input
-                    className="itemList-input"
-                    name="taxamount"
-                    value={itemlist[i].taxamount}
-                    onChange={(e) => handleChange(e, i)}
-                  />
-                </td> */}
+
                   <td className="title-input">
                     <input
+                      readOnly
                       className="itemList-input"
                       name="itemAmount"
                       value={itemlist[i].itemAmount}
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
-                  {/* <div className="itemremove-btn">
-                  {itemlist.lenght !== 1 && (
-                    <button
-                      className="remove-btn"
-                      onClick={() => handleItemRemove(i)}
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div> */}
+
                 </tr>
               );
             })}
@@ -301,7 +294,8 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
         <div className="itemAdd-btn">
           {itemlist.lenght !== 1 && (
             <button
-              className="btn btn--secondary"
+              disabled={!isEdit}
+              className={`btn  ${!isEdit ? "btn--disable" : "btn--secondary"}`}
               onClick={() => handleItemAdd()}
             >
               Add Item
@@ -335,6 +329,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
             />
             <label htmlFor="total">Total : </label>
             <input
+              readOnly
               type="number"
               id="total"
               name="total"
@@ -343,12 +338,7 @@ export default function ItemList({ itemlist, invoice, setitemlist, handleInvoice
             />
           </div>
         </div>
-        <div className="buttonsubmit">
-          <button className=" sharebutton">
-            Share | <i className="fa-solid fa-angle-down"></i>
-          </button>
-          <button className="button11 lastbutton">Save</button>
-        </div>
+
       </div>
     </div >
   );
