@@ -1,0 +1,18 @@
+.tab {
+
+    &--list {
+        display: flex;
+
+    }
+
+    &--title {
+        border: 1px solid $color-grey-light-2;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    &--active {
+        background-color: $color-primary-light;
+        border-bottom: 5px solid color-primary;
+    }
+}

@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { useUser } from "../../Context/userContext";
-// import { getPurchaseInvoiceUserId } from "../../services/InvoiceServices";
 import { getPartyByUserId } from "../../services/partyServices";
-import AddParties from "./AddParties";
 
 export default function Parties() {
   const { user } = useUser();
   const [invoice, setInvoice] = useState();
   const [open, setOpen] = useState(false)
   const [parties, setParties] = useState([])
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getInvoice = async () => {
-      // const purchaseInvoice = await getPurchaseInvoiceUserId(user?.id);
+    const getParties = async () => {
       const parties = await getPartyByUserId(user?.id, "all")
       setParties(parties)
-      // setInvoice(purchaseInvoice);
     };
-    getInvoice();
+    getParties();
   }, [user]);
 
-  const getDate = (d) => {
-    const date = new Date(d);
-    console.log(date);
-    // console.log(date.getDate());
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-  };
+
+
+  const openParty = (party) => {
+    navigate(`/party/open/${party._id}`, { state: { party } });
+  }
 
   return (
     <>
@@ -106,7 +102,10 @@ export default function Parties() {
           </thead>
           <tbody>
             {parties.map(party => (
-              <tr>
+              <tr
+                key={party._id}
+                onClick={() => openParty(party)}
+                className="purinvoice__table--invoice">
                 <td>{party?.name}</td>
                 <td>{party?.category ? party.category : "nil"}</td>
                 <td>{party?.phone}</td>
