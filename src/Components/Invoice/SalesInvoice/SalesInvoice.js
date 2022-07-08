@@ -176,7 +176,7 @@ export default function SalesInvoice() {
                       setRefresh(true);
                     }}
                     open={deleteModal}
-                    onClose={() => setDelete(false)}
+                    onClose={(e) => { e.stopPropagation(); setDelete(false) }}
                   />
                 </tr>
               ))
@@ -191,7 +191,7 @@ export default function SalesInvoice() {
         </table>
 
         {!invoice ||
-          (!invoice.length && (
+          (!invoice.length && !loading && (
             <span className="purchasebodyspan">
               No Sales Invoice made during the selected time period
             </span>

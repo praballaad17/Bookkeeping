@@ -8,17 +8,19 @@ import DeleteModal from "../SalesInvoice/DeleteModal";
 
 export default function PurchaseInvoice() {
   const { user } = useUser();
-  const [invoice, setInvoice] = useState();
+  const [invoice, setInvoice] = useState([])
   const [refresh, setRefresh] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [deleteModal, setDelete] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
+    setLoading(true);
     const getInvoice = async () => {
       try {
         const purchaseInvoice = await getInvoiceUserId(INVOICETYPE.PURCHASE, user?.id);
         setInvoice(purchaseInvoice);
-
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -126,7 +128,8 @@ export default function PurchaseInvoice() {
             <th>Print</th>
           </thead>
           <tbody>
-            {invoice &&
+
+            {!loading ? (
               invoice.map((invoice) => (
                 <tr key={invoice._id}
                   className="purinvoice__table--invoice"
@@ -151,12 +154,23 @@ export default function PurchaseInvoice() {
                     setDelete(false);
                     setRefresh(true)
                   }} open={deleteModal}
-                    onClose={() => setDelete(false)} />
+                    onClose={(e) => { e.stopPropagation(); setDelete(false) }} />
                 </tr>
-              ))}
+              ))
+            ) :
+              (
+                <tr>
+                  <td colspan="8">
+                    <div className="u-flex-all-center"> Loading...</div>
+                  </td>
+                </tr>
+              )}
           </tbody>
         </table>
-        <span className="purchasebodyspan">No Purchase Invoice made during the selected time period</span>
+        {!invoice ||
+          (!invoice.length && !loading && (
+            <span className="purchasebodyspan">No Purchase Invoice made during the selected time period</span>
+          ))}
       </div>
     </>
   );
