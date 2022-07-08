@@ -1742,6 +1742,11 @@ td {
 .bodycenterinvoice {
   flex: 70%; }
 
+.manageuserbody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+
 .setting {
   width: 100vw;
   height: 100vh;
