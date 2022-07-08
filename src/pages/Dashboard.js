@@ -18,6 +18,7 @@ import AddParties from "../Components/Parties/AddParties";
 import Expenses from "../Components/Invoice/Expenses";
 import AddExpenses from "../Components/Invoice/AddExpenses";
 import Setting from "../Components/Setting/Setting";
+import PartyDetails from "../Components/Parties/PartyDetails";
 
 
 export default function Dashboard({ user: loggedInUser }) {
@@ -52,7 +53,8 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
             <Route path="/invoice/sales/open/:id" element={<AddSalesInvoice />} />
-            <Route path="/parties" element={<Parties />} />
+            <Route path="/parties/*" element={<Parties />} />
+            <Route path="/party/open/:id" element={<PartyDetails />} />
             <Route path="/parties/add" element={<AddParties />} />
             <Route path="/utilities/import/item" element={<ImportItem />} />
             <Route path="/setting/*" element={<Setting />} />
