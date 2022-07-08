@@ -1703,6 +1703,45 @@ td {
   height: 105px;
   width: 250px; }
 
+.bodyrightparttheme {
+  border: 1px solid black;
+  height: 100%;
+  flex: 20%;
+  background-color: #fffcf8; }
+
+.bodyrightpartthemebodybutton {
+  background-color: white;
+  border: 1px solid #000000;
+  height: 50px;
+  padding: 5px;
+  margin: 5px 15px;
+  width: 250px;
+  font-size: 14px; }
+
+.bodyrightpartthemeheading {
+  padding: 5px 10px; }
+
+.bodycentercolor {
+  flex: 10%;
+  border: 1px solid black;
+  background-color: #fffcf8; }
+
+.dot {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 35%;
+  margin-top: 10px; }
+
+.bodythemeright {
+  width: 100%;
+  height: 100%;
+  display: flex; }
+
+.bodycenterinvoice {
+  flex: 70%; }
+
 .setting {
   width: 100vw;
   height: 100vh;
