@@ -3068,3 +3068,145 @@ select {
 
 .addpartybutton {
   width: 150px; }
+
+.party-profile {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background: #fff;
+  overflow-y: auto; }
+  .party-profile .general-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+    border-bottom: 1px solid #d9d4d4; }
+    .party-profile .general-info .container {
+      display: flex; }
+      .party-profile .general-info .container .flex-columns {
+        width: 50%;
+        display: flex;
+        flex-direction: column; }
+        .party-profile .general-info .container .flex-columns .column-title {
+          font-size: 14px;
+          color: #687e96;
+          padding-top: 10px;
+          padding-bottom: 10px; }
+        .party-profile .general-info .container .flex-columns .column-value {
+          font-size: 14px;
+          color: #28313b;
+          padding-bottom: 10px; }
+          .party-profile .general-info .container .flex-columns .column-value .balance {
+            display: flex;
+            flex-direction: row; }
+
+.party-ledger {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background: #fff;
+  overflow-y: auto; }
+  .party-ledger .upper-container {
+    display: flex; }
+    .party-ledger .upper-container .input-buttons {
+      border: 1px #d9d4d4;
+      font-size: 16px;
+      height: 30px;
+      padding-left: 10px; }
+      .party-ledger .upper-container .input-buttons .date-filter {
+        background: linear-gradient(180deg, #fff, #e9ecf1); }
+    .party-ledger .upper-container .print-buttons {
+      width: 100px;
+      border: 1px solid #d9d4d4;
+      margin-left: 20px;
+      height: 30px;
+      background: linear-gradient(180deg, #fff, #e9ecf1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer; }
+  .party-ledger .ledger-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
+    .party-ledger .ledger-list .ledger-details {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      background: #fff; }
+      .party-ledger .ledger-list .ledger-details .company-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-basis: 100%;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #d9d4d4; }
+        .party-ledger .ledger-list .ledger-details .company-header .column-1 {
+          display: flex;
+          flex-direction: column;
+          flex-basis: 50%; }
+          .party-ledger .ledger-list .ledger-details .company-header .column-1 .company-name {
+            font-size: 14px;
+            font-weight: 700; }
+          .party-ledger .ledger-list .ledger-details .company-header .column-1 .mobile {
+            font-size: 12px;
+            color: #687e96; }
+        .party-ledger .ledger-list .ledger-details .company-header .column-2 {
+          flex-basis: 50%;
+          font-weight: 700;
+          text-align: right; }
+      .party-ledger .ledger-list .ledger-details .party-details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 10px;
+        padding-bottom: 10px; }
+        .party-ledger .ledger-list .ledger-details .party-details .column1,
+        .party-ledger .ledger-list .ledger-details .party-details .column-2 {
+          display: flex;
+          flex-direction: column; }
+        .party-ledger .ledger-list .ledger-details .party-details .column-1 .to {
+          font-size: 14px;
+          color: #687e96; }
+        .party-ledger .ledger-list .ledger-details .party-details .column-1 .party-name {
+          font-weight: 700; }
+        .party-ledger .ledger-list .ledger-details .party-details .column-1 .mobile {
+          font-size: 12px;
+          color: #687e96; }
+        .party-ledger .ledger-list .ledger-details .party-details .column-2 {
+          border: 2px solid #d9d4d4;
+          padding: 5px;
+          text-align: right;
+          flex-basis: 25%; }
+          .party-ledger .ledger-list .ledger-details .party-details .column-2 .date {
+            font-size: 12px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #d9d4d4; }
+          .party-ledger .ledger-list .ledger-details .party-details .column-2 .text {
+            font-size: 12px; }
+          .party-ledger .ledger-list .ledger-details .party-details .column-2 .value {
+            font-weight: 700;
+            font-size: 14px; }
+      .party-ledger .ledger-list .ledger-details .ledger-txns {
+        display: flex;
+        justify-content: space-between; }
+        .party-ledger .ledger-list .ledger-details .ledger-txns .ledger-table {
+          width: 100%; }
+          .party-ledger .ledger-list .ledger-details .ledger-txns .ledger-table thead th:first-child {
+            padding-left: 5px; }
+          .party-ledger .ledger-list .ledger-details .ledger-txns .ledger-table thead th {
+            width: 80px;
+            text-align: center; }
+          .party-ledger .ledger-list .ledger-details .ledger-txns .ledger-table tbody td {
+            width: 80px;
+            text-align: center;
+            height: 30px;
+            font-size: 12px;
+            border-bottom: 1px solid #d9d4d4 !important; }
+          .party-ledger .ledger-list .ledger-details .ledger-txns .ledger-table tbody td:first-child {
+            padding-left: 5px; }
+    .party-ledger .ledger-list::-webkit-scrollbar-thumb {
+      display: none; }
+    .party-ledger .ledger-list:hover::-webkit-scrollbar-thumb {
+      display: block !important; }
