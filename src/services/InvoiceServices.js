@@ -1,10 +1,25 @@
 import axios from 'axios';
 import Url from "../config.json";
 // import { saveAs } from 'file-saver';
+import { copyImageToClipboard } from 'copy-image-clipboard'
 
 const apiEndpointInvoice = Url?.apiUrl + "/invoice";
 // const apiEndpointInvoice = Url?.localUrl + "/invoice";
 
+const getdata = async () => {
+  copyImageToClipboard(
+    'https://omega-ad.b-cdn.net/fb_ads_2/OwscFhJyNrLabVKvo2vH_536151547661577.jpg',
+  )
+    .then(() => {
+      console.log('Image Copied')
+    })
+    .catch((e) => {
+      console.log('Error: ', e.message)
+    })
+  console.log('Image copied.');
+}
+
+getdata()
 
 export const createInvoice = async (invoice, itemlist, userId) => {
   try {

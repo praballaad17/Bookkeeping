@@ -101,7 +101,7 @@ export default function Parties() {
             </tr>
           </thead>
           <tbody>
-            {parties.map(party => (
+            {parties && parties.length ? parties.map(party => (
               <tr
                 key={party._id}
                 onClick={() => openParty(party)}
@@ -112,7 +112,11 @@ export default function Parties() {
                 <td>{party?.partyType ? party.partyType : "nil"}</td>
                 <td>₹ {party?.balance ? party.balance : 0}</td>
               </tr>
-            ))}
+            )) :
+              <>
+                No Parties Available
+              </>
+            }
           </tbody>
         </table>
       </div>

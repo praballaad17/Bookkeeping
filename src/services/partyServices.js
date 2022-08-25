@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Url from "../config.json";
 
-const apiEndpoint = Url?.apiUrl + "/party";
-// const apiEndpoint = Url?.localUrl + "/party";
+// const apiEndpoint = Url?.apiUrl + "/party";
+const apiEndpoint = Url?.localUrl + "/party";
 
 export const createParty = async (party, userId) => {
     try {
@@ -21,6 +21,15 @@ export const createParty = async (party, userId) => {
 export const getPartyByUserId = async (userId, partyType) => {
     try {
         const response = await axios.get(`${apiEndpoint}/getPartyByUserId/${userId}/partyType/${partyType}`);
+        return response.data;
+    } catch (error) {
+        return error
+    }
+}
+
+export const getPartyTransactions = async (partyId) => {
+    try {
+        const response = await axios.get(`${apiEndpoint}/partyTransactions/${partyId}`);
         return response.data;
     } catch (error) {
         return error

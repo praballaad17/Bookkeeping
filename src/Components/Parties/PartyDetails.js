@@ -23,7 +23,7 @@ export default function PartyDetails() {
         },
         {
             title: "PartyTransactions",
-            content: <PartyTransactions />
+            content: <PartyTransactions partyId={id} />
         },
         {
             title: "ItemWiseReport",
