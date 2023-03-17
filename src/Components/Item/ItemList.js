@@ -4,6 +4,8 @@ export default function ItemList({ items, setSelectedItem }) {
     const [key, setKey] = useState("")
     const [result, setResult] = useState(items)
 
+    console.log(result);
+
     useEffect(() => {
         const id = key.toLowerCase()
         if (id === "") {
@@ -25,7 +27,7 @@ export default function ItemList({ items, setSelectedItem }) {
         <>
             <div>
                 <div className="searchbox">
-                    <i  style={{"paddingLeft":"5px"}}  className="fa-solid fa-magnifying-glass searchicon"></i>
+                    <i style={{ "paddingLeft": "5px" }} className="fa-solid fa-magnifying-glass searchicon"></i>
                     <input
                         type="search"
                         className="searchbar"

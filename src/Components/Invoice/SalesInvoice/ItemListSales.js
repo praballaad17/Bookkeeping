@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { searchItem } from "../../../services/ItemServices";
 import ItemSearchBox from "../ItemSearchBox";
 import { useUser } from "../../../Context/userContext"
@@ -6,6 +7,7 @@ import { getPartyByUserId } from "../../../services/partyServices";
 import DeleteModal from "./DeleteModal";
 
 export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
+  const navigate = useNavigate()
   const { user } = useUser()
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
@@ -148,7 +150,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
           </div>
           <div>
             <i className="fa-solid fa-calculator righticons"></i>
-            <i className="fa-solid fa-circle-xmark righticons"></i>
+            <i onClick={() => navigate("/sales")} className="fa-solid fa-circle-xmark righticons"></i>
           </div>
         </div>
         <div className="above">

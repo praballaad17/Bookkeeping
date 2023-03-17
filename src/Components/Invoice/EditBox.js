@@ -4,7 +4,6 @@ import { deleteInvoice } from '../../services/InvoiceServices'
 
 export default function EditBox({ id, name, title, setEdit }) {
     const navigate = useNavigate()
-    console.log(id);
     const HandleDelete = () => {
         deleteInvoice(id).then((res) => {
             console.log(res);

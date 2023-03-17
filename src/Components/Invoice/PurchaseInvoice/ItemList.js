@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { useUser } from "../../../Context/userContext";
 import { searchItem } from "../../../services/ItemServices";
 import { getPartyByUserId } from "../../../services/partyServices";
 import ItemSearchBox from "../ItemSearchBox";
 
 export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
+  const navigate = useNavigate()
   const { user } = useUser()
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
@@ -126,7 +128,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
           <span>PURCHASE</span>
           <div>
             <i className="fa-solid fa-calculator righticons"></i>
-            <i className="fa-solid fa-circle-xmark righticons"></i>
+            <i onClick={() => navigate("/purchase")} className="fa-solid fa-circle-xmark righticons"></i>
           </div>
         </div>
         <div className="above">

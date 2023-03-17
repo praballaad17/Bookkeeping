@@ -45,8 +45,6 @@ export default function SalesInvoice() {
     e.preventDefault();
     e.stopPropagation();
     const invoice = await getInvoiceInvoiceId(id);
-    console.log(invoice);
-    // console.log("print");
     createAndDownloadPdf(invoice);
   };
 
