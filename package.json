@@ -1,54 +1,32 @@
 {
-  "name": "front",
-  "version": "0.1.0",
+  "name": "frontend",
   "private": true,
-  "dependencies": {
-    "@fortawesome/react-fontawesome": "^0.1.18",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
-    "bootstrap": "^5.2.3",
-    "copy-image-clipboard": "^2.1.2",
-    "file-saver": "^2.0.5",
-    "html-pdf": "^3.0.1",
-    "jwt-decode": "^3.1.2",
-    "react": "^18.1.0",
-    "react-bootstrap": "^2.7.2",
-    "react-dom": "^18.1.0",
-    "react-icons": "^4.3.1",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "styled-components": "^5.2.1",
-    "web-vitals": "^2.1.4",
-    "xlsx": "^0.18.5"
-  },
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "sass": "node-sass sass/main.scss src/css/style.css -w",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "axios": "^1.3.5",
+    "bootstrap": "^5.2.3",
+    "copy-image-clipboard": "^2.1.2",
+    "jwt-decode": "^3.1.2",
+    "node-sass": "^8.0.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.9",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.2.0"
   }
 }

@@ -19,7 +19,7 @@ import Expenses from "../Components/Invoice/Expenses";
 import AddExpenses from "../Components/Invoice/AddExpenses";
 import Setting from "../Components/Setting/Setting";
 import PartyDetails from "../Components/Parties/PartyDetails";
-import GstDashboard from "../Components/GST/index.js";
+import GstDashboard from "../Components/GST/index.jsx";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

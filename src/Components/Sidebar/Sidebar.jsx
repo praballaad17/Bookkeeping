@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import * as ROUTES from "../../constants/routes";
 import { SidebarData } from "./SidebarData";
 import "../../css/Sidebar.css";
