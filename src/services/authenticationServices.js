@@ -1,18 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 import Url from "../config.json";
 // import jwtDecode from 'jwt-decode';
 
-const apiEndpoint = Url?.apiUrl + "/auth";
+// const apiEndpoint = Url?.apiUrl + "/auth";
+const apiEndpoint = Url?.localUrl + "/auth";
 console.log(Url);
-const tokenKey = "token"
+const tokenKey = "token";
 function setJwt(jwt) {
-    axios.defaults.headers.common['token'] = jwt
+  axios.defaults.headers.common["token"] = jwt;
 }
 
-setJwt(getJwt())
+setJwt(getJwt());
 
 export function getJwt() {
-    return localStorage.getItem(tokenKey)
+  return localStorage.getItem(tokenKey);
 }
 // /**
 //  * Logs a user in with the provided credentials
@@ -23,22 +24,21 @@ export function getJwt() {
 //  * @returns {object} The user object
 //  */
 export const login = async (usernameOrEmail, password, authToken) => {
-    try {
-        const request =
-            usernameOrEmail && password
-                ? { data: { usernameOrEmail, password } }
-                : { headers: { authorization: authToken } };
-        const response = await axios(`${apiEndpoint}/login`, {
-            method: 'POST',
-            ...request,
-        });
-        localStorage.setItem(tokenKey, response.data.token)
-        return response.data;
-    } catch (err) {
-        throw new Error(err.response.data.error);
-    }
+  try {
+    const request =
+      usernameOrEmail && password
+        ? { data: { usernameOrEmail, password } }
+        : { headers: { authorization: authToken } };
+    const response = await axios(`${apiEndpoint}/login`, {
+      method: "POST",
+      ...request,
+    });
+    localStorage.setItem(tokenKey, response.data.token);
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
 };
-
 
 // /**
 //  * Registers a user with the provided credentials
@@ -49,19 +49,19 @@ export const login = async (usernameOrEmail, password, authToken) => {
 //  * @returns {object} The user object
 //  */
 export const registerUser = async (username, fullName, email, password) => {
-    try {
-        const response = await axios.post(`${apiEndpoint}/register`, {
-            email,
-            fullName,
-            username,
-            password,
-        });
-        console.log(response.data.token);
-        localStorage.setItem(tokenKey, response.data.token)
-        return response.data;
-    } catch (err) {
-        throw new Error(err.response.data.error);
-    }
+  try {
+    const response = await axios.post(`${apiEndpoint}/register`, {
+      email,
+      fullName,
+      username,
+      password,
+    });
+    console.log(response.data.token);
+    localStorage.setItem(tokenKey, response.data.token);
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
 };
 
 // /**
@@ -72,52 +72,51 @@ export const registerUser = async (username, fullName, email, password) => {
 //  * @param {string} authToken A user's auth token
 //  */
 export const changePassword = async (oldPassword, newPassword, authToken) => {
-    // try {
-    //     await axios.put(
-    //         `${apiEndpoint}/password`,
-    //         {
-    //             oldPassword,
-    //             newPassword,
-    //         },
-    //         {
-    //             headers: {
-    //                 authorization: authToken,
-    //             },
-    //         }
-    //     );
-    // } catch (err) {
-    //     throw new Error(err.response.data.error);
-    // }
+  // try {
+  //     await axios.put(
+  //         `${apiEndpoint}/password`,
+  //         {
+  //             oldPassword,
+  //             newPassword,
+  //         },
+  //         {
+  //             headers: {
+  //                 authorization: authToken,
+  //             },
+  //         }
+  //     );
+  // } catch (err) {
+  //     throw new Error(err.response.data.error);
+  // }
 };
 
 export const getUserByUserId = async (id) => {
-    // try {
-    //     const response = await axios.get(`${apiEndpoint}/userId/${id}`);
-    //     return response.data;
-    // } catch (err) {
-    //     throw new Error(err.response.data.error);
-    // }
-}
-
+  // try {
+  //     const response = await axios.get(`${apiEndpoint}/userId/${id}`);
+  //     return response.data;
+  // } catch (err) {
+  //     throw new Error(err.response.data.error);
+  // }
+};
 
 export const getusersFollowersById = async (userId) => {
-    // try {
-    //     const response = await axios.get(`${apiUrl}/user/userId/followers/${userId}`);
-    //     return response.data;
-    // } catch (err) {
-    //     throw new Error(err);
-    // }
-}
+  // try {
+  //     const response = await axios.get(`${apiUrl}/user/userId/followers/${userId}`);
+  //     return response.data;
+  // } catch (err) {
+  //     throw new Error(err);
+  // }
+};
 
 export async function logout() {
-    // localStorage.removeItem(tokenKey)
+  // localStorage.removeItem(tokenKey)
 }
 
 export function getCurrentUser() {
-    // try {
-    //     const jwt = localStorage.getItem(tokenKey);
-    //     return jwtDecode(jwt);
-    // } catch (error) {
-    //     return null;
-    // }
+  // try {
+  //     const jwt = localStorage.getItem(tokenKey);
+  //     return jwtDecode(jwt);
+  // } catch (error) {
+  //     return null;
+  // }
 }

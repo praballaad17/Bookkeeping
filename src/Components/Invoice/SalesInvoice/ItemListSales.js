@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { searchItem } from "../../../services/ItemServices";
 import ItemSearchBox from "../ItemSearchBox";
-import { useUser } from "../../../Context/userContext"
+import { useUser } from "../../../Context/userContext";
 import { getPartyByUserId } from "../../../services/partyServices";
 import DeleteModal from "./DeleteModal";
 
-export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
-  const navigate = useNavigate()
-  const { user } = useUser()
+export default function ItemList({
+  isEdit,
+  itemlist,
+  invoice,
+  setitemlist,
+  handleInvoice,
+  handleTotalAmount,
+}) {
+  const navigate = useNavigate();
+  const { user } = useUser();
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
+  const [decimal, setDecimal] = useState(0);
 
-  const [customers, setCustumers] = useState([])
-
+  const [customers, setCustumers] = useState([]);
 
   useEffect(() => {
     const getCustumers = async () => {
       try {
-        const customers = await getPartyByUserId(user?.id, "custumer")
-        setCustumers(customers)
+        const customers = await getPartyByUserId(user?.id, "custumer");
+        setCustumers(customers);
       } catch (error) {
         console.log(error);
       }
-    }
-    getCustumers()
-  }, [])
+    };
+    getCustumers();
+  }, []);
 
   const calculatTaxAmount = (taxPer, price, unit) => {
     return (taxPer * price * unit) / 100;
@@ -36,8 +43,6 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
   const calculatItemAmount = (price, unit, tax) => {
     return price * unit + tax;
   };
-
-
 
   const handleChange = (e, index) => {
     var list = [...itemlist];
@@ -51,13 +56,13 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
         parseInt(list[index]["purchasePrice"]),
         list[index]["unit"]
       );
-      const previousAmount = list[index]["itemAmount"]
+      const previousAmount = list[index]["itemAmount"];
       list[index]["itemAmount"] = calculatItemAmount(
         parseInt(list[index]["purchasePrice"]),
         list[index]["unit"],
         list[index]["taxamount"]
       );
-      handleTotalAmount(list[index]["itemAmount"] - previousAmount)
+      handleTotalAmount(list[index]["itemAmount"] - previousAmount);
     }
     setitemlist(list);
   };
@@ -135,6 +140,18 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
     }
   };
 
+  const handleRoundOff = (e) => {
+    if (e.target.checked) {
+      const rounded = Math.round(invoice.total);
+      setDecimal(rounded - invoice.total);
+      handleTotalAmount(rounded);
+    }
+    if (!e.target.checked) {
+      handleTotalAmount(invoice.total + decimal);
+      setDecimal(0);
+    }
+  };
+  console.log(invoice.total, decimal);
   return (
     <div>
       <div className="scrolable">
@@ -150,23 +167,45 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
           </div>
           <div>
             <i className="fa-solid fa-calculator righticons"></i>
-            <i onClick={() => navigate("/sales")} className="fa-solid fa-circle-xmark righticons"></i>
+            <i
+              onClick={() => navigate("/sales")}
+              className="fa-solid fa-circle-xmark righticons"
+            ></i>
           </div>
         </div>
         <div className="above">
           <div className="abovetable">
             <div className="partyinput ">
-              <select readOnly={!isEdit} value={invoice?.partyId ? invoice.partyId : "party"} onChange={(e) => { handleInvoice(e) }} id="types" name="partyId" className="partyinputs">
+              <select
+                readOnly={!isEdit}
+                value={invoice?.partyId ? invoice.partyId : "party"}
+                onChange={(e) => {
+                  handleInvoice(e);
+                }}
+                id="types"
+                name="partyId"
+                className="partyinputs"
+              >
                 <option value="party">Customer *</option>
-                {customers && customers.length && customers.map(customer => (
-                  <option key={customer?._id} value={customer?._id}>{customer?.name}</option>
-                ))
-                }
+                {customers &&
+                  customers.length &&
+                  customers.map((customer) => (
+                    <option key={customer?._id} value={customer?._id}>
+                      {customer?.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
               <label htmlFor="quantity">Invoice Number : </label>
-              <input readOnly={!isEdit} value={invoice?.invoiceNumber} onChange={(e) => handleInvoice(e)} type="text" id="invoiceNumber" name="invoiceNumber" />
+              <input
+                readOnly={!isEdit}
+                value={invoice?.invoiceNumber}
+                onChange={(e) => handleInvoice(e)}
+                type="text"
+                id="invoiceNumber"
+                name="invoiceNumber"
+              />
             </div>
             <div>
               <input
@@ -185,7 +224,14 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                 {" "}
                 Invoice Date :{" "}
               </label>
-              <input readOnly={!isEdit} defaultValue={invoice?.date} type="date" id="billdate" name="date" onChange={e => handleInvoice(e)} />
+              <input
+                readOnly={!isEdit}
+                defaultValue={invoice?.date}
+                type="date"
+                id="billdate"
+                name="date"
+                onChange={(e) => handleInvoice(e)}
+              />
             </div>
           </div>
         </div>
@@ -221,8 +267,8 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                 <tr
                   key={i}
                   className="item-row"
-                // onSelect={() => { setIndex(i); console.log("select", i) }}
-                // onBlur={() => setIndex(null)}
+                  // onSelect={() => { setIndex(i); console.log("select", i) }}
+                  // onBlur={() => setIndex(null)}
                 >
                   <td className="title-input invoice__item--index">
                     {/* {index === i ? */}
@@ -342,15 +388,18 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
               id="checkbox"
               name="checkbox"
               className="checkboxinput"
+              onChange={(e) => handleRoundOff(e)}
             />
             <label htmlFor="roundoff" className="roundofflabel">
-              Round-off :{" "}
+              Round-off :
             </label>
             <input
               type="text"
               id="roundoff"
               name="roundoff"
               className="roundoff"
+              value={decimal}
+              disabled
             />
             <label htmlFor="total">Total : </label>
             <input
@@ -363,7 +412,6 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
             />
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../../constants/routes";
 import { INVOICETYPE } from "../../../constants/variables";
 import { useUser } from "../../../Context/userContext";
+import useSearch from "../../../hooks/useSearch";
 import {
   getInvoiceUserId,
   deleteInvoice,
   createAndDownloadPdf,
   getInvoiceInvoiceId,
+  searchInvoice,
 } from "../../../services/InvoiceServices";
 import DeleteModal from "./DeleteModal";
 
@@ -18,6 +20,7 @@ export default function SalesInvoice() {
   const [deleteModal, setDelete] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
+  // const { resut } = useSearch();
 
   useEffect(() => {
     setLoading(true);
@@ -28,12 +31,12 @@ export default function SalesInvoice() {
           user?.id
         );
         setInvoice(purchaseInvoice);
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     getInvoice();
+    setLoading(false);
     setRefresh(false);
   }, [user, refresh]);
 
@@ -49,11 +52,20 @@ export default function SalesInvoice() {
   };
 
   const HandleDeleteInvoice = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDelete(true)
-  }
+    e.preventDefault();
+    e.stopPropagation();
+    setDelete(true);
+  };
 
+  const handleSearch = async (e) => {
+    console.log(e.target.value);
+    try {
+      const res = await searchInvoice(e.target.value);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -97,6 +109,7 @@ export default function SalesInvoice() {
                 spellCheck="false"
                 data-ms-editor="true"
                 placeholder="Search Sales Invoices"
+                onChange={(e) => handleSearch(e)}
               />
             </div>
             <div>
@@ -174,7 +187,10 @@ export default function SalesInvoice() {
                       setRefresh(true);
                     }}
                     open={deleteModal}
-                    onClose={(e) => { e.stopPropagation(); setDelete(false) }}
+                    onClose={(e) => {
+                      e.stopPropagation();
+                      setDelete(false);
+                    }}
                   />
                 </tr>
               ))

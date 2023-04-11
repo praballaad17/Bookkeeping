@@ -19,54 +19,77 @@ import Expenses from "../Components/Invoice/Expenses";
 import AddExpenses from "../Components/Invoice/AddExpenses";
 import Setting from "../Components/Setting/Setting";
 import PartyDetails from "../Components/Parties/PartyDetails";
+import GstDashboard from "../Components/GST/index.js";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
 
-  if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />
+  if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />;
 
   return (
-    <div className="dashboard-mian">
+    <Container fluid>
+      {/* <div className="dashboard-mian"> */}
       {/* <div id="top-div">
         <Uppernavbar />
       </div> */}
-      <div id="bottom-div">
-        <div id="sidebar-div">
+      {/* <div id="bottom-div"> */}
+      {/* <div id="sidebar-div"> */}
+      <Row>
+        <Col>
           <Sidebar
             open={open}
             onClose={() => {
               setOpen(true);
             }}
           />
-        </div>
-
-        <div id="central-div">
+        </Col>
+        <Col>
+          {/* </div> */}
+          {/* <div id="central-div"> */}
           <DetailsModal open={open} onClose={() => setOpen(false)} />
           <Routes>
             <Route path={ROUTES.ITEM} element={<Item />} />
+            <Route path={ROUTES.GSTDASH} element={<GstDashboard />} />
             <Route path="/item/add" element={<AddItem />} />
             {/* <Route path="/item-table" element={<ItemTable />} />  */}
-            <Route path='/purchase' element={<PurchaseInvoice />} />
+            <Route path="/purchase" element={<PurchaseInvoice />} />
             <Route path="/purchase/add" element={<AddPurchaseInvoice />} />
-            <Route path="/invoice/purchase/open/:id" element={<AddPurchaseInvoice />} />
+            <Route
+              path="/invoice/purchase/open/:id"
+              element={<AddPurchaseInvoice />}
+            />
             <Route path="/sales" element={<SalesInvoice />} />
             <Route path="/sales/add" element={<AddSalesInvoice />} />
-            <Route path="/invoice/sales/open/:id" element={<AddSalesInvoice />} />
+            <Route
+              path="/invoice/sales/open/:id"
+              element={<AddSalesInvoice />}
+            />
             <Route path="/parties/*" element={<Parties />} />
             <Route path="/party/open/:id" element={<PartyDetails />} />
             <Route path="/parties/add" element={<AddParties />} />
-            <Route path="/utilities/import/item" element={<ImportItem />} />
+            <Route path={ROUTES.IMPORTITEM} element={<ImportItem />} />
             <Route path="/setting/*" element={<Setting />} />
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/addexpenses" element={<AddExpenses />} />
-            <Route path="/dahsboard" element={<Home />} />
+            <Route
+              path={ROUTES.DASHBOARD}
+              element={<Home handleOpen={() => setOpen(true)} />}
+            />
             <Route
               path="/"
-              element={<Navigate to="/dahsboard" />} replace />
+              element={<Navigate to={ROUTES.DASHBOARD} />}
+              replace
+            />
           </Routes>
-        </div>
-      </div>
-    </div>
+          {/* </div> */}
+          {/* </div> */}
+          {/* </div> */}
+        </Col>
+      </Row>
+    </Container>
   );
 }

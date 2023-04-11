@@ -1,4 +1,4 @@
 {
-  "apiUrl": "https://thebookkeeping.herokuapp.com/api",
+  "apiUrl": "https://bookkeeping-backend.vercel.app/api",
   "localUrl": "http://localhost:3003/api"
 }
