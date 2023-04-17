@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { createParty } from "../../services/partyServices";
-import { useUser } from "../../Context/userContext"
+import { useUser } from "../../Context/userContext";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddParties({ open, onClose }) {
   const navigate = useNavigate();
@@ -20,44 +22,41 @@ export default function AddParties({ open, onClose }) {
     shippingAddress: "",
     creditPeriod: "",
     creditLimit: "",
-  })
-  const { user } = useUser()
+  });
+  const { user } = useUser();
 
   const addParty = async () => {
     try {
-      const rparty = await createParty(party, user?.id)
+      const rparty = await createParty(party, user?.id);
       navigate(`/parties`, { state: { rparty } });
-
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleParty = (e) => {
-
     if (e.target.name === "balanceType") {
       if (e.target.value === "pay") {
-        let tempBalance = Math.abs(parseInt(party.balance)) * -1
+        let tempBalance = Math.abs(parseInt(party.balance)) * -1;
         setParty({
           ...party,
-          balance: tempBalance
-        })
+          balance: tempBalance,
+        });
       }
       if (e.target.value === "collect") {
-        let tempBalance = Math.abs(parseInt(party.balance))
+        let tempBalance = Math.abs(parseInt(party.balance));
         setParty({
           ...party,
-          balance: tempBalance
-        })
+          balance: tempBalance,
+        });
       }
-      return
+      return;
     }
     setParty({
       ...party,
-      [e.target.name]: e.target.value
-    })
-
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   console.log(party);
 
@@ -68,7 +67,7 @@ export default function AddParties({ open, onClose }) {
       <div className="partymain">
         <div className="partytop">
           <div>
-            <i onClick={() => navigate(-1)} className="fa-solid fa-arrow-left editbox--back"></i>
+            <FontAwesomeIcon onClick={() => navigate(-1)} icon={faArrowLeft} />
             <span>Add Party</span>
           </div>
           <div className="partytopicon">
@@ -81,27 +80,52 @@ export default function AddParties({ open, onClose }) {
             <label htmlFor="party" className="labelclass">
               Party Name:
             </label>
-            <input onChange={(e) => handleParty(e)} type="text" id="name" name="name" className="inputinput" />
+            <input
+              onChange={(e) => handleParty(e)}
+              type="text"
+              id="name"
+              name="name"
+              className="inputinput"
+            />
           </div>
           <div className="middleupperinput">
             <label htmlFor="gstin" className="labelclass">
               GST IN:
             </label>
-            <input onChange={(e) => handleParty(e)} type="text" id="gstin" name="gstin" className="inputinput" />
+            <input
+              onChange={(e) => handleParty(e)}
+              type="text"
+              id="gstin"
+              name="gstin"
+              className="inputinput"
+            />
           </div>
           <div className="middleupperinput">
             <label htmlFor="gst" className="labelclass">
               Phone Number:
             </label>
-            <input onChange={(e) => handleParty(e)} type="tel" id="phone" name="phone" className="inputinput" />
+            <input
+              onChange={(e) => handleParty(e)}
+              type="tel"
+              id="phone"
+              name="phone"
+              className="inputinput"
+            />
           </div>
           <div className="middleupperinput">
             <label htmlFor="balance" className="labelclass">
               Opening Balance:
             </label>
-            <input onChange={(e) => handleParty(e)} type="text" id="balance" name="balance" className="inputinput" value={party?.balance} />
+            <input
+              onChange={(e) => handleParty(e)}
+              type="text"
+              id="balance"
+              name="balance"
+              className="inputinput"
+              value={party?.balance}
+            />
             <select name="balanceType" onChange={(e) => handleParty(e)}>
-              <option value="collect" >To Collect</option>
+              <option value="collect">To Collect</option>
               <option value="pay">To Pay</option>
             </select>
           </div>
@@ -110,7 +134,7 @@ export default function AddParties({ open, onClose }) {
               Party Type:
             </label>
             <select name="partyType" onChange={(e) => handleParty(e)}>
-              <option value="custumer" >Custumer</option>
+              <option value="custumer">Custumer</option>
               <option value="supplier">Supplier</option>
             </select>
           </div>
@@ -121,60 +145,79 @@ export default function AddParties({ open, onClose }) {
           <hr className="partyhr" />
           <div className="middlebottomdata">
             <div className="gstdetails">
-              <div><span className="spangstdetails">GST Details</span></div>
-              <div> <select onChange={(e) => handleParty(e)} id="parytType" name="parytType">
-                <option value="" disabled selected hidden>
-                  GST Type
-                </option>
-                <option value="unresitered">Unregistered/Consumer</option>
-                <option value="Retail">Retail</option>
-                <option value="WholeSale">WholeSale</option>
-              </select></div>
-              <div><select onChange={(e) => handleParty(e)} id="placeOfSupply" name="placeOfSupply">
-                <option value="" disabled selected hidden>
-                  State
-                </option>
-                <option value="AP">Arunachal Pradesh</option>
-                <option value="AS">Assam</option>
-                <option value="BI">Bihar</option>
-                <option value="CH">Chhatisgarh</option>
-                <option value="GO">Goa</option>
-                <option value="GU">Gujarat</option>
-                <option value="HR">Haryana</option>
-                <option value="HP">Himachal Pradesh</option>
-                <option value="JK">Jammu and Kashmir</option>
-                <option value="JH">Jharkhand</option>
-                <option value="KR">Karnataka</option>
-                <option value="BI">Bihar</option>
-                <option value="kr">Kerela</option>
-                <option value="MP">Madhya Pradesh</option>
-                <option value="MH">Maharashtra</option>
-                <option value="MN">Manipur</option>
-                <option value="MG">Meghalaya</option>
-                <option value="MR">Mizoram</option>
-                <option value="NA">Nagaland</option>
-                <option value="OD">Odisha</option>
-                <option value="PB">Punjab</option>
-                <option value="RJ">Rajasthan</option>
-                <option value="SK">Sikkim</option>
-                <option value="TN">TamilNadu</option>
-                <option value="TE">Telangana</option>
-                <option value="TR">Tripura</option>
-                <option value="UP">Uttar Pradesh</option>
-                <option value="UK">Uttarakhand</option>
-                <option value="WB">West Bengal</option>
-              </select></div>
-              <div><input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email ID"
-                onChange={(e) => handleParty(e)}
-              /></div>
+              <div>
+                <span className="spangstdetails">GST Details</span>
+              </div>
+              <div>
+                {" "}
+                <select
+                  onChange={(e) => handleParty(e)}
+                  id="parytType"
+                  name="parytType"
+                >
+                  <option value="" disabled selected hidden>
+                    GST Type
+                  </option>
+                  <option value="unresitered">Unregistered/Consumer</option>
+                  <option value="Retail">Retail</option>
+                  <option value="WholeSale">WholeSale</option>
+                </select>
+              </div>
+              <div>
+                <select
+                  onChange={(e) => handleParty(e)}
+                  id="placeOfSupply"
+                  name="placeOfSupply"
+                >
+                  <option value="" disabled selected hidden>
+                    State
+                  </option>
+                  <option value="AP">Arunachal Pradesh</option>
+                  <option value="AS">Assam</option>
+                  <option value="BI">Bihar</option>
+                  <option value="CH">Chhatisgarh</option>
+                  <option value="GO">Goa</option>
+                  <option value="GU">Gujarat</option>
+                  <option value="HR">Haryana</option>
+                  <option value="HP">Himachal Pradesh</option>
+                  <option value="JK">Jammu and Kashmir</option>
+                  <option value="JH">Jharkhand</option>
+                  <option value="KR">Karnataka</option>
+                  <option value="BI">Bihar</option>
+                  <option value="kr">Kerela</option>
+                  <option value="MP">Madhya Pradesh</option>
+                  <option value="MH">Maharashtra</option>
+                  <option value="MN">Manipur</option>
+                  <option value="MG">Meghalaya</option>
+                  <option value="MR">Mizoram</option>
+                  <option value="NA">Nagaland</option>
+                  <option value="OD">Odisha</option>
+                  <option value="PB">Punjab</option>
+                  <option value="RJ">Rajasthan</option>
+                  <option value="SK">Sikkim</option>
+                  <option value="TN">TamilNadu</option>
+                  <option value="TE">Telangana</option>
+                  <option value="TR">Tripura</option>
+                  <option value="UP">Uttar Pradesh</option>
+                  <option value="UK">Uttarakhand</option>
+                  <option value="WB">West Bengal</option>
+                </select>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email ID"
+                  onChange={(e) => handleParty(e)}
+                />
+              </div>
             </div>
             <div class="vl"></div>
             <div className="billAddress">
-              <div><span>Billing Address</span></div>
+              <div>
+                <span>Billing Address</span>
+              </div>
               <div>
                 <textarea
                   rows="5"
@@ -189,10 +232,10 @@ export default function AddParties({ open, onClose }) {
             </div>
           </div>
           <div className="bottompartydata">
-            <button class=" button11 partybutton">
-              Save & New
+            <button class=" button11 partybutton">Save & New</button>
+            <button onClick={addParty} class="button11 partybutton">
+              Save
             </button>
-            <button onClick={addParty} class="button11 partybutton">Save</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../css/DetailModal.css";
 
 export default function DetailsModal({ open, onClose }) {
@@ -14,7 +16,7 @@ export default function DetailsModal({ open, onClose }) {
       <div className="detailsmodalallclassestestbox">
         <div className="checcc">
           <div className="div-cross cross">
-            <i className="fa fa-remove " onClick={onClose}></i>
+            <FontAwesomeIcon icon={faTimes} onClick={onClose} />
           </div>
           <div className="columsss">
             <div className="itemjjj">

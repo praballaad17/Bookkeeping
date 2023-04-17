@@ -14,6 +14,9 @@ import AuthLogin from "./pages/Authenticate/AuthLogin";
 import AuthSignup from "./pages/Authenticate/AuthSignup";
 import NotFound from "./pages/NotFound";
 import { UserProvider } from "./Context/userContext";
+import { DataProvider } from "./Context/dataContext";
+import ToastBox from "./Components/Toast/ToastBox";
+import { InvoiceProvider } from "./Context/invoiceContext";
 
 // const Login = lazy(() => import('./pages/Login'));
 // const SignUp = lazy(() => import('./pages/Signup'));
@@ -29,27 +32,33 @@ export default function App() {
   return (
     <>
       <UserProvider user={user}>
-        <Router>
-          <Suspense fallback={<MainLoader />}>
-            <Routes>
-              <Route
-                path={ROUTES.AUTHENTICATION}
-                element={<Authentication user={user} />}
-                children={[AuthSignup, AuthLogin]}
-              />
-              <Route
-                path={`${ROUTES.HOME}*`}
-                element={<Dashboard user={user} />}
-              />
+        <DataProvider user={user}>
+          <InvoiceProvider>
+            <Router>
+              <Suspense fallback={<MainLoader />}>
+                <Routes>
+                  <Route
+                    path={ROUTES.AUTHENTICATION}
+                    element={<Authentication user={user} />}
+                    children={[AuthSignup, AuthLogin]}
+                  />
+                  <Route
+                    path={`${ROUTES.HOME}*`}
+                    element={<Dashboard user={user} />}
+                  />
 
-              {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
+                  {/* <ProtectedRoute user={user} path={ROUTES.DASHBOARD}  >
                   <Dashboard />
                 </ProtectedRoute> */}
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </Router>
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </Router>
+
+            <ToastBox />
+          </InvoiceProvider>
+        </DataProvider>
       </UserProvider>
     </>
   );

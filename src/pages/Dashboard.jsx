@@ -31,15 +31,15 @@ export default function Dashboard({ user: loggedInUser }) {
   if (!loggedInUser) return <Navigate to={`/authentication${ROUTES.LOGIN}`} />;
 
   return (
-    <Container fluid>
-      {/* <div className="dashboard-mian"> */}
+    // <Container className="w-100">
+    <div className="dashboard-main">
       {/* <div id="top-div">
         <Uppernavbar />
       </div> */}
       {/* <div id="bottom-div"> */}
       {/* <div id="sidebar-div"> */}
-      <Row>
-        <Col>
+      <Row className="h-100">
+        <Col lg={2}>
           <Sidebar
             open={open}
             onClose={() => {
@@ -47,7 +47,7 @@ export default function Dashboard({ user: loggedInUser }) {
             }}
           />
         </Col>
-        <Col>
+        <Col lg={10} className="h-100">
           {/* </div> */}
           {/* <div id="central-div"> */}
           <DetailsModal open={open} onClose={() => setOpen(false)} />
@@ -90,6 +90,6 @@ export default function Dashboard({ user: loggedInUser }) {
           {/* </div> */}
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }

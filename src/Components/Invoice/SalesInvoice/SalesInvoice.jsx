@@ -12,10 +12,12 @@ import {
   searchInvoice,
 } from "../../../services/InvoiceServices";
 import DeleteModal from "./DeleteModal";
+import { useData } from "../../../Context/dataContext";
+import Button from "react-bootstrap/esm/Button";
 
 export default function SalesInvoice() {
   const { user } = useUser();
-  const [invoice, setInvoice] = useState([]);
+  const { getSalesInvoice, salesInvoice } = useData();
   const [loading, setLoading] = useState(false);
   const [deleteModal, setDelete] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -24,18 +26,8 @@ export default function SalesInvoice() {
 
   useEffect(() => {
     setLoading(true);
-    const getInvoice = async () => {
-      try {
-        const purchaseInvoice = await getInvoiceUserId(
-          INVOICETYPE.SALES,
-          user?.id
-        );
-        setInvoice(purchaseInvoice);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getInvoice();
+
+    getSalesInvoice();
     setLoading(false);
     setRefresh(false);
   }, [user, refresh]);
@@ -78,19 +70,18 @@ export default function SalesInvoice() {
         </div>
         <div className="rightheadpurchase">
           <i className="fa-solid fa-keyboard"></i>
-          <button className="invoicesettingbutton">
+          <Button className="p-2 w-75 fs-4" variant="outline-info">
             Invoice Settings <i className="fa-solid fa-gear "></i>
-          </button>
-          <button className="possalesbutton"> + POS Billing</button>
-          {/* <button className="addpurchasebutton"> */}
-          {/* {" "} */}
-          <Link
-            className="btn btn--tertiary addpurchasebutton"
-            to={ROUTES.ADDSALESINV}
-          >
-            + Create Sales Invoice
+          </Button>
+          <Button className="p-2 w-75 fs-4 mx-3" variant="outline-info">
+            {" "}
+            + POS Billing
+          </Button>
+          <Link to={ROUTES.ADDSALESINV}>
+            <Button className="p-2 w-75 fs-4" variant="outline-info">
+              + Create Sales Invoice
+            </Button>
           </Link>
-          {/* </button> */}
         </div>
       </div>
       <div className="purinvoice__body">
@@ -158,7 +149,7 @@ export default function SalesInvoice() {
           </thead>
           <tbody>
             {!loading ? (
-              invoice.map((invoice) => (
+              salesInvoice.map((invoice) => (
                 <tr
                   key={invoice._id}
                   className="purinvoice__table--invoice"
@@ -204,8 +195,8 @@ export default function SalesInvoice() {
           </tbody>
         </table>
 
-        {!invoice ||
-          (!invoice.length && !loading && (
+        {!salesInvoice ||
+          (!salesInvoice.length && !loading && (
             <span className="purchasebodyspan">
               No Sales Invoice made during the selected time period
             </span>

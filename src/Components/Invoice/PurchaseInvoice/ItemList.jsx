@@ -1,40 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../Context/userContext";
 import { searchItem } from "../../../services/ItemServices";
 import { getPartyByUserId } from "../../../services/partyServices";
 import ItemSearchBox from "../ItemSearchBox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handleInvoice, handleTotalAmount }) {
-  const navigate = useNavigate()
-  const { user } = useUser()
+export default function ItemList({
+  isEdit,
+  itemlist,
+  invoice,
+  setitemlist,
+  handleInvoice,
+  handleTotalAmount,
+}) {
+  const navigate = useNavigate();
+  const { user } = useUser();
   const [index, setIndex] = useState(null);
   // const [row,setRow] = useState()
   const [result, setResult] = useState([]);
   const [open, setOpen] = useState(false);
-  const [supplier, setSupplier] = useState([])
-
+  const [supplier, setSupplier] = useState([]);
 
   useEffect(() => {
     const getSupplier = async () => {
       try {
-        const supplier = await getPartyByUserId(user?.id, "supplier")
-        setSupplier(supplier)
+        const supplier = await getPartyByUserId(user?.id, "supplier");
+        setSupplier(supplier);
       } catch (error) {
         console.log(error);
       }
-    }
-    getSupplier()
-  }, [])
+    };
+    getSupplier();
+  }, []);
 
   const calculatTaxAmount = (taxPer, price, unit) => {
-    return taxPer * price * unit / 100;
-  }
+    return (taxPer * price * unit) / 100;
+  };
 
   const calculatItemAmount = (price, unit, tax) => {
-    return (price * unit) + tax;
-  }
-
+    return price * unit + tax;
+  };
 
   const handleChange = (e, index) => {
     var list = [...itemlist];
@@ -42,11 +49,19 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
     console.log(e.target.value, e.target.name);
     if (e.target.name === "itemWiseTax" || e.target.name === "unit") {
       let taxper = e.target.value;
-      console.log(taxper.split('@').pop().split('%'));
-      list[index]["taxamount"] = calculatTaxAmount(parseInt(list[index]["itemWiseTax"].split('@').pop().split('%')[0]), parseInt(list[index]["purchasePrice"]), list[index]["unit"]);
-      const previousAmount = list[index]["itemAmount"]
-      list[index]["itemAmount"] = calculatItemAmount(parseInt(list[index]["purchasePrice"]), list[index]["unit"], list[index]["taxamount"]);
-      handleTotalAmount(list[index]["itemAmount"] - previousAmount)
+      console.log(taxper.split("@").pop().split("%"));
+      list[index]["taxamount"] = calculatTaxAmount(
+        parseInt(list[index]["itemWiseTax"].split("@").pop().split("%")[0]),
+        parseInt(list[index]["purchasePrice"]),
+        list[index]["unit"]
+      );
+      const previousAmount = list[index]["itemAmount"];
+      list[index]["itemAmount"] = calculatItemAmount(
+        parseInt(list[index]["purchasePrice"]),
+        list[index]["unit"],
+        list[index]["taxamount"]
+      );
+      handleTotalAmount(list[index]["itemAmount"] - previousAmount);
     }
     setitemlist(list);
   };
@@ -55,18 +70,16 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
     setOpen(true);
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
-    if (e.target.value === '') {
+    if (e.target.value === "") {
       setIndex(null);
       setOpen(false);
-    }
-    else {
+    } else {
       setIndex(index);
       setitemlist(list);
       const result = await searchItem(e.target.value);
       setResult(result);
     }
-  }
-
+  };
 
   const handleItemAdd = (list = itemlist) => {
     setitemlist([
@@ -91,27 +104,33 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
   };
 
   const setItemInput = (item, index) => {
-    let list = [...itemlist]
-    const taxamount = calculatTaxAmount(parseInt(item["itemWiseTax"].split('@').pop().split('%')[0]), parseInt(item["purchasePrice"]), 1);
-    const itemAmount = calculatItemAmount(parseInt(item["purchasePrice"]), 1, taxamount)
+    let list = [...itemlist];
+    const taxamount = calculatTaxAmount(
+      parseInt(item["itemWiseTax"].split("@").pop().split("%")[0]),
+      parseInt(item["purchasePrice"]),
+      1
+    );
+    const itemAmount = calculatItemAmount(
+      parseInt(item["purchasePrice"]),
+      1,
+      taxamount
+    );
     list[index] = {
       ...item,
       unit: "1",
       taxamount: taxamount,
       itemAmount: itemAmount,
-    }
+    };
     handleTotalAmount(itemAmount);
     setitemlist(list);
     handleItemAdd(list);
-  }
-
-
+  };
 
   const handleItemRemove = (index) => {
     const list = [...itemlist];
     const itemAmount = list[index]["itemAmount"];
     list.splice(index, 1);
-    handleTotalAmount(-itemAmount)
+    handleTotalAmount(-itemAmount);
     setitemlist(list);
     console.log(list.length);
     if (list.length == 0) {
@@ -119,32 +138,51 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
     }
   };
 
-
-
   return (
     <div>
       <div className="scrolable">
         <div className="topnavbar">
-          <span>PURCHASE</span>
+          <span className="fs-3">PURCHASE</span>
           <div>
-            <i className="fa-solid fa-calculator righticons"></i>
-            <i onClick={() => navigate("/purchase")} className="fa-solid fa-circle-xmark righticons"></i>
+            <FontAwesomeIcon className="fs-2 mx-3" icon={faCalculator} />
+            <FontAwesomeIcon
+              className="fs-2 mx-3"
+              icon={faTimes}
+              onClick={() => navigate("/purchase")}
+            />
           </div>
         </div>
         <div className="above">
           <div className="abovetable">
             <div className="partyinput ">
-              <select onChange={(e) => { handleInvoice(e) }} id="partyId" name="partyId" className="partyinputs">
+              <select
+                onChange={(e) => {
+                  handleInvoice(e);
+                }}
+                id="partyId"
+                name="partyId"
+                className="partyinputs"
+              >
                 <option value="party">Supplier *</option>
-                {supplier && supplier.length && supplier.map(supplier => (
-                  <option key={supplier?._id} value={supplier?._id}>{supplier?.name}</option>
-                ))
-                }
+                {supplier &&
+                  supplier.length &&
+                  supplier.map((supplier) => (
+                    <option key={supplier?._id} value={supplier?._id}>
+                      {supplier?.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div>
               <label htmlFor="quantity">Bill Number : </label>
-              <input readOnly={!isEdit} value={invoice?.invoiceNumber} onChange={(e) => handleInvoice(e)} type="tel" id="invoiceNumber" name="invoiceNumber" />
+              <input
+                readOnly={!isEdit}
+                value={invoice?.invoiceNumber}
+                onChange={(e) => handleInvoice(e)}
+                type="tel"
+                id="invoiceNumber"
+                name="invoiceNumber"
+              />
             </div>
             <div>
               <input
@@ -163,7 +201,14 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                 {" "}
                 Invoice Date :{" "}
               </label>
-              <input readOnly={!isEdit} defaultValue={invoice?.date} type="date" id="date" name="date" onChange={e => handleInvoice(e)} />
+              <input
+                readOnly={!isEdit}
+                defaultValue={invoice?.date}
+                type="date"
+                id="date"
+                name="date"
+                onChange={(e) => handleInvoice(e)}
+              />
             </div>
           </div>
         </div>
@@ -196,11 +241,16 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
           <tbody>
             {itemlist.map((x, i) => {
               return (
-                <tr key={i} className="item-row"
-                // onSelect={() => { setIndex(i); console.log("select", i) }}
-                // onBlur={() => setIndex(null)}
+                <tr
+                  key={i}
+                  className="item-row"
+                  // onSelect={() => { setIndex(i); console.log("select", i) }}
+                  // onBlur={() => setIndex(null)}
                 >
-                  <td disabled={!isEdit} className="title-input invoice__item--index">
+                  <td
+                    disabled={!isEdit}
+                    className="title-input invoice__item--index"
+                  >
                     {/* {index === i ? */}
                     <div onClick={() => handleItemRemove(i)}>
                       <i className="fa-solid fa-trash-can"></i>
@@ -217,11 +267,18 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                       name="name"
                       value={itemlist[i].name}
                       onChange={(e) => handleSearchQuery(e, i)}
-
                     />
-                    {open && index === i && <div className="invoice__item--search">
-                      <ItemSearchBox onClose={() => setOpen(false)} items={result} index={i} setItemInput={setItemInput} handleItemAdd={handleItemAdd} />
-                    </div>}
+                    {open && index === i && (
+                      <div className="invoice__item--search">
+                        <ItemSearchBox
+                          onClose={() => setOpen(false)}
+                          items={result}
+                          index={i}
+                          setItemInput={setItemInput}
+                          handleItemAdd={handleItemAdd}
+                        />
+                      </div>
+                    )}
                   </td>
                   <td className="title-input">
                     <input
@@ -287,7 +344,6 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
                       onChange={(e) => handleChange(e, i)}
                     />
                   </td>
-
                 </tr>
               );
             })}
@@ -340,8 +396,7 @@ export default function ItemList({ isEdit, itemlist, invoice, setitemlist, handl
             />
           </div>
         </div>
-
       </div>
-    </div >
+    </div>
   );
 }

@@ -227,6 +227,27 @@ body {
 .u-color-pink {
   color: #f56d84; }
 
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 15vw;
+  background-color: #000000;
+  position: fixed;
+  height: 100%;
+  overflow: auto; }
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1.6rem; }
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white; }
+  .sidebar a.active {
+    background-color: #04aa6d;
+    color: white; }
+
 @media (max-width: 37.5em) {
   .leftbar {
     display: none; } }
@@ -456,109 +477,6 @@ body {
     margin: auto; }
   .nopost-to > a {
     color: blue; }
-
-.btn, .btn:link, .btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1rem 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  transition: all 0.2s;
-  position: relative;
-  cursor: pointer; }
-
-.btn--white {
-  background-color: #fff;
-  color: #777; }
-  .btn--white::after {
-    background-color: #fff; }
-
-.btn--primary {
-  background-color: #5643fa;
-  color: #fff;
-  width: fit-content;
-  font-weight: 500;
-  font-size: 14px; }
-
-.btn--error {
-  color: red;
-  border: 1px solid red;
-  background-color: #fff; }
-  .btn--error:hover {
-    background-color: red;
-    color: #fff; }
-
-.btn--secondary {
-  color: #04b2d9;
-  background-color: #fff;
-  border: 2px solid #04b2d9; }
-  .btn--secondary:hover {
-    background-color: #04b2d9;
-    color: #fff; }
-
-.btn--disable {
-  cursor: default; }
-
-.btn--grey {
-  background-color: #e4e4e4;
-  color: black;
-  font-weight: bold; }
-  .btn--grey::after {
-    background-color: #727272; }
-
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all 0.4s; }
-
-.btn--animated {
-  animation: moveInButton 0.5s 0.75s;
-  animation-fill-mode: backwards; }
-
-.btn-login {
-  background-color: blue;
-  color: #fff;
-  width: -webkit-fill-available; }
-
-.btn-text:link, .btn-text:visited {
-  font-size: 1.6rem;
-  color: #28b485;
-  display: inline-block;
-  text-decoration: none;
-  border-bottom: 1px solid #28b485;
-  padding: 3px;
-  transition: all 0.2s; }
-
-.btn-text:hover {
-  background-color: #28b485;
-  color: #fff;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px); }
-
-.btn-text:active {
-  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
-  transform: translateY(0px); }
-
-.btn-follow {
-  background-color: #5643fa;
-  color: #fff;
-  border-radius: 10px;
-  border: none;
-  padding: 1rem;
-  margin-left: 1rem;
-  cursor: pointer; }
-  .btn-follow-f {
-    background-color: #e4e4e4;
-    color: #333; }
 
 .timeline {
   height: 100%;
@@ -1751,6 +1669,8 @@ td {
   width: 100vw;
   height: 100vh;
   z-index: 2000;
+  top: 0px;
+  left: 0px;
   position: fixed;
   background-color: #fff;
   display: flex; }
@@ -2155,30 +2075,33 @@ input:hover::placeholder {
     display: block;
     padding-bottom: 5px; } }
 
-.container {
+.dashboard-main {
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  font-size: 16px; }
+
+#top-div {
+  height: 7vh; }
+
+#bottom-div {
   display: flex;
   flex-direction: row; }
 
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 15vw;
-  background-color: #000000;
-  position: fixed;
-  height: 100%;
-  overflow: auto; }
-  .sidebar a {
-    display: block;
-    color: white;
-    padding: 1rem;
-    text-decoration: none;
-    font-size: 1.6rem; }
-    .sidebar a:hover:not(.active) {
-      background-color: #555;
-      color: white; }
-  .sidebar a.active {
-    background-color: #04aa6d;
-    color: white; }
+#sidebar-div {
+  width: 15vw; }
+
+#central-div {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  height: 100vh;
+  position: relative; }
+
+.inputboxtop {
+  width: 100%;
+  padding: 30px 10px;
+  height: 11vh; }
 
 div.content {
   margin-left: 200px;
@@ -2565,32 +2488,6 @@ div.content {
         @media (max-width: 37.5em) {
           .profile__header-info-follow-count {
             margin-right: 1rem; } }
-
-.dashboard-main {
-  display: flex;
-  flex-direction: column; }
-
-#top-div {
-  height: 7vh; }
-
-#bottom-div {
-  display: flex;
-  flex-direction: row; }
-
-#sidebar-div {
-  width: 15vw; }
-
-#central-div {
-  display: flex;
-  flex-direction: column;
-  width: 85vw;
-  height: 100vh;
-  position: relative; }
-
-.inputboxtop {
-  width: 100%;
-  padding: 30px 10px;
-  height: 11vh; }
 
 .editbox {
   display: flex;

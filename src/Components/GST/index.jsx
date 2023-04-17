@@ -6,13 +6,11 @@ import Button from "react-bootstrap/Button";
 
 export default function GstDashboard() {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Button>GSTR 3B</Button>
-          <Button>GSTR 1</Button>
-        </Col>
-      </Row>
-    </Container>
+    <Row>
+      <Col>
+        <Button>GSTR 3B</Button>
+        <Button>GSTR 1</Button>
+      </Col>
+    </Row>
   );
 }

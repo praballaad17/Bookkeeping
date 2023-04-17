@@ -3,27 +3,26 @@ import { Link, useNavigate } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { useUser } from "../../Context/userContext";
 import { getPartyByUserId } from "../../services/partyServices";
+import { useData } from "../../Context/dataContext";
+import Button from "react-bootstrap/esm/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faKeyboard } from "@fortawesome/free-solid-svg-icons";
 
 export default function Parties() {
   const { user } = useUser();
+  const { parties, getParties } = useData();
   const [invoice, setInvoice] = useState();
-  const [open, setOpen] = useState(false)
-  const [parties, setParties] = useState([])
+  const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getParties = async () => {
-      const parties = await getPartyByUserId(user?.id, "all")
-      setParties(parties)
-    };
     getParties();
   }, [user]);
 
-
-
   const openParty = (party) => {
     navigate(`/party/open/${party._id}`, { state: { party } });
-  }
+  };
 
   return (
     <>
@@ -32,20 +31,23 @@ export default function Parties() {
           <span className="partieslefthead">Parties</span>
         </div>
         <div className="rightheadpurchase">
-          <i class="fa-solid fa-keyboard"></i>
-          <button className="invoicesettingbutton">
+          <FontAwesomeIcon className="fs-3 mx-2" icon={faKeyboard} />
+          <Button className="p-2 w-75 fs-4 mx-2" variant="outline-info">
             Party Settings <i class="fa-solid fa-gear "></i>
-          </button>
-          <button className="possalesbutton bulkpartybutton">
+          </Button>
+          <Button className="p-2 w-75 fs-4 mx-2" variant="outline-info">
             {" "}
             Bulk Import Parties
-          </button>
+          </Button>
+
           <Link
-            className="btn btn--tertiary addpurchasebutton addpartybutton"
+            className="mx-2"
             to={ROUTES.ADDPARTIESINV}
-          // onClick={() => setOpen(true)}
+            // onClick={() => setOpen(true)}
           >
-            + Create Party
+            <Button className="p-2 w-75 fs-4" variant="outline-info">
+              + Create Party
+            </Button>
           </Link>
         </div>
       </div>
@@ -101,26 +103,26 @@ export default function Parties() {
             </tr>
           </thead>
           <tbody>
-            {parties && parties.length ? parties.map(party => (
-              <tr
-                key={party._id}
-                onClick={() => openParty(party)}
-                className="purinvoice__table--invoice">
-                <td>{party?.name}</td>
-                <td>{party?.category ? party.category : "nil"}</td>
-                <td>{party?.phone}</td>
-                <td>{party?.partyType ? party.partyType : "nil"}</td>
-                <td>₹ {party?.balance ? party.balance : 0}</td>
-              </tr>
-            )) :
-              <>
-                No Parties Available
-              </>
-            }
+            {parties && parties.length ? (
+              parties.map((party) => (
+                <tr
+                  key={party._id}
+                  onClick={() => openParty(party)}
+                  className="purinvoice__table--invoice"
+                >
+                  <td>{party?.name}</td>
+                  <td>{party?.category ? party.category : "nil"}</td>
+                  <td>{party?.phone}</td>
+                  <td>{party?.partyType ? party.partyType : "nil"}</td>
+                  <td>₹ {party?.balance ? party.balance : 0}</td>
+                </tr>
+              ))
+            ) : (
+              <>No Parties Available</>
+            )}
           </tbody>
         </table>
       </div>
-
 
       {/* add party modal */}
       {/* <AddParties open={open} onClose={() => setOpen(false)} /> */}

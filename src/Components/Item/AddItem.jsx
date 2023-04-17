@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addItem } from "../../services/ItemServices";
+import { GSTRATES } from "../../constants/variables";
+import { useUser } from "../../Context/userContext";
+import * as ROUTES from "../../constants/routes";
+import { useData } from "../../Context/dataContext";
 
 export default function AddItem() {
+  const [item, setItem] = useState();
   const navigate = useNavigate();
+  const { user, addToast } = useUser();
+  const { addLocalItem } = useData();
+
+  const handleAddItem = async () => {
+    try {
+      const res = await addItem(item, user.id);
+      addLocalItem(item);
+      addToast(`${item.name} is added successfully`);
+    } catch (error) {
+      addToast("Error", true);
+    }
+  };
 
   return (
     <div className="outerbox">
       <div className="outer">
         <div className="outerelement">
-          <i onClick={() => navigate(-1)} className="fa-solid fa-arrow-left editbox--back"></i>
+          <i
+            onClick={() => navigate(-1)}
+            className="fa-solid fa-arrow-left editbox--back"
+          ></i>
           <h3 className="">Add Item</h3>
         </div>
         <div className="upper">
           <div className="upperinput">
             <input
+              onChange={(e) => setItem({ ...item, name: e.target.value })}
               type="text"
               name=" "
               placeholder="Item Name*"
@@ -35,6 +57,7 @@ export default function AddItem() {
           </div>
           <div className="upperinput upperinputlast">
             <input
+              onChange={(e) => setItem({ ...item, itemCode: e.target.value })}
               type="text"
               name=" "
               placeholder="Item Code*"
@@ -43,13 +66,13 @@ export default function AddItem() {
           </div>
         </div>
         <div className="lower">
-          <span className="lowerspantag">Pricing</span>
-          <span className="lowerspantag">Stock</span>
-          <hr />
           <div className="lowerupper">
             <span className="salepricespan">Sale Price</span>
             <div className="lowerupperinput">
               <input
+                onChange={(e) =>
+                  setItem({ ...item, salePrice: e.target.value })
+                }
                 type="number"
                 name=" "
                 placeholder="Sale Price"
@@ -74,36 +97,15 @@ export default function AddItem() {
                 <option value="amount">Amount</option>
               </select>
             </div>
-
-            <span className="wholesalespan">WholeSale Price</span>
-            <div className="lowerupperinput">
-              <input
-                type="number"
-                name=" "
-                placeholder="WholeSale Price"
-                className="inputtextlower"
-                min="0"
-              />
-              <select id="taxes" name="" className="inputtextlower">
-                <option value="withtax">With tax</option>
-                <option value="withouttax">Withour tax</option>
-              </select>
-            </div>
-            <div className="lowerupperinput">
-              <input
-                type="number"
-                name=" "
-                placeholder="Minimum Wholesale Quantity"
-                className="inputtextlower"
-                min="0"
-              />
-            </div>
           </div>
           <div className="lowerbottom">
             <div className="lowerbottominput">
               <span className="wholesalespan">Purchase Price</span>
               <div className="lowerupperinput">
                 <input
+                  onChange={(e) =>
+                    setItem({ ...item, purchasePrice: e.target.value })
+                  }
                   type="number"
                   name=" "
                   placeholder="Purchase Price"
@@ -120,38 +122,65 @@ export default function AddItem() {
             <div className="lowerbottominput">
               <span className="wholesalespan">Tax rate</span>
               <div className="lowerupperinput">
-                <select id="taxes" name="" className="selecttaxes">
+                <select
+                  onChange={(e) =>
+                    setItem({ ...item, itemWiseTax: e.target.value })
+                  }
+                  id="taxes"
+                  name=""
+                  className="selecttaxes"
+                >
                   <option value="None">None</option>
-                  <option value="igst0">IGST @0%</option>
-                  <option value="gst0">GST @0%</option>
-                  <option value="igst0.25">IGST @0.25%</option>
-                  <option value="gst0.25">GST @0.25%</option>
-                  <option value="igst3">IGST @3%</option>
-                  <option value="gst3">GST @3%</option>
-                  <option value="igst5">IGST @5%</option>
-                  <option value="gst5">GST @5%</option>
-                  <option value="igst12">IGST @12%</option>
-                  <option value="gst12">GST @12%</option>
-                  <option value="igst18">IGST @18%</option>
-                  <option value="gst18">GST @18%</option>
-                  <option value="igst28">IGST @28%</option>
-                  <option value="gst28">GST @28%</option>
-                  <option value="exempted">Exempted</option>
+                  {GSTRATES.map((item) => (
+                    <option value={item}>GST @{item}%</option>
+                  ))}
                 </select>
+              </div>
+            </div>
+          </div>
+          <div className="lowerbottom">
+            <div className="lowerbottominput">
+              <span className="wholesalespan">Opening Stock</span>
+              <div className="lowerupperinput">
+                <input
+                  onChange={(e) =>
+                    setItem({ ...item, openigStockQuantity: e.target.value })
+                  }
+                  type="number"
+                  name=" "
+                  placeholder="Opening Stock"
+                  className="inputtextlower"
+                  min="0"
+                />
               </div>
             </div>
           </div>
           <div className="lowerbuttons">
             <div className="lowerbuttoninput">
-              <button className="button12">Save</button>
+              <button
+                onClick={() => {
+                  handleAddItem();
+                  navigate(ROUTES.ITEM);
+                }}
+                className="button12"
+              >
+                Save
+              </button>
             </div>
             <div className="lowerbuttoninput">
-              <button className="button12">Save & New</button>
+              <button
+                onClick={() => {
+                  handleAddItem();
+                  navigate(ROUTES.ADDITEM);
+                }}
+                className="button12"
+              >
+                Save & New
+              </button>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

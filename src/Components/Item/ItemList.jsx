@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import { useData } from "../../Context/dataContext";
 
-export default function ItemList({ items, setSelectedItem }) {
+export default function ItemList({ setSelectedItem }) {
   const [key, setKey] = useState("");
+  const { items } = useData();
   const [result, setResult] = useState(items);
 
   console.log(result);

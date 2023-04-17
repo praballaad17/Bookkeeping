@@ -9,71 +9,39 @@ import {
 } from "../../../services/InvoiceServices";
 import EditBox from "../EditBox";
 import ItemList from "./ItemListSales";
+import Button from "react-bootstrap/esm/Button";
+import { useInvoice } from "../../../Context/invoiceContext";
 
 export default function AddSalesInvoice() {
-  const { user } = useUser();
+  const { user, addToast } = useUser();
+  const { addInvoice, itemlist, addItemList, invoice } = useInvoice();
   const { id } = useParams();
   const location = useLocation();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isEdit, setEdit] = useState(true);
-  const [invoice, setInvoice] = useState({
-    partyId: "",
-    type: "sales",
-    total: 0,
-    invoiceNumber: 0,
-    date: "",
-  });
-  const [itemlist, setitemlist] = useState([
-    {
-      item: "",
-      itemCategory: "",
-      itemCode: "",
-      decription: "",
-      discount: "",
-      quantity: "",
-      unit: "",
-      pricePerUnit: "",
-      taxPercent: "",
-      taxamount: "",
-      amount: "",
-    },
-  ]);
 
   useEffect(() => {
     if (location.state && location.state.invoice) {
       const { date, type, invoiceNumber, total, party, itemIds } =
         location.state?.invoice;
 
-      setInvoice({
+      addInvoice(type, {
         date,
-        type,
         invoiceNumber,
         total,
         partyId: party._id,
       });
 
-      setitemlist(itemIds);
+      addItemList(itemIds);
       if (id) setEdit(false);
+    } else {
+      addInvoice("sales");
+      addItemList();
     }
   }, [location.state]);
 
-  const handleTotalAmount = (addAmount, prevTotal = invoice.total) => {
-    console.log("total add", addAmount);
-
-    setInvoice({
-      ...invoice,
-      total: (parseFloat(prevTotal) + parseFloat(addAmount)).toFixed(3),
-    });
-  };
-
-  const handleChange = (e) => {
-    setInvoice({
-      ...invoice,
-      [e.target.name]: e.target.value,
-    });
-  };
   const handleInvoice = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -112,6 +80,7 @@ export default function AddSalesInvoice() {
       );
       setEdit(false);
     } catch (error) {
+      addToast(error.message, true);
       console.log(error);
     }
   };
@@ -130,21 +99,16 @@ export default function AddSalesInvoice() {
           <></>
         )}
         {/* <input name="invoiceID" value={invoiceID} onChange={(e) => handleChange(e)} /> */}
-        <ItemList
-          isEdit={isEdit}
-          itemlist={itemlist}
-          invoice={invoice}
-          handleTotalAmount={handleTotalAmount}
-          setitemlist={setitemlist}
-          handleInvoice={handleChange}
-        />
-        <button
-          className={`btn ${!isEdit ? "btn--disable" : "btn--secondary"}`}
+        <ItemList isEdit={isEdit} />
+        <Button
+          className={`btn ${
+            !isEdit ? "btn--disable" : "btn--secondary"
+          } fs-3 px-4`}
           onClick={id ? handleUpdateInvoice : handleInvoice}
           disabled={!isEdit}
         >
           {id ? "Update Invoice" : "Create Invoice"}
-        </button>
+        </Button>
       </div>
     </div>,
     document.getElementById("invoice")
