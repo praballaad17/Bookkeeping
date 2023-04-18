@@ -26,6 +26,14 @@ export default function AddSalesInvoice() {
     if (location.state && location.state.invoice) {
       const { date, type, invoiceNumber, total, party, itemIds } =
         location.state?.invoice;
+      const newItemIds = itemIds.map((item) => {
+        return {
+          ...item,
+          ...item.itemId,
+          _id: item._id,
+          itemId: item.itemId._id,
+        };
+      });
 
       addInvoice(type, {
         date,
@@ -34,7 +42,7 @@ export default function AddSalesInvoice() {
         partyId: party._id,
       });
 
-      addItemList(itemIds);
+      addItemList(newItemIds);
       if (id) setEdit(false);
     } else {
       addInvoice("sales");

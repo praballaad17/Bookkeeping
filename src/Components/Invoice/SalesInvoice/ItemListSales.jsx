@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
 import TableItem from "../TableItem";
 import { useInvoice } from "../../../Context/invoiceContext";
+import Button from "react-bootstrap/esm/Button";
 
-export default function ItemList({ isEdit, setitemlist }) {
+export default function ItemList({ isEdit }) {
   const navigate = useNavigate();
   const { user } = useUser();
   const { invoice, itemlist, editInvoice, AddEmptyItem } = useInvoice();
@@ -166,13 +167,13 @@ export default function ItemList({ isEdit, setitemlist }) {
         </table>
         <div className="itemAdd-btn">
           {
-            <button
+            <Button
               disabled={!isEdit}
               className={`btn  ${!isEdit ? "btn--disable" : "btn--secondary"}`}
               onClick={AddEmptyItem}
             >
               Add Item
-            </button>
+            </Button>
           }
         </div>
         <div className="belowtable">

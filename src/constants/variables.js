@@ -9,7 +9,7 @@ export const NAVITEM = {
   ITEM: "item",
   SALES: "sales",
   PURCHASE: "purchase",
-  GSTDASH: "gst-dashboard",
+  GSTDASH: "gst",
   SETTING: "setting",
   EXPENSES: "expenses",
   CASHBANK: "cashbank",
@@ -28,6 +28,20 @@ export const EMPTYITEM = {
   itemWiseTax: 0,
   amount: 0,
 };
+
+export const GSTTABLE = [
+  "#",
+  "GSTIN",
+  "Particulars",
+  "Invoice No.",
+  "Invoive Date",
+  "Rate",
+  "Taxable",
+  "CGST",
+  "SGST",
+  "IGST",
+  "Invoice Value",
+];
 
 export const EMPTYINVOICE = {
   partyId: "",

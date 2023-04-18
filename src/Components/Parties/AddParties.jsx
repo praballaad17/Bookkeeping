@@ -152,15 +152,14 @@ export default function AddParties({ open, onClose }) {
                 {" "}
                 <select
                   onChange={(e) => handleParty(e)}
-                  id="parytType"
-                  name="parytType"
+                  id="gstType"
+                  name="gstType"
                 >
                   <option value="" disabled selected hidden>
                     GST Type
                   </option>
-                  <option value="unresitered">Unregistered/Consumer</option>
-                  <option value="Retail">Retail</option>
-                  <option value="WholeSale">WholeSale</option>
+                  <option value="unresitered">Unregistered / Customer</option>
+                  <option value="registered">Registered</option>
                 </select>
               </div>
               <div>

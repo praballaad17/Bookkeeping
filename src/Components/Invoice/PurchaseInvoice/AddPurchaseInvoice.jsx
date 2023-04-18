@@ -9,77 +9,51 @@ import { useUser } from "../../../Context/userContext";
 import { useLocation, useParams } from "react-router-dom";
 import EditBox from "../EditBox";
 import Button from "react-bootstrap/esm/Button";
+import { useInvoice } from "../../../Context/invoiceContext";
 
 export default function AddPurchaseInvoice() {
-  const { user } = useUser();
+  const { user, addToast } = useUser();
+  const { addInvoice, itemlist, addItemList, invoice } = useInvoice();
   const { id } = useParams();
   const location = useLocation();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [isEdit, setEdit] = useState(true);
-  const [invoice, setInvoice] = useState({
-    partyId: "",
-    type: "purchase",
-    total: 0,
-    invoiceNumber: 0,
-    date: "",
-  });
-  const [itemlist, setitemlist] = useState([
-    {
-      name: "",
-      itemCategory: "",
-      itemCode: "",
-      decription: "",
-      discount: "",
-      lowStockDialog: "",
-      openigStockQuantity: "",
-      purchasePrice: "",
-      salePrice: "",
-      itemWiseTax: "",
-      taxamount: "",
-      inclusionTax: "",
-      unit: "",
-    },
-  ]);
 
   useEffect(() => {
     if (location.state && location.state.invoice) {
       const { date, type, invoiceNumber, total, party, itemIds } =
         location.state?.invoice;
+      const newItemIds = itemIds.map((item) => {
+        return {
+          ...item,
+          ...item.itemId,
+          _id: item._id,
+          itemId: item.itemId._id,
+        };
+      });
 
-      setInvoice({
+      addInvoice(type, {
         date,
-        type,
         invoiceNumber,
         total,
         partyId: party._id,
       });
 
-      setitemlist(itemIds);
+      addItemList(newItemIds);
       if (id) setEdit(false);
+    } else {
+      addInvoice("purchase");
+      addItemList();
     }
   }, [location.state]);
-
-  const handleTotalAmount = (addAmount, prevTotal = invoice.total) => {
-    console.log("total add", addAmount);
-    setInvoice({
-      ...invoice,
-      total: prevTotal + addAmount,
-    });
-  };
-
-  const handleChange = (e) => {
-    setInvoice({
-      ...invoice,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleInvoice = async (event) => {
     event.preventDefault();
     setLoading(true);
     try {
+      console.log(invoice, itemlist);
       await createInvoice(invoice, itemlist, user?.id);
       setLoading(false);
       window.location = "/purchase/";
@@ -134,14 +108,7 @@ export default function AddPurchaseInvoice() {
         ) : (
           <></>
         )}
-        <ItemList
-          isEdit={isEdit}
-          itemlist={itemlist}
-          invoice={invoice}
-          handleTotalAmount={handleTotalAmount}
-          setitemlist={setitemlist}
-          handleInvoice={handleChange}
-        />
+        <ItemList isEdit={isEdit} />
         <Button
           className={`btn ${
             !isEdit ? "btn--disable" : "btn--secondary"

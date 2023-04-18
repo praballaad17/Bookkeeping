@@ -37,4 +37,6 @@ export const THEME = "/setting/invoicetheme";
 export const USERMANAGE = "/setting/manageuser";
 export const REMINDER = "/setting/reminder";
 
-export const GSTDASH = "/gst-dashboard";
+export const GSTDASH = "/gst";
+export const GSTGSTR3B = "/gst/gstr-3b";
+export const GSTGSTR1 = "/gst/gstr-1";

@@ -171,14 +171,18 @@ export default function PurchaseInvoice() {
                 </td>
               </tr>
             )}
+
+            {!purchaseInvoice ||
+              (!purchaseInvoice.length && !loading && (
+                <tr className="purchasebodyspan">
+                  <td colSpan={8} className="text-center">
+                    {" "}
+                    No Purchase Invoice made during the selected time period
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
-        {!purchaseInvoice ||
-          (!purchaseInvoice.length && !loading && (
-            <span className="purchasebodyspan">
-              No Purchase Invoice made during the selected time period
-            </span>
-          ))}
       </div>
     </>
   );

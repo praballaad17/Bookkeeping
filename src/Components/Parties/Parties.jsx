@@ -96,7 +96,7 @@ export default function Parties() {
           <thead>
             <tr>
               <th>NAME</th>
-              <th>CATEGORY</th>
+              <th>GST TYPE</th>
               <th>MOBILE NUMBER</th>
               <th>PARTY TYPE</th>
               <th>BALANCE</th>
@@ -111,7 +111,7 @@ export default function Parties() {
                   className="purinvoice__table--invoice"
                 >
                   <td>{party?.name}</td>
-                  <td>{party?.category ? party.category : "nil"}</td>
+                  <td>{party?.gstType ? party.gstType : "nil"}</td>
                   <td>{party?.phone}</td>
                   <td>{party?.partyType ? party.partyType : "nil"}</td>
                   <td>₹ {party?.balance ? party.balance : 0}</td>

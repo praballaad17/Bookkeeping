@@ -60,27 +60,15 @@ export function InvoiceProvider({ children }) {
     var list = [...itemlist];
     list[index][e.target.name] = e.target.value;
 
-    if (e.target.name === "itemWiseTax" || e.target.name === "unit") {
-      let taxper = e.target.value;
+    list[index].isEdited = true;
 
-      //   list[index]["taxamount"] = calculatTaxAmount(
-      //     parseInt(list[index]["itemWiseTax"].split("@").pop().split("%")[0]),
-      //     parseInt(list[index]["purchasePrice"]),
-      //     list[index]["unit"]
-      //   );
-      const previousAmount = list[index]["itemAmount"];
-      //   list[index]["itemAmount"] = calculatItemAmount(
-      //     parseInt(list[index]["purchasePrice"]),
-      //     list[index]["unit"],
-      //     list[index]["taxamount"]
-      //   );
-      getTotal();
-    }
+    getTotal();
     console.log(list);
     setitemlist(list);
   };
 
   const AddEmptyItem = (list = itemlist) => {
+    console.log("clicked function", list, itemlist);
     setitemlist([...list, EMPTYITEM]);
   };
 
@@ -97,12 +85,16 @@ export function InvoiceProvider({ children }) {
   };
 
   const setItemToList = (item, index) => {
-    console.log(item, index);
     let list = [...itemlist];
+
+    console.log(item);
 
     list[index] = {
       ...item,
+      itemId: item._id,
+      _id: list[index]._id ? list[index]._id : item._id,
       unit: "1",
+      isEdited: true,
     };
     getTotal(list);
     setitemlist(list);

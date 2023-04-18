@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { searchItem } from "../../services/ItemServices";
-import ItemSearchBox from "./ItemSearchBox";
+import ItemSearchBox from "../Invoice/ItemSearchBox";
 
 export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
   const [index, setIndex] = useState(null);
@@ -119,7 +119,7 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
       <div className="scrolable">
         <div className="topnavbar">
           <div>
-            <span>Expense  </span>
+            <span>Expense </span>
             <span className="creditspan">GST </span>
             <label className="switch">
               <input type="checkbox" />
@@ -160,7 +160,7 @@ export default function ItemList({ itemlist, setitemlist, total, setTotal }) {
               />
             </div> */}
 
-            <div style={{"margin-left":"805px"}}>
+            <div style={{ "margin-left": "805px" }}>
               <label htmlFor="billdate" className="inputbox">
                 {" "}
                 Date :{" "}

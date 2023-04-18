@@ -35,7 +35,6 @@ export function DataProvider({ user, children }) {
       user?.id
     );
     setSalesInvoice(salesInvoice);
-    console.log("salesInvoice", salesInvoice);
   };
 
   const getPurchaseInvoice = async () => {
@@ -45,8 +44,6 @@ export function DataProvider({ user, children }) {
     );
     setPurchaseInvoice(purchaseInvoice);
   };
-
-  console.log(purchaseInvoice);
 
   const value = {
     getParties,

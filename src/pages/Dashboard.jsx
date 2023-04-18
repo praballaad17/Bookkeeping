@@ -12,11 +12,11 @@ import PurchaseInvoice from "../Components/Invoice/PurchaseInvoice/PurchaseInvoi
 import AddPurchaseInvoice from "../Components/Invoice/PurchaseInvoice/AddPurchaseInvoice";
 import SalesInvoice from "../Components/Invoice/SalesInvoice/SalesInvoice";
 import AddSalesInvoice from "../Components/Invoice/SalesInvoice/AddSalesInvoice";
-import ItemTable from "../Components/Utilities/ItemTable";
+import Expenses from "../Components/Expenses/Expenses";
+import AddExpenses from "../Components/Expenses/AddExpenses";
+
 import Parties from "../Components/Parties/Parties";
 import AddParties from "../Components/Parties/AddParties";
-import Expenses from "../Components/Invoice/Expenses";
-import AddExpenses from "../Components/Invoice/AddExpenses";
 import Setting from "../Components/Setting/Setting";
 import PartyDetails from "../Components/Parties/PartyDetails";
 import GstDashboard from "../Components/GST/index.jsx";
@@ -24,6 +24,8 @@ import GstDashboard from "../Components/GST/index.jsx";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Gstr3B from "../Components/GST/Gstr3B";
+import Gstr1 from "../Components/GST/Gstr1";
 
 export default function Dashboard({ user: loggedInUser }) {
   const [open, setOpen] = useState(false);
@@ -53,7 +55,7 @@ export default function Dashboard({ user: loggedInUser }) {
           <DetailsModal open={open} onClose={() => setOpen(false)} />
           <Routes>
             <Route path={ROUTES.ITEM} element={<Item />} />
-            <Route path={ROUTES.GSTDASH} element={<GstDashboard />} />
+
             <Route path="/item/add" element={<AddItem />} />
             {/* <Route path="/item-table" element={<ItemTable />} />  */}
             <Route path="/purchase" element={<PurchaseInvoice />} />
@@ -75,6 +77,11 @@ export default function Dashboard({ user: loggedInUser }) {
             <Route path="/setting/*" element={<Setting />} />
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/addexpenses" element={<AddExpenses />} />
+
+            <Route path={ROUTES.GSTDASH} element={<GstDashboard />} />
+            <Route path={ROUTES.GSTGSTR3B} element={<Gstr3B />} />
+            <Route path={ROUTES.GSTGSTR1} element={<Gstr1 />} />
+
             <Route
               path={ROUTES.DASHBOARD}
               element={<Home handleOpen={() => setOpen(true)} />}

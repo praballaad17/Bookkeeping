@@ -59,6 +59,8 @@ export default function SalesInvoice() {
     }
   };
 
+  console.log(salesInvoice);
+
   return (
     <>
       <div className="purinvoice__head">
@@ -142,7 +144,6 @@ export default function SalesInvoice() {
               <th>Party Name</th>
               <th>Catagories Name</th>
               <th>Total</th>
-              <th>Recieve Party</th>
               <th>Balance</th>
               <th>Print</th>
             </tr>
@@ -161,12 +162,13 @@ export default function SalesInvoice() {
                     </div>
                   </td>
                   <td>{invoice?.date}</td>
-                  <td>{invoice?.invoiceNumber}</td>
-                  <td>{invoice?.party?.name}</td>
-                  <td></td>
-                  <td>{invoice?.total}</td>
-                  <td></td>
-                  <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
+                  <td className="text-center">{invoice?.invoiceNumber}</td>
+                  <td className="text-center">{invoice?.party?.name}</td>
+                  <td className="text-center">{invoice?.party?.gstType}</td>
+                  <td className="text-right">{invoice?.total}</td>
+                  <td className="text-right">
+                    {invoice?.party?.balance ? invoice.party.balance : 0}
+                  </td>
                   <td onClick={(e) => handleDownloadPdf(e, invoice._id)}>
                     <i className="fa-solid fa-print"></i>
                   </td>
@@ -192,15 +194,17 @@ export default function SalesInvoice() {
                 </td>
               </tr>
             )}
+
+            {!salesInvoice ||
+              (!salesInvoice.length && !loading && (
+                <tr className="purchasebodyspan">
+                  <td colspan="8" className="text-center">
+                    No Sales Invoice made during the selected time period
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
-
-        {!salesInvoice ||
-          (!salesInvoice.length && !loading && (
-            <span className="purchasebodyspan">
-              No Sales Invoice made during the selected time period
-            </span>
-          ))}
       </div>
     </>
   );
