@@ -16,19 +16,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faKeyboard } from "@fortawesome/free-solid-svg-icons";
 
 export default function PurchaseInvoice() {
-  const { user } = useUser();
+  const { user, setLoading } = useUser();
   const { purchaseInvoice, getPurchaseInvoice } = useData();
-  const [refresh, setRefresh] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [deleteModal, setDelete] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
     getPurchaseInvoice();
-    setRefresh(false);
-    setLoading(false);
-  }, [user, refresh]);
+  }, [user]);
 
   const openInvoice = (invoice) => {
     navigate(`/invoice/purchase/open/${invoice._id}`, { state: { invoice } });
@@ -129,53 +124,44 @@ export default function PurchaseInvoice() {
             </tr>
           </thead>
           <tbody>
-            {!loading ? (
-              purchaseInvoice.map((invoice) => (
-                <tr
-                  key={invoice._id}
-                  className="purinvoice__table--invoice"
-                  onClick={() => openInvoice(invoice)}
-                >
-                  <td>
-                    <div onClick={HandleDeleteInvoice}>
-                      <i className="fa-solid fa-trash-can"></i>
-                    </div>
-                  </td>
-                  <td>{invoice?.date}</td>
-                  <td>{invoice?.invoiceNumber}</td>
-                  <td>{invoice?.party?.name}</td>
-                  <td></td>
-                  <td>{invoice?.total}</td>
-                  <td></td>
-                  <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
-                  <td onClick={(e) => handleDownloadPdf(e, invoice._id)}>
-                    <i class="fa-solid fa-print"></i>
-                  </td>
-                  <DeleteModal
-                    deleted={(e) => {
-                      e.stopPropagation();
-                      deleteInvoice(invoice._id);
-                      setDelete(false);
-                      setRefresh(true);
-                    }}
-                    open={deleteModal}
-                    onClose={(e) => {
-                      e.stopPropagation();
-                      setDelete(false);
-                    }}
-                  />
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colspan="8">
-                  <div className="u-flex-all-center"> Loading...</div>
+            {purchaseInvoice.map((invoice) => (
+              <tr
+                key={invoice._id}
+                className="purinvoice__table--invoice"
+                onClick={() => openInvoice(invoice)}
+              >
+                <td>
+                  <div onClick={HandleDeleteInvoice}>
+                    <i className="fa-solid fa-trash-can"></i>
+                  </div>
                 </td>
+                <td>{invoice?.date}</td>
+                <td>{invoice?.invoiceNumber}</td>
+                <td>{invoice?.party?.name}</td>
+                <td></td>
+                <td>{invoice?.total}</td>
+                <td></td>
+                <td>{invoice?.party?.balance ? invoice.party.balance : 0}</td>
+                <td onClick={(e) => handleDownloadPdf(e, invoice._id)}>
+                  <i class="fa-solid fa-print"></i>
+                </td>
+                <DeleteModal
+                  deleted={(e) => {
+                    e.stopPropagation();
+                    deleteInvoice(invoice._id);
+                    setDelete(false);
+                  }}
+                  open={deleteModal}
+                  onClose={(e) => {
+                    e.stopPropagation();
+                    setDelete(false);
+                  }}
+                />
               </tr>
-            )}
+            ))}
 
             {!purchaseInvoice ||
-              (!purchaseInvoice.length && !loading && (
+              (!purchaseInvoice.length && (
                 <tr className="purchasebodyspan">
                   <td colSpan={8} className="text-center">
                     {" "}

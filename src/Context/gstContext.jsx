@@ -15,7 +15,7 @@ export function useGST() {
   return useContext(GSTContext);
 }
 export function GSTProvider({ user, children }) {
-  const { addToast } = useUser();
+  const { addToast, setLoading } = useUser();
   const [fillingReport, setFillingReport] = useState({});
   const [gstr3bInvoice, setGstr3bInvoice] = useState([]);
   const [gstr1Invoice, setGstr1Invoice] = useState([]);
@@ -79,6 +79,7 @@ export function GSTProvider({ user, children }) {
     end
   ) => {
     try {
+      setLoading(true);
       const data = await getGSTR1FillingDetails(
         userId,
         monthFinancialYear,
@@ -92,11 +93,14 @@ export function GSTProvider({ user, children }) {
         });
 
         processItemDataToFormate(data.fileReport.invoices, setGstr1Invoice);
+        setLoading(false);
       } else {
         processItemDataToFormate(data.invoices, setGstr1Invoice);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -107,6 +111,7 @@ export function GSTProvider({ user, children }) {
     end
   ) => {
     try {
+      setLoading(true);
       const data = await getGSTR3BFillingDetails(
         userId,
         monthFinancialYear,
@@ -118,13 +123,15 @@ export function GSTProvider({ user, children }) {
         setFillingReport({
           [REPORTTYPE.GSTR3B]: data.fileReport,
         });
-
         processItemDataToFormate(data.fileReport.invoices, setGstr3bInvoice);
+        setLoading(false);
       } else {
         processItemDataToFormate(data.invoices, setGstr3bInvoice);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 

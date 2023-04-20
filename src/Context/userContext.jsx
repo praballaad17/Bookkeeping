@@ -15,6 +15,7 @@ export function useUser() {
 export function UserProvider({ user, children }) {
   const [toastList, setToastList] = useState([]);
   const [userDetails, setUserDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -55,6 +56,8 @@ export function UserProvider({ user, children }) {
     userDetails,
     addToast,
     removeToast,
+    loading,
+    setLoading,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

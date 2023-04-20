@@ -14,7 +14,7 @@ import { useUser } from "../../Context/userContext";
 
 export default function GstDashboard() {
   const [form, setForm] = useState({});
-  const { user, addToast } = useUser();
+  const { user, addToast, setLoading } = useUser();
   const [open, setOpen] = useState(false);
   const { generateDate, fillingReport, getFillingDetailsContext } = useGST();
   const [MONTHS, setMonths] = useState([]);
@@ -24,6 +24,7 @@ export default function GstDashboard() {
     if (!form.year || !form.month || !form.quarter) {
       return addToast("Fill all the Fields", true);
     }
+    setLoading(true);
     setOpen(true);
     const date = generateDate(form.year, form.month, form.quarter, {
       rtn_year: form.year,
@@ -35,9 +36,11 @@ export default function GstDashboard() {
     localStorage.setItem("rtn_quarter", form.quarter);
 
     try {
-      getFillingDetailsContext(user.id, date.monthFinancialYear);
+      await getFillingDetailsContext(user.id, date.monthFinancialYear);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 

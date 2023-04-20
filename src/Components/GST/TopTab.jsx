@@ -1,8 +1,12 @@
 import React from "react";
 import { useGST } from "../../Context/gstContext";
+import { useUser } from "../../Context/userContext";
 
 export default function TopTab({ title, status }) {
   const { date } = useGST();
+  const { userDetails } = useUser();
+
+  console.log(userDetails);
 
   return (
     <>
@@ -14,9 +18,9 @@ export default function TopTab({ title, status }) {
       <table className="m-4 bg-white">
         <tbody>
           <tr>
-            <td>GSTIN - </td>
-            <td>Legal Name - </td>
-            <td>Trade Name - </td>
+            <td>GSTIN - {userDetails?.fullName}</td>
+            <td>Legal Name - {userDetails?.profileId?.gstin}</td>
+            <td>Trade Name - {userDetails?.profileId?.businessName}</td>
             <td></td>
           </tr>
           <tr>

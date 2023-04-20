@@ -3,6 +3,7 @@ import { getPartyByUserId } from "../services/partyServices";
 import { getItemsByUserId } from "../services/ItemServices";
 import { INVOICETYPE } from "../constants/variables";
 import { getInvoiceUserId } from "../services/InvoiceServices";
+import { useUser } from "./userContext";
 
 const DataContext = createContext();
 
@@ -10,14 +11,21 @@ export function useData() {
   return useContext(DataContext);
 }
 export function DataProvider({ user, children }) {
+  const { setLoading } = useUser();
   const [parties, setParties] = useState([]);
   const [items, setItems] = useState([]);
   const [salesInvoice, setSalesInvoice] = useState([]);
   const [purchaseInvoice, setPurchaseInvoice] = useState([]);
 
   const getParties = async () => {
-    const parties = await getPartyByUserId(user?.id, "all");
-    setParties(parties);
+    setLoading(true);
+    if (parties.length) {
+      setLoading(false);
+      return;
+    }
+    const resparties = await getPartyByUserId(user?.id, "all");
+    setParties(resparties);
+    setLoading(false);
   };
 
   const addLocalItem = async (item) => {
@@ -25,24 +33,40 @@ export function DataProvider({ user, children }) {
   };
 
   const getItems = async () => {
-    const items = await getItemsByUserId(user?.id, 30, 1);
-    setItems(items);
+    setLoading(true);
+    console.log(items);
+    if (items.length) {
+      setLoading(false);
+      return;
+    }
+    const resitems = await getItemsByUserId(user?.id, 30, 1);
+    setItems(resitems);
+    setLoading(false);
   };
 
   const getSalesInvoice = async () => {
-    const salesInvoice = await await getInvoiceUserId(
-      INVOICETYPE.SALES,
-      user?.id
-    );
-    setSalesInvoice(salesInvoice);
+    setLoading(true);
+    if (salesInvoice.length) {
+      setLoading(false);
+      return;
+    }
+    const ressalesInvoice = await getInvoiceUserId(INVOICETYPE.SALES, user?.id);
+    setSalesInvoice(ressalesInvoice);
+    setLoading(false);
   };
 
   const getPurchaseInvoice = async () => {
-    const purchaseInvoice = await await getInvoiceUserId(
+    setLoading(true);
+    if (purchaseInvoice.length) {
+      setLoading(false);
+      return;
+    }
+    const respurchaseInvoice = await await getInvoiceUserId(
       INVOICETYPE.PURCHASE,
       user?.id
     );
-    setPurchaseInvoice(purchaseInvoice);
+    setPurchaseInvoice(respurchaseInvoice);
+    setLoading(false);
   };
 
   const value = {

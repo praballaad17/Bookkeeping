@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 import useAuthListener from "./hooks/useAuthListener";
-import MainLoader from "./loader/mainLoader";
+import MainLoader from "./Components/loader/mainLoader";
 import Dashboard from "./pages/Dashboard";
 import Authentication from "./pages/Authenticate/Authentication";
 import AuthLogin from "./pages/Authenticate/AuthLogin";
@@ -57,6 +57,7 @@ export default function App() {
               </Router>
 
               <ToastBox />
+              <MainLoader />
             </GSTProvider>
           </InvoiceProvider>
         </DataProvider>
