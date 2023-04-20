@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Toast from "react-bootstrap/Toast";
 import { useUser } from "../../Context/userContext";
 
@@ -9,6 +9,8 @@ export default function ToastItem({ toast, idx }) {
     setShowA(!showA);
     removeToast(idx);
   };
+
+  // console.log("rendered");
   return (
     <Toast
       show={showA}
@@ -18,7 +20,7 @@ export default function ToastItem({ toast, idx }) {
     >
       <Toast.Header>
         <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-        <strong className="me-auto">Fashion</strong>
+        <strong className="me-auto">Bookkeeping</strong>
         <small className="text-muted">just now</small>
       </Toast.Header>
       <Toast.Body className="text-light">{toast.message}</Toast.Body>

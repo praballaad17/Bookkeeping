@@ -5,6 +5,7 @@ import React, {
   createContext,
   useCallback,
 } from "react";
+import { getUserByUserId } from "../services/authenticationServices";
 
 const UserContext = createContext();
 
@@ -13,10 +14,25 @@ export function useUser() {
 }
 export function UserProvider({ user, children }) {
   const [toastList, setToastList] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await getUserByUserId(user.id);
+        setUserDetails(res);
+      } catch (error) {
+        addToast("User Not Found", true);
+        console.log(error);
+      }
+    };
+
+    getUser();
+  }, [user?.id]);
 
   const addToast = (message, isError = false) => {
-    setToastList((prev) => [
-      ...prev,
+    setToastList([
+      ...toastList,
       {
         message,
         isError,
@@ -30,13 +46,13 @@ export function UserProvider({ user, children }) {
       // only splice array when item is found
       unfilter.splice(idx, 1); // 2nd parameter means remove one item only
     }
-    console.log(unfilter);
     setToastList(unfilter);
   };
 
   const value = {
     user,
     toastList,
+    userDetails,
     addToast,
     removeToast,
   };

@@ -185,7 +185,15 @@ export default function GstDashboard() {
                     : "Not Filled"}
                 </Card.Text>
                 <Link to={ROUTES.GSTGSTR3B}>
-                  <Button className="fs-3" variant="primary">
+                  <Button
+                    className="fs-3"
+                    variant={`${
+                      fillingReport[REPORTTYPE.GSTR3B]?.isFilled
+                        ? "success"
+                        : "primary"
+                    }
+                  }`}
+                  >
                     {fillingReport[REPORTTYPE.GSTR3B]?.isFilled
                       ? "Filled"
                       : "Not Filled"}

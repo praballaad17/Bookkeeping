@@ -6,7 +6,8 @@ import { getItemsByUserId } from "../../services/ItemServices";
 import ItemIndividual from "./ItemIndividual";
 import ItemList from "./ItemList";
 import { useData } from "../../Context/dataContext";
-// import "../css/item.css";
+
+import Button from "react-bootstrap/Button";
 
 export default function Item() {
   const { user } = useUser();
@@ -24,9 +25,9 @@ export default function Item() {
         <div className="items">
           <div className="items__head">
             <div className="heading-secondary">Item</div>
-            <a className="btn btn--secondary" href={ROUTES.ADDITEM}>
-              Add Item
-            </a>
+            <Link to={ROUTES.ADDITEM}>
+              <Button className="p-3 fs-4">+ Add Item</Button>
+            </Link>
           </div>
           <div className="items__box">
             <div className="items__box--left">

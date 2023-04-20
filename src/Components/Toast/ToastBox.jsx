@@ -6,7 +6,7 @@ import ToastItem from "./Toast";
 export default function ToastBox({ content, error = false }) {
   const { toastList } = useUser();
 
-  console.log(toastList);
+  // console.log(toastList);
 
   return (
     <div

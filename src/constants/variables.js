@@ -5,7 +5,7 @@ export const INVOICETYPE = {
 
 export const NAVITEM = {
   HOME: "dashboard",
-  PARTY: "parties",
+  PARTY: "party",
   ITEM: "item",
   SALES: "sales",
   PURCHASE: "purchase",
@@ -81,3 +81,132 @@ export const REPORTTYPE = {
   GSTR1: "GSTR1",
   GSTR3B: "GSTR3B",
 };
+
+export const EMPTYBUISNESS = {
+  businessName: "",
+  phoneNo: "",
+  state: "",
+  email: "",
+  gstin: "",
+  description: "",
+  businesstype: "",
+  businessType: "",
+  gstType: "",
+  address: "",
+  pincode: "",
+};
+
+export const STATES = [
+  {
+    data: "Andhra Pradesh",
+    code: "AP",
+  },
+  {
+    data: "Arunachal Pradesh",
+    code: "AR",
+  },
+  {
+    data: "Assam",
+    code: "AS",
+  },
+  {
+    data: "Bihar",
+    code: "BR",
+  },
+  {
+    data: "Chhattisgarh",
+    code: "CG",
+  },
+  {
+    data: "Goa",
+    code: "GA",
+  },
+  {
+    data: "Gujarat",
+    code: "GJ",
+  },
+  {
+    data: "Haryana",
+    code: "HR",
+  },
+  {
+    data: "Himachal Pradesh",
+    code: "HP",
+  },
+  {
+    data: "Jharkhand",
+    code: "JH",
+  },
+  {
+    data: "Karnataka",
+    code: "KA",
+  },
+  {
+    data: "Kerala",
+    code: "KL",
+  },
+  {
+    data: "Madhya Pradesh",
+    code: "MP",
+  },
+  {
+    data: "Maharashtra",
+    code: "MH",
+  },
+  {
+    data: "Manipur",
+    code: "MN",
+  },
+  {
+    data: "Meghalaya",
+    code: "ML",
+  },
+  {
+    data: "Mizoram",
+    code: "MZ",
+  },
+  {
+    data: "Nagaland",
+    code: "NL",
+  },
+  {
+    data: "Odisha (Orissa)",
+    code: "OR",
+  },
+  {
+    data: "Punjab",
+    code: "PB",
+  },
+  {
+    data: "Rajasthan",
+    code: "RJ",
+  },
+  {
+    data: "Sikkim",
+    code: "SK",
+  },
+  {
+    data: "Tamil Nadu",
+    code: "TN",
+  },
+  {
+    data: "Telangana",
+    code: "TS",
+  },
+  {
+    data: "Tripura",
+    code: "TR",
+  },
+  {
+    data: "Uttar Pradesh",
+    code: "UP",
+  },
+  {
+    data: "Uttarakhand",
+    code: "UK",
+  },
+  {
+    data: "West Bengal",
+    code: "WB",
+  },
+];

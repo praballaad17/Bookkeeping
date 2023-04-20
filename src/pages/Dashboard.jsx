@@ -70,9 +70,9 @@ export default function Dashboard({ user: loggedInUser }) {
               path="/invoice/sales/open/:id"
               element={<AddSalesInvoice />}
             />
-            <Route path="/parties/*" element={<Parties />} />
+            <Route path="/party/*" element={<Parties />} />
             <Route path="/party/open/:id" element={<PartyDetails />} />
-            <Route path="/parties/add" element={<AddParties />} />
+            <Route path="/party/add" element={<AddParties />} />
             <Route path={ROUTES.IMPORTITEM} element={<ImportItem />} />
             <Route path="/setting/*" element={<Setting />} />
             <Route path="/expenses" element={<Expenses />} />

@@ -58,11 +58,11 @@ export default function PurchaseInvoice() {
         </div>
         <div className="rightheadpurchase">
           <FontAwesomeIcon icon={faKeyboard} />
-          <Button className="p-2 w-75 fs-4" variant="outline-info">
+          <Button className="p-2 mx-3 fs-4" variant="outline-info">
             Invoice Settings <FontAwesomeIcon icon={faGear} />
           </Button>
           <Link to={ROUTES.ADDPURCHASEINV}>
-            <Button className="p-2 w-75 fs-4" variant="outline-info">
+            <Button className="p-2 fs-4" variant="outline-info">
               Add Purchase Invoice
             </Button>
           </Link>

@@ -1,20 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGST } from "../../Context/gstContext";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
 import TopTab from "./TopTab";
-import { GSTTABLE } from "../../constants/variables";
+import { GSTTABLE, REPORTTYPE } from "../../constants/variables";
 import { useUser } from "../../Context/userContext";
+import { postFillingDetails } from "../../services/gstServices";
 
 const TOPERHALFRATE = 200;
 const TOPER = 100;
 export default function Gstr3b() {
-  const { user } = useUser();
+  const { user, addToast } = useUser();
   const { getGSTR3BFillingDetailsContext, gstr3bInvoice, date, fillingReport } =
     useGST();
+
+  const [nill, setNill] = useState(false);
+  const [alertsucc, setAlert] = useState(false);
 
   useEffect(() => {
     if (!fillingReport?.GSTR3B && date.monthFinancialYear) {
@@ -27,13 +33,48 @@ export default function Gstr3b() {
     }
   }, [date]);
 
-  const handleFillStatement = () => {};
+  const handleFillStatement = async () => {
+    let fillObj = {};
+    if (nill) {
+      fillObj = {
+        invoices: [],
+        reportType: REPORTTYPE.GSTR3B,
+        monthFinancialYear: date.monthFinancialYear,
+      };
+    } else {
+      let set = new Set();
+      gstr3bInvoice.map((item) => {
+        set.add(item._id);
+      });
+      fillObj = {
+        invoices: [...set],
+        reportType: REPORTTYPE.GSTR3B,
+        monthFinancialYear: date.monthFinancialYear,
+      };
+    }
+
+    try {
+      const res = await postFillingDetails(user.id, fillObj);
+      console.log(res);
+      setAlert(true);
+    } catch (error) {
+      addToast("Error To Fill", true);
+      console.log(error);
+    }
+  };
 
   return (
     <div>
       <Row className="border my-5">
         <TopTab title="GSTR-3B - Monthly Return" />
       </Row>
+      {alertsucc ? (
+        <Row className="my-4">
+          <Alert variant={"success"}>GSTR-3B Filled SuccessFully</Alert>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Table striped bordered hover>
           <thead>
@@ -89,6 +130,22 @@ export default function Gstr3b() {
           </tbody>
         </Table>
       </Row>
+
+      {gstr3bInvoice.length === 0 ? (
+        <Row>
+          <Col>
+            <Form.Check
+              aria-label="option 1"
+              label="Fill Nill GSTR-3B"
+              onChange={() => setNill(!nill)}
+              checked={fillingReport?.GSTR3B?.isFilled && !gstr3bInvoice.length}
+              disabled={fillingReport?.GSTR3B?.isFilled}
+            />
+          </Col>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row className="my-5">
         <Col>
           <Button

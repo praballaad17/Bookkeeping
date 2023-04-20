@@ -6,7 +6,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Table from "react-bootstrap/Table";
 const TOPERHALFRATE = 200;
 const TOPER = 100;
-export default function Gstr1Tabs() {
+export default function Gstr1Tabs({}) {
   const { gstr1Invoice, b2bInvoice, b2cInvoice } = useGST();
   return (
     <Tabs

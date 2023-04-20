@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../css/DetailModal.css";
+import { EMPTYBUISNESS, STATES } from "../constants/variables";
+import { updateBusinessDetails } from "../services/authenticationServices";
+import { useUser } from "../Context/userContext";
 
 export default function DetailsModal({ open, onClose }) {
+  const [business, setBuisness] = useState(EMPTYBUISNESS);
+  const [edit, setEdit] = useState(false);
+  const { addToast, user, userDetails } = useUser();
+
+  useEffect(() => {
+    if (userDetails.profileId) {
+      setBuisness(userDetails.profileId);
+    }
+  }, [userDetails]);
+
   // useEffect(() => {
   //     document.querySelector(".progress__bar").style.width = progress
   // }, [progress])
-  // {!open ? return(  ) : return <></>}
+  // {!open ? return(  ) : return <></> }
+
+  const handleSubmit = async () => {
+    setEdit(false);
+    try {
+      const res = await updateBusinessDetails(user.id, business);
+      onClose();
+      addToast("Updated Profile Details");
+    } catch (error) {
+      addToast("Error: Cannot Update Buisness Details", true);
+      console.log(error);
+    }
+  };
+
   if (!open) return null;
   return ReactDom.createPortal(
     <>
       <div className="modal-layout heeeeeee" onClick={onClose}></div>
-      <div className="detailsmodalallclassestestbox">
+      <div className="detailsmodalallclassestestbox fs-3">
         <div className="checcc">
           <div className="div-cross cross">
             <FontAwesomeIcon icon={faTimes} onClick={onClose} />
@@ -21,31 +47,101 @@ export default function DetailsModal({ open, onClose }) {
           <div className="columsss">
             <div className="itemjjj">
               <label htmlFor="bname">Business Name</label>
-              <input id="bname" type="text" name="bname" required />
+              <input
+                onChange={(e) =>
+                  setBuisness({ ...business, businessName: e.target.value })
+                }
+                id="bname"
+                type="text"
+                name="bname"
+                value={business.businessName}
+                readOnly={!edit}
+              />
             </div>
             <div className="itemjjj">
               <label htmlFor="email"> Email Address</label>
-              <input id="email" type="email" name="lname" required />
+              <input
+                onChange={(e) =>
+                  setBuisness({ ...business, email: e.target.value })
+                }
+                id="email"
+                value={business.email}
+                type="email"
+                name="lname"
+                readOnly={!edit}
+              />
             </div>
             <div className="itemjjj">
               <label htmlFor="tel">Contact-No:</label>
-              <input id="tel" type="tel" name="address1" required />
+              <input
+                onChange={(e) =>
+                  setBuisness({ ...business, phoneNo: e.target.value })
+                }
+                id="tel"
+                value={business.phoneNo}
+                type="tel"
+                name="address1"
+                readOnly={!edit}
+              />
             </div>
             <div className="itemjjj">
               <label htmlFor="state">State</label>
-              <input id="state" type="text" name="state" required />
+              <select
+                onChange={(e) =>
+                  setBuisness({ ...business, state: e.target.value })
+                }
+                id="state"
+                value={business.state}
+                type="text"
+                name="state"
+                disabled={!edit}
+              >
+                <option>select</option>
+                {STATES.map((item) => (
+                  <option key={item.code} value={item.code}>
+                    {item.data}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="itemjjj">
               <label htmlFor="zip">Zip/Postal Code</label>
-              <input id="zip" type="text" name="zip" required />
+              <input
+                onChange={(e) =>
+                  setBuisness({ ...business, pincode: e.target.value })
+                }
+                id="zip"
+                type="text"
+                value={business.pincode}
+                name="zip"
+                readOnly={!edit}
+              />
             </div>
             <div className="itemjjj">
               <label htmlFor="gstin">GST IN</label>
-              <input id="gstin" type="text" name="gstin" required />
+              <input
+                onChange={(e) =>
+                  setBuisness({ ...business, gstin: e.target.value })
+                }
+                id="gstin"
+                value={business.gstin}
+                type="text"
+                name="gstin"
+                readOnly={!edit}
+              />
             </div>
             <div className="itemjjj">
               <label htmlFor="businesstype">Business Type</label>
-              <select id="types" className="detailmodalselect" name="business">
+              <select
+                onChange={(e) =>
+                  setBuisness({ ...business, businessType: e.target.value })
+                }
+                value={business.businessType}
+                id="types"
+                className="detailmodalselect"
+                name="business"
+                disabled={!edit}
+              >
                 <option value="none">None</option>
                 <option value="Retail">Retail</option>
                 <option value="WholeSale">WholeSale</option>
@@ -56,78 +152,62 @@ export default function DetailsModal({ open, onClose }) {
               </select>
             </div>
             <div className="itemjjj">
-              <label htmlFor="businessCategory">Business Category</label>
-              <select id="types" className="detailmodalselect" name="business">
-                <option value="none">None</option>
-                <option value="Accounts">Accounts or CA</option>
-                <option value="Interior">Interior Designer</option>
-                <option value="Automobiles">Automobiles/Auto parts</option>
-                <option value="Salon">Salon/Spa</option>
-                <option value="Liquor">Liquor Store</option>
-                <option value="books">Stationary</option>
-                <option value="construction">Construction</option>
-                <option value="repair">Plumbing/Electrician</option>
-                <option value="chemicals">Chemicals/Fertilizers</option>
-                <option value="Softwares">Computer Softwares</option>
-                <option value="electrical">Electrical Equipments</option>
-                <option value="fashion">Fashion Accessory</option>
-                <option value="Boutique">Tailoring/ Boutique</option>
-                <option value="fruits">Fruits/Vegetables</option>
-                <option value="general">Kirana/Genreal Merchant</option>
-                <option value="fmcg">FMCG Products</option>
-                <option value="dairy">Dairy Products</option>
-                <option value="furniture">Furniture</option>
-                <option value="garments">Garments/Hosiery</option>
-                <option value="jewellery">Jewellery/Jems</option>
-                <option value="medical">Pharmacy/Medical</option>
-                <option value="hardware">Hardware Store</option>
-                <option value="Machinery">Industrial Machinery</option>
-                <option value="mobile">Mobile and Accessories</option>
-                <option value="plants">Plants/Nursery</option>
-                <option value="petroleum">
-                  Petroleum Bulk Stations an Terminals/ Petrol
-                </option>
-                <option value="hotel">Restaurant/Hotel</option>
-                <option value="footwear">Footwear</option>
-                <option value="paper">Paper and Paper Products</option>
-                <option value="bakery">Sweet Shop/Bakery</option>
-                <option value="gifts">Gifts/Toys</option>
-                <option value="laundry">Laundry/Washing/Dry clean</option>
-                <option value="coaching">Coaching and Training</option>
-                <option value="rent">Renting/Leasing</option>
-                <option value="fitness">Fitness Center</option>
-                <option value="Oil">Oil and Gas</option>
-                <option value="real-estate">Real Estate</option>
-                <option value="NGO">NGO / Charitable trust</option>
-                <option value="tour">Tours and Travels</option>
-                <option value="Others">Others</option>
+              <label htmlFor="businessCategory">GST Type</label>
+              <select
+                onChange={(e) =>
+                  setBuisness({ ...business, gstType: e.target.value })
+                }
+                disabled={!edit}
+                value={business.gstType}
+                id="types"
+                className="detailmodalselect"
+                name="business"
+              >
+                <option value="none">Select</option>
+                <option value="registered">Registered</option>
+                <option value="Unregistered">Unregistered</option>
               </select>
             </div>
             <div className="itemjjj">
               <label htmlFor="phone">Business Discription</label>
               <textarea
+                onChange={(e) =>
+                  setBuisness({ ...business, description: e.target.value })
+                }
+                value={business.description}
                 rows="4"
                 cols="24"
                 name="comment"
-                form="usrform"
                 placeholder="Discription.."
                 className="textareabusiness"
+                readOnly={!edit}
               ></textarea>
             </div>
             <div className="itemjjj">
               <label htmlFor="phone">Business Address</label>
               <textarea
+                onChange={(e) =>
+                  setBuisness({ ...business, address: e.target.value })
+                }
+                value={business.address}
                 rows="4"
                 cols="24"
                 name="comment"
                 form="usrform"
                 placeholder="Address.."
                 className="textareabusiness"
+                readOnly={!edit}
               ></textarea>
             </div>
           </div>
           <div className="btn-block">
-            <button className="buttondetailmodal" type="submit" href="/">
+            <button
+              onClick={() => setEdit(!edit)}
+              className="buttondetailmodal me-5"
+            >
+              {!edit ? "Edit" : "Cancel"}
+            </button>
+            <button onClick={handleSubmit} className="buttondetailmodal">
               Submit
             </button>
           </div>

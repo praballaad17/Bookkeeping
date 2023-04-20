@@ -72,15 +72,15 @@ export default function SalesInvoice() {
         </div>
         <div className="rightheadpurchase">
           <i className="fa-solid fa-keyboard"></i>
-          <Button className="p-2 w-75 fs-4" variant="outline-info">
+          <Button className="p-2 fs-4" variant="outline-info">
             Invoice Settings <i className="fa-solid fa-gear "></i>
           </Button>
-          <Button className="p-2 w-75 fs-4 mx-3" variant="outline-info">
+          <Button className="p-2 fs-4 mx-3" variant="outline-info">
             {" "}
             + POS Billing
           </Button>
           <Link to={ROUTES.ADDSALESINV}>
-            <Button className="p-2 w-75 fs-4" variant="outline-info">
+            <Button className="p-2 fs-4" variant="outline-info">
               + Create Sales Invoice
             </Button>
           </Link>

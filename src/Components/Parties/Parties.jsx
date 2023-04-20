@@ -32,20 +32,19 @@ export default function Parties() {
         </div>
         <div className="rightheadpurchase">
           <FontAwesomeIcon className="fs-3 mx-2" icon={faKeyboard} />
-          <Button className="p-2 w-75 fs-4 mx-2" variant="outline-info">
+          <Button className="p-2 fs-4 mx-2" variant="outline-info">
             Party Settings <i class="fa-solid fa-gear "></i>
           </Button>
-          <Button className="p-2 w-75 fs-4 mx-2" variant="outline-info">
+          <Button className="p-2 fs-4 mx-2" variant="outline-info">
             {" "}
             Bulk Import Parties
           </Button>
 
           <Link
-            className="mx-2"
             to={ROUTES.ADDPARTIESINV}
             // onClick={() => setOpen(true)}
           >
-            <Button className="p-2 w-75 fs-4" variant="outline-info">
+            <Button className="p-2 fs-4 mx-2" variant="outline-info">
               + Create Party
             </Button>
           </Link>

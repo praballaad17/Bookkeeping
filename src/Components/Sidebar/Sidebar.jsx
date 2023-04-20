@@ -48,8 +48,8 @@ export default function Sidebar({ open, onClose }) {
   const [sidebar, setSidebar] = useState(true);
   const showSidebar = () => setSidebar(!sidebar);
   let location = useLocation();
-  const pathname = location.pathname.slice(1);
-  console.log(pathname);
+  const pathname = location.pathname.split("/")[1];
+  console.log(pathname, location.pathname);
 
   return (
     <>

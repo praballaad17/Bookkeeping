@@ -203,13 +203,11 @@ export function GSTProvider({ user, children }) {
         sum = newInvoice[i].salePrice * newInvoice[i].unit;
         prev = newInvoice[i];
       }
-      if (i === newInvoice.length - 1) {
-        rateTable.push({
-          rate: prev.rate,
-          taxable: sum,
-        });
-      }
     }
+    rateTable.push({
+      rate: prev.rate,
+      taxable: sum,
+    });
     setRateTable(rateTable);
   };
 

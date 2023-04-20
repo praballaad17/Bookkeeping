@@ -90,13 +90,27 @@ export const changePassword = async (oldPassword, newPassword, authToken) => {
   // }
 };
 
-export const getUserByUserId = async (id) => {
-  // try {
-  //     const response = await axios.get(`${apiEndpoint}/userId/${id}`);
-  //     return response.data;
-  // } catch (err) {
-  //     throw new Error(err.response.data.error);
-  // }
+/**
+ * update buisness profile by user id.
+ * @param {buissness details} business
+ * @param {*} userId
+ */
+
+export const updateBusinessDetails = async (userId, business) => {
+  try {
+    await axios.put(`${apiEndpoint}/updateDetails/${userId}`, business);
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
+};
+
+export const getUserByUserId = async (userId) => {
+  try {
+    const response = await axios.get(`${apiEndpoint}/user/${userId}`);
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
 };
 
 export const getusersFollowersById = async (userId) => {

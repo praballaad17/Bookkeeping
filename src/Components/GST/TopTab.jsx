@@ -1,7 +1,7 @@
 import React from "react";
 import { useGST } from "../../Context/gstContext";
 
-export default function TopTab({ title }) {
+export default function TopTab({ title, status }) {
   const { date } = useGST();
 
   return (
@@ -22,7 +22,7 @@ export default function TopTab({ title }) {
           <tr>
             <td>FY - {date?.rtn_year}</td>
             <td>Tax Period - {date?.rtn_month}</td>
-            <td>Status - </td>
+            <td>Status - {status ? "Filled" : "Not Filled"}</td>
             <td>Due Date: </td>
           </tr>
         </tbody>
