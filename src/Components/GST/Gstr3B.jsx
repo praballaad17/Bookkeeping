@@ -149,11 +149,11 @@ export default function Gstr3b() {
       <Row className="my-5">
         <Col>
           <Button
-            disabled={fillingReport?.GSTR1?.isFilled}
+            disabled={fillingReport?.GSTR3B?.isFilled}
             onClick={handleFillStatement}
             className="fs-4 px-5 py-2"
           >
-            {!fillingReport?.GSTR1?.isFilled ? "Fill Statement" : "Filled"}
+            {!fillingReport?.GSTR3B?.isFilled ? "Fill Statement" : "Filled"}
           </Button>
         </Col>
       </Row>
