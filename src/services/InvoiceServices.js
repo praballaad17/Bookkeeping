@@ -3,8 +3,8 @@ import Url from "../config.json";
 // import { saveAs } from 'file-saver';
 import { copyImageToClipboard } from "copy-image-clipboard";
 
-// const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-const apiEndpointInvoice = Url?.localUrl + "/invoice";
+const apiEndpointInvoice = Url?.apiUrl + "/invoice";
+// const apiEndpointInvoice = Url?.localUrl + "/invoice";
 
 const getdata = async () => {
   copyImageToClipboard(

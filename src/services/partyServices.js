@@ -1,8 +1,8 @@
 import axios from "axios";
 import Url from "../config.json";
 
-// const apiEndpoint = Url?.apiUrl + "/party";
-const apiEndpoint = Url?.localUrl + "/party";
+const apiEndpoint = Url?.apiUrl + "/party";
+// const apiEndpoint = Url?.localUrl + "/party";
 
 export const createParty = async (party, userId) => {
   try {

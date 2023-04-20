@@ -1,8 +1,8 @@
 import axios from "axios";
 import Url from "../config.json";
 
-// const apiEndpoint = Url?.apiUrl + "/item";
-const apiEndpoint = Url?.localUrl + "/item";
+const apiEndpoint = Url?.apiUrl + "/item";
+// const apiEndpoint = Url?.localUrl + "/item";
 
 export const addItem = async (item, userId) => {
   try {

@@ -2,8 +2,8 @@ import axios from "axios";
 import Url from "../config.json";
 // import jwtDecode from 'jwt-decode';
 
-// const apiEndpoint = Url?.apiUrl + "/auth";
-const apiEndpoint = Url?.localUrl + "/auth";
+const apiEndpoint = Url?.apiUrl + "/auth";
+// const apiEndpoint = Url?.localUrl + "/auth";
 console.log(Url);
 const tokenKey = "token";
 function setJwt(jwt) {

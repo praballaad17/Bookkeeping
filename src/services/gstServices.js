@@ -1,8 +1,8 @@
 import axios from "axios";
 import Url from "../config.json";
 
-// const apiEndpointInvoice = Url?.apiUrl + "/gst";
-const apiEndpointInvoice = Url?.localUrl + "/gst";
+const apiEndpointInvoice = Url?.apiUrl + "/gst";
+// const apiEndpointInvoice = Url?.localUrl + "/gst";
 
 export const getSalesInvoice = async (userId, start, end) => {
   try {
