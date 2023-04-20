@@ -4,14 +4,90 @@ import Url from "../config.json";
 // const apiEndpointInvoice = Url?.apiUrl + "/gst";
 const apiEndpointInvoice = Url?.localUrl + "/gst";
 
-export const getB2BInvoice = async (userId) => {
+export const getSalesInvoice = async (userId, start, end) => {
   try {
-    const response = await axios(`${apiEndpointInvoice}/b2b/${userId}`, {
+    const response = await axios(
+      `${apiEndpointInvoice}/sales/${userId}/${start}/${end}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err.response.data.error);
+  }
+};
+
+export const getPurchaseInvoice = async (userId) => {
+  try {
+    const response = await axios(`${apiEndpointInvoice}/purchase/${userId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
     return response.data;
   } catch (err) {
     throw new Error(err.response.data.error);
+  }
+};
+
+export const getFillingDetails = async (userId, monthFinancialYear) => {
+  try {
+    const response = await axios(
+      `${apiEndpointInvoice}/fill-detail/${userId}/${monthFinancialYear}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const postFillingDetails = async (userId, fileReport) => {
+  try {
+    const response = await axios.post(
+      `${apiEndpointInvoice}/fill-detail/${userId}`,
+      {
+        ...fileReport,
+      }
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const getGSTR1FillingDetails = async (
+  userId,
+  monthFinancialYear,
+  start,
+  end
+) => {
+  try {
+    const response = await axios.get(
+      `${apiEndpointInvoice}/fill-detail-gstr1/${userId}/${monthFinancialYear}/${start}/${end}`
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const getGSTR3BFillingDetails = async (
+  userId,
+  monthFinancialYear,
+  start,
+  end
+) => {
+  try {
+    const response = await axios.get(
+      `${apiEndpointInvoice}/fill-detail-gstr3b/${userId}/${monthFinancialYear}/${start}/${end}`
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
   }
 };

@@ -87,8 +87,6 @@ export function InvoiceProvider({ children }) {
   const setItemToList = (item, index) => {
     let list = [...itemlist];
 
-    console.log(item);
-
     list[index] = {
       ...item,
       itemId: item._id,
@@ -100,8 +98,6 @@ export function InvoiceProvider({ children }) {
     setitemlist(list);
     AddEmptyItem(list);
   };
-
-  console.log(itemlist);
 
   const value = {
     invoice,

@@ -43,10 +43,41 @@ export const GSTTABLE = [
   "Invoice Value",
 ];
 
+export const RATETABLE = ["Rate", "Taxable", "CGST", "SGST", "IGST", "Total"];
+
 export const EMPTYINVOICE = {
   partyId: "",
   type: "",
   total: 0,
   invoiceNumber: 0,
   date: "",
+};
+
+export const FINANCIALYEAR = ["2020-21", "2021-22", "2022-23", "2023-24"];
+
+export const QUATERS = [
+  { data: "Quarter-1 (Apr - Jun)", code: 1 },
+  { data: "Quarter-2 (Jul - Sep)", code: 2 },
+  { data: "Quarter-3 (Oct - Dec)", code: 3 },
+  { data: "Quarter-4 (Jan - Mar)", code: 4 },
+];
+
+export const MONTHS = [
+  { data: "January", code: "Jan" },
+  { data: "February", code: "Feb" },
+  { data: "March", code: "Mar" },
+  { data: "April", code: "Apr" },
+  { data: "May", code: "May" },
+  { data: "June", code: "Jun" },
+  { data: "July", code: "Jul" },
+  { data: "August", code: "Aug" },
+  { data: "September", code: "Sep" },
+  { data: "October", code: "Oct" },
+  { data: "November", code: "Nov" },
+  { data: "December", code: "Dec" },
+];
+
+export const REPORTTYPE = {
+  GSTR1: "GSTR1",
+  GSTR3B: "GSTR3B",
 };

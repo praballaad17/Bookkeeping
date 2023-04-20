@@ -116,15 +116,17 @@ export default function PurchaseInvoice() {
         </div>
         <table className="purinvoice__table item__table">
           <thead>
-            <th>#</th>
-            <th>Date</th>
-            <th>Invoice Number</th>
-            <th>Party Name</th>
-            <th>Catagories Name</th>
-            <th>Total</th>
-            <th>Recieve Party</th>
-            <th>Balance</th>
-            <th>Print</th>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Invoice Number</th>
+              <th>Party Name</th>
+              <th>Catagories Name</th>
+              <th>Total</th>
+              <th>Recieve Party</th>
+              <th>Balance</th>
+              <th>Print</th>
+            </tr>
           </thead>
           <tbody>
             {!loading ? (

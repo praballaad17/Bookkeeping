@@ -14,6 +14,7 @@ export default function ToastItem({ toast, idx }) {
       show={showA}
       onClose={toggleShowA}
       bg={toast.isError ? "danger" : "success"}
+      className="fs-3"
     >
       <Toast.Header>
         <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />

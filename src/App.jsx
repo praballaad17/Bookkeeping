@@ -28,8 +28,6 @@ const Uppernavbar = lazy(() => import("./Components/Uppernavbar"));
 export default function App() {
   const { user, jwt } = useAuthListener();
 
-  console.log(user, jwt);
-
   return (
     <>
       <UserProvider user={user}>

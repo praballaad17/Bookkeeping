@@ -30,6 +30,7 @@ export function UserProvider({ user, children }) {
       // only splice array when item is found
       unfilter.splice(idx, 1); // 2nd parameter means remove one item only
     }
+    console.log(unfilter);
     setToastList(unfilter);
   };
 
