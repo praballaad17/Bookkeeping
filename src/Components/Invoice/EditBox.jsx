@@ -4,17 +4,22 @@ import { deleteInvoice } from "../../services/InvoiceServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/esm/Button";
+import { useUser } from "../../Context/userContext";
 
 export default function EditBox({ id, name, title, setEdit }) {
   const navigate = useNavigate();
+  const { setLoading } = useUser();
   const HandleDelete = () => {
+    setLoading(true);
     deleteInvoice(id)
       .then((res) => {
         console.log(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         alert("Error: Invoice not deleted");
+        setLoading(false);
       })
       .finally(() => {
         window.location = "/sales/";

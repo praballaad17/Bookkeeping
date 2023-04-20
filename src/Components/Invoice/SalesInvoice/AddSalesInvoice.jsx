@@ -13,13 +13,11 @@ import Button from "react-bootstrap/esm/Button";
 import { useInvoice } from "../../../Context/invoiceContext";
 
 export default function AddSalesInvoice() {
-  const { user, addToast } = useUser();
+  const { user, addToast, setLoading } = useUser();
   const { addInvoice, itemlist, addItemList, invoice } = useInvoice();
   const { id } = useParams();
   const location = useLocation();
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [isEdit, setEdit] = useState(true);
 
   useEffect(() => {
@@ -58,27 +56,13 @@ export default function AddSalesInvoice() {
       setLoading(false);
       window.location = SALESINV;
     } catch (error) {
-      setitemlist([
-        {
-          item: "",
-          itemCategory: "",
-          itemCode: "",
-          decription: "",
-          discount: "",
-          quantity: "",
-          unit: "",
-          pricePerUnit: "",
-          taxPercent: "",
-          taxamount: "",
-          amount: "",
-        },
-      ]);
-      setError(error.message);
+      addToast("error: cannot add sales invoice", true);
       setLoading(false);
     }
   };
 
   const handleUpdateInvoice = async (e) => {
+    setLoading(true);
     try {
       const updated = await updateInvoice(
         location.state.invoice._id,
@@ -86,10 +70,11 @@ export default function AddSalesInvoice() {
         itemlist,
         invoice
       );
+      setLoading(false);
       setEdit(false);
     } catch (error) {
       addToast(error.message, true);
-      console.log(error);
+      setLoading(false);
     }
   };
 

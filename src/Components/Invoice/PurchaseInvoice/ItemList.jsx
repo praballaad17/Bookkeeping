@@ -26,28 +26,6 @@ export default function ItemList({ isEdit }) {
     getSupplier();
   }, []);
 
-  const handleItemAdd = (list = itemlist) => {
-    setitemlist([
-      ...list,
-      {
-        name: "",
-        itemCategory: "",
-        itemCode: "",
-        decription: "",
-        discount: "",
-        lowStockDialog: "",
-        openigStockQuantity: "",
-        purchasePrice: "",
-        salePrice: "",
-        itemWiseTax: "",
-        taxamount: "",
-        inclusionTax: "",
-        unit: "",
-        itemAmount: "",
-      },
-    ]);
-  };
-
   return (
     <div>
       <div className="scrolable">
@@ -113,7 +91,7 @@ export default function ItemList({ isEdit }) {
               </label>
               <input
                 readOnly={!isEdit}
-                defaultValue={invoice?.date}
+                defaultValue={invoice?.date.substring(0, 10)}
                 type="date"
                 id="date"
                 name="date"
@@ -147,7 +125,6 @@ export default function ItemList({ isEdit }) {
               <th className="title">Amount</th>
             </tr>
           </thead>
-          {/* <div className="listofItems"></div> */}
           <tbody>
             {itemlist.map((item, i) => (
               <TableItem

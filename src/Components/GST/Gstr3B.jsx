@@ -11,16 +11,20 @@ import TopTab from "./TopTab";
 import { GSTTABLE, REPORTTYPE } from "../../constants/variables";
 import { useUser } from "../../Context/userContext";
 import { postFillingDetails } from "../../services/gstServices";
+import VerifyModal from "./VerifyModal";
+import { generateOtp } from "../../services/authenticationServices";
 
 const TOPERHALFRATE = 200;
 const TOPER = 100;
 export default function Gstr3b() {
-  const { user, addToast } = useUser();
+  const { user, addToast, setLoading } = useUser();
   const { getGSTR3BFillingDetailsContext, gstr3bInvoice, date, fillingReport } =
     useGST();
 
   const [nill, setNill] = useState(false);
   const [alertsucc, setAlert] = useState(false);
+  const [verify, setVerify] = useState(false);
+  const [otpId, setOtpId] = useState();
 
   useEffect(() => {
     if (!fillingReport?.GSTR3B && date.monthFinancialYear) {
@@ -33,7 +37,9 @@ export default function Gstr3b() {
     }
   }, [date]);
 
-  const handleFillStatement = async () => {
+  const handleFillStatement = async (otp, otpId) => {
+    setLoading(true);
+
     let fillObj = {};
     if (nill) {
       fillObj = {
@@ -54,19 +60,38 @@ export default function Gstr3b() {
     }
 
     try {
-      const res = await postFillingDetails(user.id, fillObj);
-      console.log(res);
+      const res = await postFillingDetails(user.id, fillObj, otp, otpId);
+      setLoading(false);
+      setVerify(false);
       setAlert(true);
     } catch (error) {
       addToast("Error To Fill", true);
       console.log(error);
+      setLoading(false);
+      setVerify(false);
+    }
+  };
+
+  const handleOtp = async () => {
+    try {
+      setLoading(true);
+      const res = await generateOtp(user.id);
+      setOtpId(res.otpId);
+      setLoading(false);
+      setVerify(true);
+    } catch (error) {
+      addToast("Error: Cannot genrate otp", true);
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <Row className="border my-5">
-        <TopTab title="GSTR-3B - Monthly Return" />
+        <TopTab
+          title="GSTR-3B - Monthly Return"
+          status={fillingReport?.GSTR3B?.isFilled}
+        />
       </Row>
       {alertsucc ? (
         <Row className="my-4">
@@ -150,13 +175,20 @@ export default function Gstr3b() {
         <Col>
           <Button
             disabled={fillingReport?.GSTR3B?.isFilled}
-            onClick={handleFillStatement}
+            onClick={handleOtp}
             className="fs-4 px-5 py-2"
           >
             {!fillingReport?.GSTR3B?.isFilled ? "Fill Statement" : "Filled"}
           </Button>
         </Col>
       </Row>
+
+      <VerifyModal
+        show={verify}
+        handleClose={() => setVerify(false)}
+        submitFunction={handleFillStatement}
+        otpId={otpId}
+      />
     </div>
   );
 }

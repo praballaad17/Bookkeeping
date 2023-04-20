@@ -161,7 +161,7 @@ export default function SalesInvoice() {
                       <i className="fa-solid fa-trash-can"></i>
                     </div>
                   </td>
-                  <td>{invoice?.date}</td>
+                  <td>{invoice?.date.substring(0, 10)}</td>
                   <td className="text-center">{invoice?.invoiceNumber}</td>
                   <td className="text-center">{invoice?.party?.name}</td>
                   <td className="text-center">{invoice?.party?.gstType}</td>

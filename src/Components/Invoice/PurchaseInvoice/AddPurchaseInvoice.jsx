@@ -12,13 +12,11 @@ import Button from "react-bootstrap/esm/Button";
 import { useInvoice } from "../../../Context/invoiceContext";
 
 export default function AddPurchaseInvoice() {
-  const { user, addToast } = useUser();
+  const { user, addToast, setLoading } = useUser();
   const { addInvoice, itemlist, addItemList, invoice } = useInvoice();
   const { id } = useParams();
   const location = useLocation();
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [isEdit, setEdit] = useState(true);
 
   useEffect(() => {
@@ -58,29 +56,13 @@ export default function AddPurchaseInvoice() {
       setLoading(false);
       window.location = "/purchase/";
     } catch (error) {
-      setitemlist([
-        {
-          name: "",
-          itemCategory: "",
-          itemCode: "",
-          decription: "",
-          discount: "",
-          lowStockDialog: "",
-          openigStockQuantity: "",
-          purchasePrice: "",
-          salePrice: "",
-          itemWiseTax: "",
-          taxamount: "",
-          inclusionTax: "",
-          unit: "",
-        },
-      ]);
-      setError(error.message);
+      console.log(error);
       setLoading(false);
     }
   };
 
   const handleUpdateInvoice = async (e) => {
+    setLoading(true);
     try {
       const updated = await updateInvoice(
         location.state.invoice._id,
@@ -89,8 +71,10 @@ export default function AddPurchaseInvoice() {
         invoice
       );
       setEdit(false);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 

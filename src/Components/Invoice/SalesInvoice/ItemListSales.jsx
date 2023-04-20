@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import ItemSearchBox from "../ItemSearchBox";
 import { useUser } from "../../../Context/userContext";
 import { getPartyByUserId } from "../../../services/partyServices";
-import DeleteModal from "./DeleteModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalculator, faTimes } from "@fortawesome/free-solid-svg-icons";
 import TableItem from "../TableItem";
@@ -16,7 +15,6 @@ export default function ItemList({ isEdit }) {
   const { invoice, itemlist, editInvoice, AddEmptyItem } = useInvoice();
 
   const [decimal, setDecimal] = useState(0);
-
   const [customers, setCustumers] = useState([]);
 
   useEffect(() => {
@@ -42,6 +40,8 @@ export default function ItemList({ isEdit }) {
       setDecimal(0);
     }
   };
+
+  console.log(invoice);
 
   return (
     <div>
@@ -118,7 +118,7 @@ export default function ItemList({ isEdit }) {
               </label>
               <input
                 readOnly={!isEdit}
-                defaultValue={invoice?.date}
+                defaultValue={invoice?.date.substring(0, 10)}
                 type="date"
                 id="billdate"
                 name="date"

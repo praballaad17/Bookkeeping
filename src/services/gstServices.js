@@ -1,8 +1,8 @@
 import axios from "axios";
 import Url from "../config.json";
 
-const apiEndpointInvoice = Url?.apiUrl + "/gst";
-// const apiEndpointInvoice = Url?.localUrl + "/gst";
+// const apiEndpointInvoice = Url?.apiUrl + "/gst";
+const apiEndpointInvoice = Url?.localUrl + "/gst";
 
 export const getSalesInvoice = async (userId, start, end) => {
   try {
@@ -46,12 +46,14 @@ export const getFillingDetails = async (userId, monthFinancialYear) => {
   }
 };
 
-export const postFillingDetails = async (userId, fileReport) => {
+export const postFillingDetails = async (userId, fileReport, otp, otpId) => {
   try {
     const response = await axios.post(
       `${apiEndpointInvoice}/fill-detail/${userId}`,
       {
         ...fileReport,
+        otp,
+        otpId,
       }
     );
     return response.data;

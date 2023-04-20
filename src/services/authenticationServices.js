@@ -2,8 +2,8 @@ import axios from "axios";
 import Url from "../config.json";
 // import jwtDecode from 'jwt-decode';
 
-const apiEndpoint = Url?.apiUrl + "/auth";
-// const apiEndpoint = Url?.localUrl + "/auth";
+// const apiEndpoint = Url?.apiUrl + "/auth";
+const apiEndpoint = Url?.localUrl + "/auth";
 console.log(Url);
 const tokenKey = "token";
 function setJwt(jwt) {
@@ -113,24 +113,15 @@ export const getUserByUserId = async (userId) => {
   }
 };
 
-export const getusersFollowersById = async (userId) => {
-  // try {
-  //     const response = await axios.get(`${apiUrl}/user/userId/followers/${userId}`);
-  //     return response.data;
-  // } catch (err) {
-  //     throw new Error(err);
-  // }
+export const generateOtp = async (userId) => {
+  try {
+    const response = await axios.get(`${apiEndpoint}/generate-otp/${userId}`);
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export async function logout() {
   // localStorage.removeItem(tokenKey)
-}
-
-export function getCurrentUser() {
-  // try {
-  //     const jwt = localStorage.getItem(tokenKey);
-  //     return jwtDecode(jwt);
-  // } catch (error) {
-  //     return null;
-  // }
 }

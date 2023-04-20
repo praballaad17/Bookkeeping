@@ -135,7 +135,7 @@ export default function PurchaseInvoice() {
                     <i className="fa-solid fa-trash-can"></i>
                   </div>
                 </td>
-                <td>{invoice?.date}</td>
+                <td>{invoice?.date.substring(0, 10)}</td>
                 <td>{invoice?.invoiceNumber}</td>
                 <td>{invoice?.party?.name}</td>
                 <td></td>

@@ -6,8 +6,6 @@ export default function TopTab({ title, status }) {
   const { date } = useGST();
   const { userDetails } = useUser();
 
-  console.log(userDetails);
-
   return (
     <>
       <div className="p-3 fs-2 fw-bold bg-info text-white">
@@ -18,8 +16,8 @@ export default function TopTab({ title, status }) {
       <table className="m-4 bg-white">
         <tbody>
           <tr>
-            <td>GSTIN - {userDetails?.fullName}</td>
-            <td>Legal Name - {userDetails?.profileId?.gstin}</td>
+            <td>GSTIN - {userDetails?.profileId?.gstin}</td>
+            <td>Legal Name - {userDetails?.fullName}</td>
             <td>Trade Name - {userDetails?.profileId?.businessName}</td>
             <td></td>
           </tr>

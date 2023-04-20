@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faArrowTrendUp, faTimes } from "@fortawesome/free-solid-svg-icons";
 import "../css/DetailModal.css";
 import { EMPTYBUISNESS, STATES } from "../constants/variables";
 import { updateBusinessDetails } from "../services/authenticationServices";
@@ -10,7 +10,7 @@ import { useUser } from "../Context/userContext";
 export default function DetailsModal({ open, onClose }) {
   const [business, setBuisness] = useState(EMPTYBUISNESS);
   const [edit, setEdit] = useState(false);
-  const { addToast, user, userDetails } = useUser();
+  const { addToast, user, userDetails, setLoading } = useUser();
 
   useEffect(() => {
     if (userDetails.profileId) {
@@ -18,20 +18,18 @@ export default function DetailsModal({ open, onClose }) {
     }
   }, [userDetails]);
 
-  // useEffect(() => {
-  //     document.querySelector(".progress__bar").style.width = progress
-  // }, [progress])
-  // {!open ? return(  ) : return <></> }
-
   const handleSubmit = async () => {
     setEdit(false);
+    setLoading(faArrowTrendUp);
     try {
       const res = await updateBusinessDetails(user.id, business);
       onClose();
+      setLoading(false);
       addToast("Updated Profile Details");
     } catch (error) {
       addToast("Error: Cannot Update Buisness Details", true);
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -217,27 +215,3 @@ export default function DetailsModal({ open, onClose }) {
     document.getElementById("modal")
   );
 }
-
-{
-  /* <ul className="modal-box__list">
-            <li className="progress__box">
-                <span className="progress-bar"></span>
-            </li>
-            {/* <li className="modal-box__label" >{progress}</li> */
-}
-{
-  /* </ul> */
-}
-//     description: {
-//         type: String,
-//     },
-
-//     businessCategory: {
-//         type: String,
-//     },
-//     address: {
-//         type: String,
-//     },
-//     pincode: {
-//         type: Number,
-//     },

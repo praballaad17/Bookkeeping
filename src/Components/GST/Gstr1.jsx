@@ -6,12 +6,15 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 import { RATETABLE, REPORTTYPE } from "../../constants/variables";
 import TopTab from "./TopTab";
 import { useUser } from "../../Context/userContext";
 import { postFillingDetails } from "../../services/gstServices";
 import Gstr1Tabs from "./Gstr1Tabs";
+import VerifyModal from "./VerifyModal";
+import { generateOtp } from "../../services/authenticationServices";
 
 const TOPERHALFRATE = 200;
 const TOPER = 100;
@@ -24,9 +27,12 @@ export default function Gstr1() {
     fillingReport,
     getGSTR1FillingDetailsContext,
   } = useGST();
-  const { user, addToast } = useUser();
+  const { user, addToast, setLoading } = useUser();
   const [open, setOpen] = useState(false);
   const [nill, setNill] = useState(false);
+  const [alertsucc, setAlert] = useState(false);
+  const [verify, setVerify] = useState(false);
+  const [otpId, setOtpId] = useState();
 
   useEffect(() => {
     if (!fillingReport?.GSTR1 && date.monthFinancialYear) {
@@ -36,14 +42,11 @@ export default function Gstr1() {
         date.start,
         date.end
       );
-    } else {
-      // if (date.start) {
-      //   getGSTR1Invoice();
-      // }
     }
   }, [date]);
 
-  const handleFillStatement = async () => {
+  const handleFillStatement = async (otp, otpId) => {
+    setLoading(true);
     let fillObj = {};
     if (nill) {
       fillObj = {
@@ -64,15 +67,31 @@ export default function Gstr1() {
     }
 
     try {
-      const res = await postFillingDetails(user.id, fillObj);
-      console.log(res);
+      const res = await postFillingDetails(user.id, fillObj, otp, otpId);
+      setLoading(false);
+      setVerify(false);
+      setAlert(true);
     } catch (error) {
       addToast("Error To Fill", true);
       console.log(error);
+      setLoading(false);
+      setVerify(false);
     }
   };
 
-  console.log(fillingReport?.GSTR1?.isFilled, fillingReport, gstr1Invoice);
+  const handleOtp = async () => {
+    try {
+      setLoading(true);
+      const res = await generateOtp(user.id);
+      setOtpId(res.otpId);
+      setLoading(false);
+      setVerify(true);
+    } catch (error) {
+      addToast("Error: Cannot genrate otp", true);
+      console.log(error);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -82,6 +101,13 @@ export default function Gstr1() {
           status={fillingReport?.GSTR1?.isFilled}
         />
       </Row>
+      {alertsucc ? (
+        <Row className="my-4">
+          <Alert variant={"success"}>GSTR-1 Filled SuccessFully</Alert>
+        </Row>
+      ) : (
+        <></>
+      )}
       <Row>
         <Gstr1Tabs />
       </Row>
@@ -185,13 +211,20 @@ export default function Gstr1() {
         <Col>
           <Button
             disabled={fillingReport?.GSTR1?.isFilled}
-            onClick={handleFillStatement}
+            onClick={handleOtp}
             className="fs-4 px-5 py-2"
           >
             {!fillingReport?.GSTR1?.isFilled ? "Fill Statement" : "Filled"}
           </Button>
         </Col>
       </Row>
+
+      <VerifyModal
+        show={verify}
+        handleClose={() => setVerify(false)}
+        submitFunction={handleFillStatement}
+        otpId={otpId}
+      />
     </>
   );
 }

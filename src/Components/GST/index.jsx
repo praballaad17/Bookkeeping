@@ -123,7 +123,7 @@ export default function GstDashboard() {
                     setForm({ ...form, month: e.target.value });
                   }}
                 >
-                  <option>select</option>
+                  <option value={undefined}>select</option>
                   {MONTHS.map((item) => (
                     <option key={item.code} value={item.code}>
                       {item.data}
