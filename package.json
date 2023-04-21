@@ -17,6 +17,7 @@
     "axios": "^1.3.5",
     "bootstrap": "^5.2.3",
     "copy-image-clipboard": "^2.1.2",
+    "dotenv": "^16.0.3",
     "jwt-decode": "^3.1.2",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",

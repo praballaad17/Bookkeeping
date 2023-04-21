@@ -1,8 +1,6 @@
 import axios from "axios";
-import Url from "../config.json";
 
-const apiEndpoint = Url?.apiUrl + "/party";
-// const apiEndpoint = Url?.localUrl + "/party";
+const apiEndpoint = import.meta.env.VITE_API_URL + "/party";
 
 export const createParty = async (party, userId) => {
   try {

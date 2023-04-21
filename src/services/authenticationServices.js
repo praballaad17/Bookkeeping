@@ -1,10 +1,6 @@
 import axios from "axios";
-import Url from "../config.json";
-// import jwtDecode from 'jwt-decode';
 
-// const apiEndpoint = Url?.apiUrl + "/auth";
-const apiEndpoint = Url?.localUrl + "/auth";
-console.log(Url);
+const apiEndpoint = import.meta.env.VITE_API_URL + "/auth";
 const tokenKey = "token";
 function setJwt(jwt) {
   axios.defaults.headers.common["token"] = jwt;

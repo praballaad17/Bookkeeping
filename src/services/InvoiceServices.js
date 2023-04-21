@@ -1,10 +1,8 @@
 import axios from "axios";
-import Url from "../config.json";
-// import { saveAs } from 'file-saver';
+
 import { copyImageToClipboard } from "copy-image-clipboard";
 
-const apiEndpointInvoice = Url?.apiUrl + "/invoice";
-// const apiEndpointInvoice = Url?.localUrl + "/invoice";
+const apiEndpointInvoice = import.meta.env.VITE_API_URL + "/invoice";
 
 const getdata = async () => {
   copyImageToClipboard(
