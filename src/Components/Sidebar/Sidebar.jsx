@@ -8,6 +8,7 @@ import SubMenu from "./SubMenu";
 import { NAVITEM } from "../../constants/variables";
 
 import Button from "react-bootstrap/Button";
+import { logout } from "../../services/authenticationServices";
 
 const Nav = styled.div`
   background: #15171c;
@@ -134,11 +135,9 @@ export default function Sidebar({ open, onClose }) {
         >
           <i className="fa-solid fa-gear"></i>Settings
         </Link>
-        <hr />
-
-        <a href="#Feedback">
+        <Link onClick={logout}>
           <i className="fa-solid fa-star"></i>Log Out
-        </a>
+        </Link>
       </div>
     </>
   );

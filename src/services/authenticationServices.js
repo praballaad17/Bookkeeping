@@ -60,32 +60,6 @@ export const registerUser = async (username, fullName, email, password) => {
   }
 };
 
-// /**
-//  * Changes a users password
-//  * @function changePassword
-//  * @param {string} oldPassword The user's current password
-//  * @param {string} newPassword The new password
-//  * @param {string} authToken A user's auth token
-//  */
-export const changePassword = async (oldPassword, newPassword, authToken) => {
-  // try {
-  //     await axios.put(
-  //         `${apiEndpoint}/password`,
-  //         {
-  //             oldPassword,
-  //             newPassword,
-  //         },
-  //         {
-  //             headers: {
-  //                 authorization: authToken,
-  //             },
-  //         }
-  //     );
-  // } catch (err) {
-  //     throw new Error(err.response.data.error);
-  // }
-};
-
 /**
  * update buisness profile by user id.
  * @param {buissness details} business
@@ -118,6 +92,29 @@ export const generateOtp = async (userId) => {
   }
 };
 
+export const resetPassOtp = async (email) => {
+  try {
+    const response = await axios.get(
+      `${apiEndpoint}/forgot-pass-generate-otp/${email}`
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const changePassword = async (data) => {
+  try {
+    const response = await axios.put(`${apiEndpoint}/change-password`, {
+      ...data,
+    });
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 export async function logout() {
-  // localStorage.removeItem(tokenKey)
+  localStorage.removeItem(tokenKey);
+  window.location.reload(false);
 }

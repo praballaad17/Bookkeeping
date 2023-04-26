@@ -14,9 +14,12 @@ export const EXPENSES = "/expenses";
 export const ADDEXPENSES = "/addexpenses";
 export const ADDSALESINV = "/sales/add";
 export const ADDPARTIESINV = "/party/add";
+
 export const AUTHENTICATION = "/authentication/*";
 export const LOGIN = "/login";
 export const SIGN_UP = "/signup";
+export const FORGOTPASS = "/authentication/forgot-password";
+
 export const PROFILE = "/user/:username";
 export const NOT_FOUND = "/not-found";
 export const MESSAGES = "/messages";

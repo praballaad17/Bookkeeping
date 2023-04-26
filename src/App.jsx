@@ -18,6 +18,7 @@ import { DataProvider } from "./Context/dataContext";
 import ToastBox from "./Components/Toast/ToastBox";
 import { InvoiceProvider } from "./Context/invoiceContext";
 import { GSTProvider } from "./Context/gstContext";
+import ForgotPass from "./pages/Authenticate/ForgotPass";
 
 // const Login = lazy(() => import('./pages/Login'));
 // const SignUp = lazy(() => import('./pages/Signup'));
@@ -40,7 +41,7 @@ export default function App() {
                     <Route
                       path={ROUTES.AUTHENTICATION}
                       element={<Authentication user={user} />}
-                      children={[AuthSignup, AuthLogin]}
+                      children={[AuthSignup, AuthLogin, ForgotPass]}
                     />
                     <Route
                       path={`${ROUTES.HOME}*`}

@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import "../../css/authenticationstyle.css";
 import { registerUser } from "../../services/authenticationServices";
 import { DASHBOARD } from "../../constants/routes";
+import { useUser } from "../../Context/userContext";
 
 const AuthSignup = ({ user: User }) => {
   const [username, setUsername] = useState("");
@@ -10,16 +11,21 @@ const AuthSignup = ({ user: User }) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
+  const { addToast, setLoading } = useUser();
+
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
   const handleSignUp = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       await registerUser(username, fullName, emailAddress, password);
-      // window.location = "/"
+      addToast(`${username} is registered`);
+      setLoading(false);
     } catch (error) {
       console.log(error.response);
+      setLoading(false);
       setFullName("");
       setEmailAddress("");
       setPassword("");

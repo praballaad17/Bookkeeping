@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../css/authenticationstyle.css";
-import { DASHBOARD } from "../../constants/routes";
+import * as ROUTES from "../../constants/routes";
 import { login } from "../../services/authenticationServices";
 import { Link, Navigate } from "react-router-dom";
 
@@ -27,12 +27,15 @@ const AuthLogin = ({ user: User }) => {
     }
   };
 
+  const handleForgotPassword = () => {};
+
   useEffect(() => {
     document.title = "Login - Touch";
-    setPassword(""); setEmailAddress("");
+    setPassword("");
+    setEmailAddress("");
   }, []);
 
-  if (User) return <Navigate to={DASHBOARD} />;
+  if (User) return <Navigate to={ROUTES.DASHBOARD} />;
 
   return (
     <>
@@ -69,13 +72,13 @@ const AuthLogin = ({ user: User }) => {
             onChange={({ target }) => setPassword(target.value)}
             value={password}
           />
-          <a href="#">Forgot Your Password</a>
+          <Link to={ROUTES.FORGOTPASS}>Forgot Your Password</Link>
 
           <button
             disabled={isInvalid}
             type="submit"
             className={`auth-btn
-            ${isInvalid && 'u-opacity-50'}`}
+            ${isInvalid && "u-opacity-50"}`}
           >
             Sign In
           </button>
