@@ -137,7 +137,7 @@ export default function Sidebar({ open, onClose }) {
         <hr />
 
         <a href="#Feedback">
-          <i className="fa-solid fa-star"></i>Share Feedback
+          <i className="fa-solid fa-star"></i>Log Out
         </a>
       </div>
     </>
