@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiEndpoint = import.meta.env.VITE_API_URL + "/party";
-
+console.log("import.meta.env.VITE_API_URL")
 export const createParty = async (party, userId) => {
   try {
     const response = await axios.post(`${apiEndpoint}/addParty`, {
